@@ -1,3 +1,13 @@
+"""
+Database Models - Service Intelligence Portal
+
+Defines the SQLAlchemy ORM models representing the energy management 
+system's domain entities: Customers, Meters, Contracts, and Complaints.
+
+All models inherit from the common declarative base and implement 
+relationship mappings for complex data retrieval.
+"""
+
 from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, JSON, Enum as SQLEnum
 from sqlalchemy.orm import relationship
 from datetime import datetime

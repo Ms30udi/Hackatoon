@@ -1,38 +1,60 @@
-## Database (Aiven)
+# Service Intelligence Portal - Energy Management System
 
-Rah khdemt b MySQL database hosted f Aiven.
-ghadi npartagi m3akom DB url 
+A professional, multi-language web portal for managing electricity contracts, connections, and customer inquiries.
 
-**ila bghito t runniw l'Backend alwlidate** :
-7eto database url f .env (DATABASE_URL=...)
+## Project Overview
 
-cd backend 
+This repository contains a full-stack application designed to streamline the interaction between energy providers and their customers. It features an institutional-grade frontend and a robust FastAPI backend with MySQL integration.
 
-python -m venv venv
+### Monorepo Structure
 
-venv\Scripts\activate  
+*   **/Frontend**: React 18 + TypeScript SPA featuring a modern, responsive UI.
+*   **/Backend**: FastAPI application handling RESTful services and database operations.
+*   **/documents**: Technical specifications, database schemas, and API documentation.
 
-pip install -r requirements.txt
+## Technology Stack
 
+### Frontend
+- **Framework**: React 18 with TypeScript
+- **Styling**: Tailwind CSS with institutional design tokens
+- **UI Components**: Radix UI (via shadcn/ui)
+- **State Management**: TanStack Query (React Query)
+- **Form Lifecycle**: React Hook Form + Zod
+- **I18n**: Custom multi-language context (FR/EN)
 
-**ila bghito t runniw l'Frontend alwlidate** :
+### Backend
+- **Framework**: FastAPI (Python 3.10+)
+- **ORM**: SQLAlchemy 2.0
+- **Database**: MySQL (Hosted on Aiven)
+- **Validation**: Pydantic v2
+- **Server**: Uvicorn with Gunicorn production readiness
 
-cd frontend
+## Getting Started
 
-npm install
+### Backend Setup
+1. Navigate to the backend directory: `cd Backend`
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+3. Install dependencies: `pip install -r requirements.txt`
+4. Configure `.env` with your `DATABASE_URL`
+5. Start the server: `uvicorn app.main:app --reload`
 
-npm run dev
+### Frontend Setup
+1. Navigate to the frontend directory: `cd Frontend`
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
 
+## Features
 
-mohim dik **venv** : bhala kandiro wahd lprojet virtuelle bach manb9awch nl9aw mochkil f les versions dial dependencies 
-**dependencies** dial lbackend kaynin f requirements.txt
-**frontend** rah bghina nkhedmo b react w tailwind css
+- **Dynamic Workflows**: Context-aware forms that adapt to request types (New Contract, Modification, Connection).
+- **Multi-language Support**: Real-time switching between French and English.
+- **Reference Tracking**: Automated reference number generation for all submissions.
+- **Responsive Design**: Fully optimized for mobile, tablet, and desktop viewing.
+- **Institutional Aesthetics**: Clean, professional design language suitable for public services.
 
+## License
 
-
-**to push in github**
-cd hackatoon
-git add .
-git commit -m "message"
-git checkout -b dev 
-git push origin dev
+This project is proprietary and confidential. All rights reserved.

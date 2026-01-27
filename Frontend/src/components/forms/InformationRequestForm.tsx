@@ -56,6 +56,14 @@ export const InformationRequestForm: React.FC<InformationRequestFormProps> = ({ 
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <FormInput
+            label={t.cin}
+            name="cin"
+            placeholder={t.cinPlaceholder}
+            value={formData.cin || ''}
+            onChange={handleChange}
+            required
+          />
+          <FormInput
             label={t.firstName}
             name="firstName"
             placeholder={t.firstNamePlaceholder}

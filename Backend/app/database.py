@@ -1,3 +1,10 @@
+"""
+Database Configuration - Service Intelligence Portal
+
+Handles SQLAlchemy engine initialization, session management, and 
+provides dependency injection utilities for FastAPI routes.
+"""
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 from dotenv import load_dotenv
