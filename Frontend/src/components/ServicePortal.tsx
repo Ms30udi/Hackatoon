@@ -67,12 +67,47 @@ export const ServicePortal: React.FC = () => {
 
   /**
    * Processes form submission
-   * Generates reference number and transitions to confirmation
+   * Sends data to backend and transitions to confirmation
    */
-  const handleSubmit = useCallback((data: Record<string, unknown>) => {
-    console.log('Form submitted:', { type: selectedType, data });
-    setReferenceNumber(generateReferenceNumber());
-    setPortalState('confirmation');
+  const handleSubmit = useCallback(async (data: Record<string, unknown>) => {
+    console.log('Submitting form:', { type: selectedType, data });
+
+    try {
+      let endpoint = '';
+      switch (selectedType) {
+        case 'newContract':
+          endpoint = '/api/contracts/new';
+          break;
+        case 'modifyContract':
+          endpoint = '/api/contracts/modify';
+          break;
+        case 'information':
+          endpoint = '/api/complaints/new';
+          break;
+        case 'newConnection':
+          endpoint = '/api/connections/new';
+          break;
+      }
+
+      const response = await fetch(`http://localhost:8000${endpoint}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit request');
+      }
+
+      const result = await response.json();
+      setReferenceNumber(result.contract_number || result.reference_number || generateReferenceNumber());
+      setPortalState('confirmation');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Une erreur est survenue lors de la soumission. Veuillez réessayer.');
+    }
   }, [selectedType, generateReferenceNumber]);
 
   /** Resets the portal to initial state for a new request */
