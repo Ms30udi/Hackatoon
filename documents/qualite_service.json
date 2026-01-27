@@ -1,0 +1,140 @@
+{
+  "metadata": {
+    "pays": "Maroc",
+    "langue": "fr",
+    "date_extraction": "2026-01-27",
+    "description": "Standards de qualite de service et compensations pour l'electricite au Maroc"
+  },
+  "standards_qualite": {
+    "tension": {
+      "description": "Qualite de la tension fournie",
+      "norme_reference": "NM IEC 61000-2-2",
+      "tolerance": {
+        "basse_tension": "+/-10% de la tension nominale (220V)",
+        "moyenne_tension": "+/-5% de la tension nominale"
+      },
+      "frequence": "50 Hz +/-1%"
+    },
+    "continuite_service": {
+      "description": "Continuite de la fourniture d'electricite",
+      "indicateurs": [
+        {
+          "nom": "SAIDI",
+          "description": "Duree moyenne d'interruption par client et par an",
+          "unite": "minutes/client/an"
+        },
+        {
+          "nom": "SAIFI",
+          "description": "Frequence moyenne d'interruption par client et par an",
+          "unite": "interruptions/client/an"
+        }
+      ]
+    }
+  },
+  "engagements_fournisseur": [
+    {
+      "id": "eng_001",
+      "engagement": "Delai de raccordement",
+      "description": "Realisation du branchement dans les delais annonces",
+      "delai_standard": "30 jours ouvrables maximum apres paiement",
+      "compensation_possible": "Remise sur frais de branchement"
+    },
+    {
+      "id": "eng_002",
+      "engagement": "Delai de retablissement apres coupure",
+      "description": "Reconnexion apres regularisation d'une coupure pour impaye",
+      "delai_standard": "24-48 heures apres paiement",
+      "compensation_possible": "Reconnexion gratuite si delai depasse"
+    },
+    {
+      "id": "eng_003",
+      "engagement": "Preavis avant coupure programmee",
+      "description": "Information des clients avant une coupure pour travaux",
+      "delai_standard": "48 heures minimum a l'avance",
+      "moyens_information": ["Affichage local", "SMS si numero enregistre"]
+    },
+    {
+      "id": "eng_004",
+      "engagement": "Reponse aux reclamations",
+      "description": "Traitement des reclamations dans un delai raisonnable",
+      "delai_standard": "15 jours ouvrables",
+      "compensation_possible": "Non"
+    },
+    {
+      "id": "eng_005",
+      "engagement": "Retablissement apres panne",
+      "description": "Reparation des pannes sur le reseau",
+      "delai_standard": {
+        "zone_urbaine": "4 heures en moyenne",
+        "zone_rurale": "8 heures en moyenne"
+      }
+    },
+    {
+      "id": "eng_006",
+      "engagement": "Precision de la facturation",
+      "description": "Facturation basee sur des releves reels et precis",
+      "frequence_releve": "Mensuelle ou bimestrielle",
+      "droit_rectification": "Rectification gratuite en cas d'erreur"
+    }
+  ],
+  "compensation_coupure": {
+    "description": "Indemnisation en cas de coupure prolongee non programmee",
+    "conditions": "Coupure de plus de 24 heures consecutives hors cas de force majeure",
+    "montant": "Variable selon la duree et les dispositions du fournisseur",
+    "procedure": "Demande ecrite aupres du fournisseur dans les 30 jours suivant l'incident",
+    "note": "Les modalites exactes varient selon les fournisseurs et sont definies dans les contrats"
+  },
+  "force_majeure": {
+    "definition": "Evenements imprevisibles, irresistibles et exterieurs",
+    "exemples": [
+      "Catastrophes naturelles (seismes, inondations)",
+      "Conditions meteorologiques exceptionnelles",
+      "Actes de guerre ou terrorisme",
+      "Decisions des autorites publiques"
+    ],
+    "consequence": "Exoneration de responsabilite du fournisseur pour les coupures resultant de ces evenements"
+  },
+  "recours_anre": {
+    "description": "Recours aupres de l'Autorite Nationale de Regulation de l'Electricite",
+    "conditions": "Apres epuisement des recours aupres du fournisseur (2 mois sans reponse satisfaisante)",
+    "contact": {
+      "nom": "ANRE - Autorite Nationale de Regulation de l'Electricite",
+      "adresse": "Avenue Annakhil, Hay Riad, Rabat",
+      "telephone": "+212 537 56 31 83/84",
+      "email": "contact@anre.ma",
+      "site_web": "www.anre.ma"
+    },
+    "procedure": [
+      "Preparer un dossier avec toutes les pieces justificatives",
+      "Joindre les copies des reclamations precedentes au fournisseur",
+      "Envoyer par courrier recommande ou deposer en personne",
+      "L'ANRE instruit le dossier et rend une decision"
+    ]
+  },
+  "droits_fondamentaux_client": [
+    {
+      "droit": "Droit a l'acces",
+      "description": "Tout demandeur a le droit d'etre raccorde au reseau dans des conditions equitables"
+    },
+    {
+      "droit": "Droit a la continuite",
+      "description": "Le client a droit a une fourniture continue, sauf cas de force majeure ou travaux necessaires"
+    },
+    {
+      "droit": "Droit a l'information",
+      "description": "Le client doit etre informe des tarifs, conditions et modifications contractuelles"
+    },
+    {
+      "droit": "Droit a la qualite",
+      "description": "La tension et la frequence doivent respecter les normes en vigueur"
+    },
+    {
+      "droit": "Droit de reclamation",
+      "description": "Le client peut contester toute decision et obtenir une reponse motivee"
+    },
+    {
+      "droit": "Droit a la protection des donnees",
+      "description": "Les donnees personnelles du client sont protegees conformement a la loi 09-08"
+    }
+  ]
+}

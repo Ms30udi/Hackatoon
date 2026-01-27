@@ -1,0 +1,508 @@
+{
+  "metadata": {
+    "pays": "Maroc",
+    "langue": "fr",
+    "date_extraction": "2026-01-27",
+    "version": "2.0",
+    "description": "Procedures detaillees pour les services d'electricite au Maroc - inclut procedures administratives et reclamations"
+  },
+  "procedures": {
+    "nouveau_branchement": {
+      "id": "proc_nouv_001",
+      "titre": "Nouvelle connexion electrique",
+      "description": "Procedure complete pour obtenir un nouveau branchement electrique",
+      "type_client": ["residentiel", "professionnel"],
+      "delai_estime": "4-6 semaines",
+      "etapes": [
+        {
+          "ordre": 1,
+          "titre": "Preparation du dossier",
+          "description": "Rassembler tous les documents requis",
+          "documents_requis": ["CIN", "justificatif_occupation", "plan_situation"],
+          "responsable": "client"
+        },
+        {
+          "ordre": 2,
+          "titre": "Depot de la demande",
+          "description": "Soumettre le dossier a l'agence ou en ligne",
+          "canaux": ["agence", "en_ligne"],
+          "responsable": "client"
+        },
+        {
+          "ordre": 3,
+          "titre": "Etude technique",
+          "description": "Le fournisseur evalue la faisabilite technique",
+          "delai": "5-10 jours ouvrables",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 4,
+          "titre": "Devis et paiement",
+          "description": "Reception du devis et paiement des frais",
+          "frais": ["frais_branchement", "cautionnement", "frais_contrat"],
+          "responsable": "client"
+        },
+        {
+          "ordre": 5,
+          "titre": "Travaux de raccordement",
+          "description": "Installation du compteur et raccordement au reseau",
+          "delai": "2-3 semaines",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 6,
+          "titre": "Mise en service",
+          "description": "Activation du compteur et debut de la fourniture",
+          "responsable": "fournisseur"
+        }
+      ],
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC", "AMENDIS", "RADEEMA"]
+    },
+    "resiliation_contrat": {
+      "id": "proc_res_001",
+      "titre": "Resiliation de contrat",
+      "description": "Procedure pour mettre fin a un contrat d'electricite",
+      "type_client": ["residentiel", "professionnel"],
+      "delai_estime": "7-15 jours",
+      "etapes": [
+        {
+          "ordre": 1,
+          "titre": "Demande de resiliation",
+          "description": "Soumettre une demande ecrite ou en ligne",
+          "preavis": "Aucun preavis obligatoire",
+          "responsable": "client"
+        },
+        {
+          "ordre": 2,
+          "titre": "Releve final du compteur",
+          "description": "Le fournisseur effectue un releve final",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 3,
+          "titre": "Facture de cloture",
+          "description": "Emission de la derniere facture",
+          "delai": "15 jours",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 4,
+          "titre": "Remboursement cautionnement",
+          "description": "Restitution de l'avance sur consommation apres deduction des impayes",
+          "delai": "30 jours apres solde de tout compte",
+          "responsable": "fournisseur"
+        }
+      ],
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC", "AMENDIS", "RADEEMA"]
+    },
+    "modification_puissance": {
+      "id": "proc_mod_001",
+      "titre": "Modification de puissance souscrite",
+      "description": "Procedure pour augmenter ou diminuer la puissance souscrite",
+      "type_client": ["residentiel", "professionnel"],
+      "delai_estime": "7-21 jours",
+      "etapes": [
+        {
+          "ordre": 1,
+          "titre": "Demande de modification",
+          "description": "Soumettre une demande avec la nouvelle puissance souhaitee",
+          "responsable": "client"
+        },
+        {
+          "ordre": 2,
+          "titre": "Etude de faisabilite",
+          "description": "Verification de la capacite du reseau",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 3,
+          "titre": "Mise a jour du contrat",
+          "description": "Signature d'un avenant au contrat",
+          "responsable": "client"
+        },
+        {
+          "ordre": 4,
+          "titre": "Ajustement technique",
+          "description": "Modification du disjoncteur si necessaire",
+          "responsable": "fournisseur"
+        }
+      ],
+      "restrictions": "Une seule modification par an autorisee",
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC"]
+    },
+    "transfert_nom": {
+      "id": "proc_trans_001",
+      "titre": "Transfert de titulaire (changement de nom)",
+      "description": "Procedure pour transferer un contrat suite a une vente ou succession",
+      "type_client": ["residentiel", "professionnel"],
+      "delai_estime": "7-10 jours ouvrables",
+      "etapes": [
+        {
+          "ordre": 1,
+          "titre": "Constitution du dossier",
+          "description": "Preparer les documents de transfert",
+          "documents_requis": ["CIN_nouveau_titulaire", "acte_vente_ou_succession", "derniere_facture", "attestation_ancien_titulaire"],
+          "responsable": "client"
+        },
+        {
+          "ordre": 2,
+          "titre": "Depot de la demande",
+          "description": "Soumettre le dossier complet a l'agence",
+          "responsable": "client"
+        },
+        {
+          "ordre": 3,
+          "titre": "Verification et validation",
+          "description": "Controle des documents et de l'etat du compte",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 4,
+          "titre": "Nouveau contrat",
+          "description": "Etablissement du contrat au nom du nouveau titulaire",
+          "frais": ["frais_transfert", "nouveau_cautionnement"],
+          "responsable": "client"
+        }
+      ],
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC", "AMENDIS", "RADEEMA"]
+    },
+    "changement_adresse": {
+      "id": "proc_adr_001",
+      "titre": "Changement d'adresse (demenagement)",
+      "description": "Procedure lors d'un demenagement",
+      "type_client": ["residentiel", "professionnel"],
+      "etapes": [
+        {
+          "ordre": 1,
+          "titre": "Resiliation ancien contrat",
+          "description": "Demander la resiliation a l'ancienne adresse",
+          "preavis_recommande": "15 jours avant demenagement",
+          "responsable": "client"
+        },
+        {
+          "ordre": 2,
+          "titre": "Nouvelle souscription",
+          "description": "Souscrire un nouveau contrat a la nouvelle adresse",
+          "responsable": "client"
+        }
+      ],
+      "note": "Les contrats ne sont pas transferables d'une adresse a une autre",
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC", "AMENDIS", "RADEEMA"]
+    },
+    "branchement_provisoire": {
+      "id": "proc_prov_001",
+      "titre": "Branchement provisoire (chantier/evenement)",
+      "description": "Procedure pour une connexion temporaire",
+      "type_client": ["professionnel"],
+      "delai_estime": "2-4 semaines",
+      "duree_max": "12 mois renouvelable",
+      "etapes": [
+        {
+          "ordre": 1,
+          "titre": "Demande avec justificatif",
+          "description": "Soumettre la demande avec permis de construire ou autorisation d'evenement",
+          "documents_requis": ["permis_construire", "plan_chantier", "CIN_responsable"],
+          "responsable": "client"
+        },
+        {
+          "ordre": 2,
+          "titre": "Etude et devis",
+          "description": "Evaluation technique et etablissement du devis",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 3,
+          "titre": "Installation provisoire",
+          "description": "Mise en place du branchement temporaire",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 4,
+          "titre": "Demontage en fin de periode",
+          "description": "Retrait de l'installation a l'echeance",
+          "responsable": "fournisseur"
+        }
+      ],
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC"]
+    },
+    "reconnexion": {
+      "id": "proc_recon_001",
+      "titre": "Reconnexion apres coupure",
+      "description": "Procedure pour retablir le service apres une coupure pour impaye",
+      "type_client": ["residentiel", "professionnel"],
+      "delai_estime": "24-48 heures apres paiement",
+      "etapes": [
+        {
+          "ordre": 1,
+          "titre": "Regularisation des impayes",
+          "description": "Payer la totalite des sommes dues ou convenir d'un echeancier",
+          "responsable": "client"
+        },
+        {
+          "ordre": 2,
+          "titre": "Paiement frais de reconnexion",
+          "description": "S'acquitter des frais de retablissement du service",
+          "responsable": "client"
+        },
+        {
+          "ordre": 3,
+          "titre": "Demande de reconnexion",
+          "description": "Presenter la preuve de paiement et demander la reconnexion",
+          "responsable": "client"
+        },
+        {
+          "ordre": 4,
+          "titre": "Retablissement du service",
+          "description": "Intervention technique pour remettre le courant",
+          "delai": "24-48 heures",
+          "responsable": "fournisseur"
+        }
+      ],
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC", "AMENDIS", "RADEEMA"]
+    }
+  },
+  "reclamations": {
+    "categories": [
+      {
+        "id": "cat_rec_001",
+        "categorie": "Facturation",
+        "description": "Reclamations liees aux factures d'electricite",
+        "types": [
+          {
+            "id": "rec_fact_001",
+            "type": "Facture elevee anormale",
+            "description": "Contestation d'une facture jugee trop elevee par rapport a la consommation habituelle",
+            "informations_requises": ["numero_contrat", "periode_contestee", "consommation_habituelle", "copies_factures"],
+            "delai_traitement": "15 jours ouvrables",
+            "resolution_possible": ["verification_compteur", "ajustement_facture", "echeancier_paiement"]
+          },
+          {
+            "id": "rec_fact_002",
+            "type": "Erreur de releve",
+            "description": "Index du compteur mal releve ou estime incorrectement",
+            "informations_requises": ["numero_contrat", "index_reel", "photo_compteur"],
+            "delai_traitement": "7 jours ouvrables",
+            "resolution_possible": ["correction_index", "nouvelle_facture"]
+          },
+          {
+            "id": "rec_fact_003",
+            "type": "Double facturation",
+            "description": "Facturation en double d'une meme periode",
+            "informations_requises": ["numero_contrat", "copies_factures_concernees"],
+            "delai_traitement": "7 jours ouvrables",
+            "resolution_possible": ["annulation_facture", "avoir"]
+          },
+          {
+            "id": "rec_fact_004",
+            "type": "Frais non justifies",
+            "description": "Contestation de frais ou penalites sur la facture",
+            "informations_requises": ["numero_contrat", "detail_frais_contestes"],
+            "delai_traitement": "10 jours ouvrables",
+            "resolution_possible": ["justification_frais", "annulation_frais"]
+          }
+        ]
+      },
+      {
+        "id": "cat_rec_002",
+        "categorie": "Qualite de service",
+        "description": "Reclamations liees a la qualite de la fourniture d'electricite",
+        "types": [
+          {
+            "id": "rec_qual_001",
+            "type": "Coupures frequentes",
+            "description": "Interruptions repetees du service electrique",
+            "informations_requises": ["numero_contrat", "dates_coupures", "durees_coupures"],
+            "delai_traitement": "10 jours ouvrables",
+            "resolution_possible": ["investigation_technique", "reparation_reseau", "compensation"]
+          },
+          {
+            "id": "rec_qual_002",
+            "type": "Variations de tension",
+            "description": "Surtensions ou sous-tensions affectant les equipements",
+            "informations_requises": ["numero_contrat", "description_probleme", "equipements_affectes"],
+            "delai_traitement": "15 jours ouvrables",
+            "resolution_possible": ["verification_installation", "ajustement_reseau"]
+          },
+          {
+            "id": "rec_qual_003",
+            "type": "Coupure prolongee non signalee",
+            "description": "Coupure longue sans information prealable",
+            "informations_requises": ["numero_contrat", "date_debut_coupure", "duree"],
+            "delai_traitement": "5 jours ouvrables",
+            "resolution_possible": ["explication", "compensation_si_eligible"]
+          }
+        ]
+      },
+      {
+        "id": "cat_rec_003",
+        "categorie": "Compteur",
+        "description": "Reclamations liees au compteur electrique",
+        "types": [
+          {
+            "id": "rec_comp_001",
+            "type": "Compteur defectueux",
+            "description": "Suspicion de dysfonctionnement du compteur",
+            "informations_requises": ["numero_contrat", "description_anomalie"],
+            "delai_traitement": "15 jours ouvrables",
+            "resolution_possible": ["test_compteur", "remplacement_compteur", "ajustement_facturation"]
+          },
+          {
+            "id": "rec_comp_002",
+            "type": "Compteur inaccessible",
+            "description": "Impossible d'acceder au compteur pour releve",
+            "informations_requises": ["numero_contrat", "raison_inaccessibilite"],
+            "delai_traitement": "7 jours ouvrables",
+            "resolution_possible": ["prise_rdv_releve", "auto_releve"]
+          }
+        ]
+      },
+      {
+        "id": "cat_rec_004",
+        "categorie": "Service client",
+        "description": "Reclamations liees a la qualite du service client",
+        "types": [
+          {
+            "id": "rec_serv_001",
+            "type": "Delai de traitement excessif",
+            "description": "Demande non traitee dans les delais annonces",
+            "informations_requises": ["numero_contrat", "reference_demande", "date_demande"],
+            "delai_traitement": "5 jours ouvrables",
+            "resolution_possible": ["acceleration_traitement", "explication"]
+          },
+          {
+            "id": "rec_serv_002",
+            "type": "Mauvais accueil",
+            "description": "Comportement inapproprie d'un agent",
+            "informations_requises": ["numero_contrat", "date_incident", "description"],
+            "delai_traitement": "10 jours ouvrables",
+            "resolution_possible": ["enquete_interne", "excuses"]
+          }
+        ]
+      },
+      {
+        "id": "cat_rec_005",
+        "categorie": "Coupure abusive",
+        "description": "Reclamations pour coupure injustifiee",
+        "types": [
+          {
+            "id": "rec_coup_001",
+            "type": "Coupure sans preavis",
+            "description": "Coupure effectuee sans notification prealable reglementaire",
+            "informations_requises": ["numero_contrat", "date_coupure"],
+            "delai_traitement": "24-48 heures",
+            "resolution_possible": ["reconnexion_immediate", "compensation"],
+            "priorite": "haute"
+          },
+          {
+            "id": "rec_coup_002",
+            "type": "Coupure malgre paiement",
+            "description": "Coupure alors que le compte est a jour",
+            "informations_requises": ["numero_contrat", "preuves_paiement"],
+            "delai_traitement": "24 heures",
+            "resolution_possible": ["reconnexion_immediate_gratuite", "excuses"],
+            "priorite": "critique"
+          }
+        ]
+      }
+    ],
+    "procedure_depot": {
+      "canaux": [
+        {
+          "canal": "Agence",
+          "description": "Depot en personne dans une agence commerciale",
+          "disponibilite": "Heures ouvrables"
+        },
+        {
+          "canal": "Telephone",
+          "description": "Appel au service client",
+          "numeros": {
+            "REDAL": "0537 20 20 80",
+            "ONEE": "0801 00 00 09",
+            "LYDEC": "0522 31 20 20"
+          }
+        },
+        {
+          "canal": "En ligne",
+          "description": "Via le portail client ou application mobile",
+          "disponibilite": "24h/24"
+        },
+        {
+          "canal": "Courrier",
+          "description": "Lettre recommandee avec accuse de reception",
+          "delai_reponse": "30 jours maximum"
+        }
+      ],
+      "etapes_traitement": [
+        {
+          "ordre": 1,
+          "etape": "Reception et enregistrement",
+          "description": "Attribution d'un numero de suivi",
+          "delai": "Immediat"
+        },
+        {
+          "ordre": 2,
+          "etape": "Analyse de la reclamation",
+          "description": "Etude du dossier et des pieces justificatives",
+          "delai": "5 jours ouvrables"
+        },
+        {
+          "ordre": 3,
+          "etape": "Investigation si necessaire",
+          "description": "Verification technique ou administrative",
+          "delai": "Variable selon la nature"
+        },
+        {
+          "ordre": 4,
+          "etape": "Reponse au client",
+          "description": "Communication de la decision et des actions",
+          "delai": "15 jours ouvrables max"
+        }
+      ]
+    },
+    "escalade": {
+      "niveau_1": {
+        "instance": "Service client fournisseur",
+        "delai_reponse": "15 jours",
+        "contact": "Agence ou service client telephonique"
+      },
+      "niveau_2": {
+        "instance": "Direction regionale fournisseur",
+        "delai_reponse": "30 jours",
+        "conditions": "Si reponse niveau 1 non satisfaisante"
+      },
+      "niveau_3": {
+        "instance": "ANRE (Autorite Nationale de Regulation de l'Electricite)",
+        "delai_reponse": "60 jours",
+        "contact": {
+          "email": "contact@anre.ma",
+          "telephone": "+212 537 56 31 83",
+          "adresse": "Avenue Annakhil, Hay Riad, Rabat"
+        },
+        "conditions": "Apres epuisement des recours aupres du fournisseur (2 mois sans reponse satisfaisante)",
+        "documents_requis": ["copie_reclamation_initiale", "reponses_fournisseur", "pieces_justificatives"]
+      }
+    },
+    "droits_consommateur": [
+      {
+        "droit": "Reponse ecrite",
+        "description": "Droit a une reponse ecrite dans les delais legaux"
+      },
+      {
+        "droit": "Numero de suivi",
+        "description": "Droit a un numero de suivi de reclamation"
+      },
+      {
+        "droit": "Recours ANRE",
+        "description": "Droit de contester la decision aupres de l'ANRE"
+      },
+      {
+        "droit": "Compensation",
+        "description": "Droit a compensation en cas de coupure abusive"
+      },
+      {
+        "droit": "Test compteur gratuit",
+        "description": "Droit a un test gratuit du compteur (une fois tous les 24 mois)"
+      }
+    ]
+  }
+}

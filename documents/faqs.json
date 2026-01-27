@@ -1,0 +1,493 @@
+{
+  "metadata": {
+    "pays": "Maroc",
+    "langue": "fr",
+    "date_extraction": "2026-01-27",
+    "version": "2.0",
+    "description": "Questions frequemment posees sur les services d'electricite au Maroc - Base de connaissances complete"
+  },
+  "faqs": [
+    {
+      "categorie": "Abonnement et Souscription",
+      "description": "Questions relatives a la souscription et gestion des abonnements",
+      "questions": [
+        {
+          "id": "faq_abon_001",
+          "question": "Comment souscrire a un abonnement electricite basse tension ?",
+          "reponse": "Presentez-vous a votre agence ONEE avec un dossier d'abonnement Basse Tension dument rempli et signe, accompagne d'une piece justifiant l'occupation du local (CNI, facture eau/telephone, contrat de bail, ou autorisation du proprietaire legalisee).",
+          "fournisseur": "ONEE",
+          "documents_requis": ["CIN", "justificatif_occupation", "formulaire_abonnement"]
+        },
+        {
+          "id": "faq_abon_002",
+          "question": "Peut-on souscrire a un abonnement en ligne ?",
+          "reponse": "Oui, le service 'Abonnement en ligne' permet de souscrire votre contrat d'abonnement d'electricite en basse tension sans vous deplacer a l'Agence. Ce service est accessible aux clients potentiels Basse Tension dans les zones desservies par l'ONEE.",
+          "fournisseur": "ONEE",
+          "canal": "en_ligne"
+        },
+        {
+          "id": "faq_abon_003",
+          "question": "Faut-il un identifiant pour acceder au service d'abonnement en ligne ?",
+          "reponse": "Non, vous n'avez pas besoin d'identifiant pour acceder au service, mais vous devez fournir une copie de votre piece d'identite lors de la soumission.",
+          "fournisseur": "ONEE"
+        },
+        {
+          "id": "faq_abon_004",
+          "question": "Quels sont les documents requis pour un abonnement entreprise ?",
+          "reponse": "Pour les entreprises, il faut : copie CNI du gerant, registre de commerce, justificatif d'occupation, et documents d'autorisation.",
+          "fournisseur": "ONEE",
+          "type_client": "professionnel",
+          "documents_requis": ["CIN_gerant", "registre_commerce", "justificatif_occupation", "statuts_societe"]
+        },
+        {
+          "id": "faq_abon_005",
+          "question": "Quelles sont les conditions pour un nouveau branchement ?",
+          "reponse": "Il faut : un numero de telephone mobile valide, la presence du demandeur ou representant autorise, un emplacement approprie pour le compteur (facade, mur ou chambre enterree), un acces permanent au compteur, et le compteur doit etre positionne a la limite de propriete.",
+          "fournisseur": "REDAL"
+        }
+      ]
+    },
+    {
+      "categorie": "Frais et Cautionnement",
+      "description": "Questions sur les frais d'abonnement et le cautionnement",
+      "questions": [
+        {
+          "id": "faq_frais_001",
+          "question": "Quels sont les frais d'abonnement ?",
+          "reponse": "Les frais comprennent : redevance de plombage et pose du compteur (107,23 DH TTC), cout du contrat (12-24 DH), et une avance sur consommation/cautionnement (montant variable selon la puissance souscrite).",
+          "fournisseur": "ONEE",
+          "montants": {
+            "plombage_pose": 107.23,
+            "contrat_min": 12,
+            "contrat_max": 24,
+            "devise": "MAD"
+          }
+        },
+        {
+          "id": "faq_frais_002",
+          "question": "Comment sont payes les frais d'abonnement ?",
+          "reponse": "Les frais d'abonnement seront reportes au niveau de votre premiere facture, sauf le cautionnement qui doit etre vire au compte ONEE au prealable.",
+          "fournisseur": "ONEE"
+        },
+        {
+          "id": "faq_frais_003",
+          "question": "Le cautionnement est-il remboursable ?",
+          "reponse": "Oui, le cautionnement (avance sur consommation) est non productif d'interets et remboursable a la resiliation du contrat.",
+          "fournisseur": "ONEE"
+        }
+      ]
+    },
+    {
+      "categorie": "Facturation et Consommation",
+      "description": "Questions sur la facturation, les tranches et la lecture des factures",
+      "questions": [
+        {
+          "id": "faq_fact_001",
+          "question": "Comment fonctionne la facturation progressive ?",
+          "reponse": "Pour une consommation inferieure ou egale a 150 kWh, la facturation comporte 2 tranches : 0-100 kWh et 101-150 kWh.",
+          "fournisseur": "REDAL",
+          "type_facturation": "progressive"
+        },
+        {
+          "id": "faq_fact_002",
+          "question": "Comment fonctionne la facturation selective ?",
+          "reponse": "Pour une consommation superieure a 150 kWh, la facturation comporte 4 tranches : 151-210 kWh, 211-310 kWh, 311-510 kWh, et plus de 510 kWh.",
+          "fournisseur": "REDAL",
+          "type_facturation": "selective"
+        },
+        {
+          "id": "faq_fact_010",
+          "question": "Comment lire ma facture d'electricite ?",
+          "reponse": "Votre facture comprend : vos informations client (numero contrat, adresse), la periode de facturation, les index ancien et nouveau du compteur, la consommation en kWh, le detail des tranches tarifaires, les taxes (TVA, TPRT), les redevances fixes, et le montant total TTC.",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_fact_011",
+          "question": "Pourquoi ma facture est-elle estimee ?",
+          "reponse": "Une facture peut etre estimee si le releveur n'a pas pu acceder a votre compteur (absence, compteur inaccessible). L'estimation est basee sur votre historique de consommation. La regularisation se fera lors du prochain releve reel.",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_fact_012",
+          "question": "Comment contester une facture que je trouve trop elevee ?",
+          "reponse": "Verifiez d'abord l'index de votre compteur et comparez-le a celui de la facture. Si vous constatez une anomalie, deposez une reclamation aupres de votre fournisseur en joignant une photo de votre compteur. Vous pouvez demander un test du compteur.",
+          "fournisseur": "General",
+          "procedure_liee": "reclamation_facturation"
+        },
+        {
+          "id": "faq_fact_013",
+          "question": "Qu'est-ce que la TVA sur l'electricite au Maroc ?",
+          "reponse": "L'electricite est soumise a une TVA de 14% au Maroc. Elle s'applique sur le montant de la consommation et sur certaines redevances.",
+          "fournisseur": "General",
+          "taux_tva": 14
+        },
+        {
+          "id": "faq_fact_014",
+          "question": "Qu'est-ce que la TPRT sur ma facture ?",
+          "reponse": "La TPRT (Taxe Professionnelle de Repartition des Taxes) est une taxe locale reversee aux communes. Son taux varie selon les localites.",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_fact_015",
+          "question": "Comment fonctionne le systeme de tranches tarifaires ?",
+          "reponse": "Le tarif residentiel est progressif par tranches. Plus vous consommez, plus le prix au kWh augmente. Cela encourage les economies d'energie. Les premieres tranches (0-100 kWh) sont subventionnees, les tranches superieures sont plus cheres.",
+          "fournisseur": "General"
+        }
+      ]
+    },
+    {
+      "categorie": "Paiement",
+      "description": "Questions sur les modes de paiement et echeanciers",
+      "questions": [
+        {
+          "id": "faq_paie_001",
+          "question": "Quels sont les modes de paiement disponibles ?",
+          "reponse": "Vous pouvez payer en agence (especes, cheque, carte), en ligne (carte bancaire), par application mobile, par prelevement automatique, aux GAB bancaires, dans les points de paiement partenaires, ou par virement bancaire.",
+          "fournisseur": "General",
+          "modes": ["agence", "en_ligne", "application", "prelevement", "GAB", "partenaires", "virement"]
+        },
+        {
+          "id": "faq_paie_002",
+          "question": "Puis-je obtenir un echeancier de paiement ?",
+          "reponse": "Oui, en cas de difficulte financiere, vous pouvez demander un echeancier de paiement. Presentez-vous a l'agence avec une demande motivee. La duree maximale est generalement de 6 a 12 mois selon le montant de la dette.",
+          "fournisseur": "General",
+          "duree_max_mois": 12
+        },
+        {
+          "id": "faq_paie_003",
+          "question": "Comment mettre en place le prelevement automatique ?",
+          "reponse": "Rendez-vous en agence avec un RIB et votre piece d'identite, ou faites la demande en ligne sur l'espace client. Vous devrez signer un mandat de prelevement SEPA. Le prelevement sera effectue a chaque echeance de facture.",
+          "fournisseur": "General",
+          "documents_requis": ["RIB", "CIN"]
+        }
+      ]
+    },
+    {
+      "categorie": "Coupure et Reconnexion",
+      "description": "Questions sur les coupures, delais et procedures de reconnexion",
+      "questions": [
+        {
+          "id": "faq_coup_001",
+          "question": "Apres combien de temps de non-paiement risque-t-on une coupure ?",
+          "reponse": "Generalement, une mise en demeure est envoyee 15 jours apres l'echeance de la facture. Sans regularisation dans les 15 jours suivant la mise en demeure, le fournisseur peut proceder a la coupure. Au total, comptez environ 30 jours apres l'echeance.",
+          "fournisseur": "General",
+          "delai_jours": 30
+        },
+        {
+          "id": "faq_coup_002",
+          "question": "Le fournisseur peut-il couper l'electricite sans preavis ?",
+          "reponse": "Non, le fournisseur doit obligatoirement envoyer une mise en demeure avant toute coupure pour impaye. Cependant, une coupure immediate peut intervenir en cas de fraude constatee (branchement illicite, manipulation du compteur).",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_coup_003",
+          "question": "Combien coute la reconnexion apres coupure ?",
+          "reponse": "Les frais de reconnexion varient selon le fournisseur, generalement entre 100 et 300 DH. Ces frais s'ajoutent au montant des impayes a regulariser.",
+          "fournisseur": "General",
+          "frais_min": 100,
+          "frais_max": 300,
+          "devise": "MAD"
+        },
+        {
+          "id": "faq_coup_004",
+          "question": "Existe-t-il des protections contre la coupure pour les personnes vulnerables ?",
+          "reponse": "Des dispositions peuvent exister pour les personnes en situation de precarite. Renseignez-vous aupres de votre fournisseur sur les possibilites d'echeancier de paiement ou d'aide sociale.",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_coup_005",
+          "question": "Combien de temps faut-il pour etre reconnecte apres paiement ?",
+          "reponse": "Apres regularisation des impayes et paiement des frais de reconnexion, le retablissement du service intervient generalement sous 24 a 48 heures.",
+          "fournisseur": "General",
+          "delai_heures_min": 24,
+          "delai_heures_max": 48
+        }
+      ]
+    },
+    {
+      "categorie": "Demenagement",
+      "description": "Questions sur la gestion du contrat lors d'un demenagement",
+      "questions": [
+        {
+          "id": "faq_dem_001",
+          "question": "Que faire de mon contrat d'electricite quand je demenage ?",
+          "reponse": "Vous devez resilier votre contrat actuel et souscrire un nouveau contrat a votre nouvelle adresse. Les contrats d'electricite ne sont pas transferables d'une adresse a une autre. Prevenez votre fournisseur au moins 15 jours avant votre demenagement.",
+          "fournisseur": "General",
+          "preavis_jours": 15
+        },
+        {
+          "id": "faq_dem_002",
+          "question": "Puis-je garder le meme fournisseur si je demenage dans une autre ville ?",
+          "reponse": "Cela depend de la zone de desserte. Si vous restez dans la zone de votre fournisseur actuel, vous pouvez souscrire un nouveau contrat avec lui. Sinon, vous devrez contracter avec le fournisseur de votre nouvelle zone (ONEE, LYDEC, REDAL, AMENDIS, ou RADEEMA selon la ville).",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_dem_003",
+          "question": "Mon cautionnement sera-t-il transfere a ma nouvelle adresse ?",
+          "reponse": "Non, le cautionnement de votre ancien contrat vous sera rembourse apres la cloture de votre compte (deduction faite des eventuels impayes). Vous devrez verser un nouveau cautionnement pour votre nouveau contrat.",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_dem_004",
+          "question": "Combien de temps a l'avance dois-je prevenir pour un demenagement ?",
+          "reponse": "Il est recommande de prevenir votre fournisseur au moins 15 jours avant la date de votre demenagement pour permettre d'organiser le releve final et eviter toute facturation apres votre depart.",
+          "fournisseur": "General",
+          "preavis_jours": 15
+        }
+      ]
+    },
+    {
+      "categorie": "Locataire et Proprietaire",
+      "description": "Questions sur les responsabilites locataire/proprietaire",
+      "questions": [
+        {
+          "id": "faq_loc_001",
+          "question": "Le contrat d'electricite doit-il etre au nom du locataire ou du proprietaire ?",
+          "reponse": "Le contrat peut etre au nom du locataire ou du proprietaire selon l'accord entre les parties. Generalement, il est recommande que le contrat soit au nom de l'occupant reel du local pour eviter les complications en cas de changement de locataire.",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_loc_002",
+          "question": "Que se passe-t-il si mon locataire ne paie pas ses factures d'electricite ?",
+          "reponse": "Si le contrat est au nom du locataire, c'est lui qui est responsable des impayes. Si le contrat est a votre nom (proprietaire), vous etes responsable vis-a-vis du fournisseur. Il est conseille de demander au locataire de mettre le contrat a son nom.",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_loc_003",
+          "question": "Comment recuperer le contrat d'electricite apres le depart d'un locataire ?",
+          "reponse": "Vous devez demander un transfert de titulaire. Presentez-vous a l'agence avec votre CIN, le titre de propriete, et la derniere facture. L'ancien locataire devrait idealement avoir resilie son contrat.",
+          "fournisseur": "General",
+          "procedure_liee": "transfert_titulaire"
+        },
+        {
+          "id": "faq_loc_004",
+          "question": "Puis-je demander la coupure de l'electricite de mon locataire en cas d'impayes de loyer ?",
+          "reponse": "Non, vous ne pouvez pas demander la coupure si le contrat est au nom du locataire. Seul le titulaire du contrat ou le fournisseur (en cas d'impayes de factures) peuvent initier une coupure. Les litiges de loyer relevent du tribunal.",
+          "fournisseur": "General"
+        }
+      ]
+    },
+    {
+      "categorie": "Compteur",
+      "description": "Questions sur les compteurs, releves et tests",
+      "questions": [
+        {
+          "id": "faq_comp_001",
+          "question": "Comment relever mon compteur moi-meme ?",
+          "reponse": "Notez les chiffres affiches sur le compteur (de gauche a droite, sans les decimales en rouge s'il y en a). Pour un compteur electronique, appuyez sur le bouton d'affichage pour voir l'index. Transmettez ce releve a votre fournisseur via l'application ou le service client.",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_comp_002",
+          "question": "Mon compteur tourne alors que tout est eteint. Que faire ?",
+          "reponse": "Cela peut indiquer une consommation cachee (appareils en veille, chauffe-eau) ou un probleme electrique (fuite de courant). Verifiez tous vos appareils. Si le probleme persiste, faites verifier votre installation par un electricien et demandez un test du compteur.",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_comp_003",
+          "question": "Puis-je demander un test de mon compteur ?",
+          "reponse": "Oui, vous avez droit a un test gratuit de votre compteur une fois tous les 24 mois. Au-dela, des frais peuvent s'appliquer. Si le test revele que le compteur est defectueux (hors tolerance de +/-2%), un ajustement de facturation sera effectue.",
+          "fournisseur": "General",
+          "periodicite_gratuit_mois": 24,
+          "tolerance_pourcent": 2
+        },
+        {
+          "id": "faq_comp_004",
+          "question": "Comment passer d'un compteur classique a un compteur intelligent ?",
+          "reponse": "Le deploiement des compteurs intelligents est decide par le fournisseur selon son plan d'investissement. Vous pouvez faire une demande aupres de votre fournisseur, mais l'installation depend de la disponibilite dans votre zone.",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_comp_005",
+          "question": "Que faire si mon compteur est endommage ?",
+          "reponse": "Signalez immediatement le probleme a votre fournisseur. Ne tentez pas de reparer vous-meme le compteur car il appartient au fournisseur. Le remplacement sera effectue par le fournisseur, les frais dependent de la cause du dommage.",
+          "fournisseur": "General"
+        }
+      ]
+    },
+    {
+      "categorie": "Puissance et Installation",
+      "description": "Questions sur la puissance souscrite et les installations electriques",
+      "questions": [
+        {
+          "id": "faq_puis_001",
+          "question": "Comment choisir la bonne puissance pour mon logement ?",
+          "reponse": "Listez vos appareils electriques et leur puissance. Estimez combien fonctionnent simultanement. Pour un appartement standard : 3-6 kVA suffisent. Avec climatisation ou chauffage electrique : 6-9 kVA. Grande maison ou equipements energivores : 9-12 kVA.",
+          "fournisseur": "General",
+          "recommandations": {
+            "appartement_standard": "3-6 kVA",
+            "avec_climatisation": "6-9 kVA",
+            "grande_maison": "9-12 kVA"
+          }
+        },
+        {
+          "id": "faq_puis_002",
+          "question": "Que se passe-t-il si je depasse ma puissance souscrite ?",
+          "reponse": "Le disjoncteur de branchement va sauter, coupant l'alimentation. Vous devrez reduire votre charge (eteindre des appareils) avant de rearmer le disjoncteur. Si cela arrive frequemment, envisagez d'augmenter votre puissance souscrite.",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_puis_003",
+          "question": "Puis-je passer du monophase au triphase ?",
+          "reponse": "Oui, c'est possible mais cela necessite des travaux sur votre installation interieure et sur le branchement. Faites une demande aupres de votre fournisseur qui etudiera la faisabilite technique. Des frais de modification s'appliqueront.",
+          "fournisseur": "General",
+          "procedure_liee": "modification_puissance"
+        },
+        {
+          "id": "faq_puis_004",
+          "question": "Quelle est la difference entre kVA et kW ?",
+          "reponse": "Le kVA (kilovoltampere) mesure la puissance apparente, c'est l'unite utilisee pour les abonnements. Le kW (kilowatt) mesure la puissance active reellement consommee. Pour les usages domestiques, 1 kVA est approximativement egal a 1 kW.",
+          "fournisseur": "General"
+        }
+      ]
+    },
+    {
+      "categorie": "Urgences et Depannage",
+      "description": "Questions sur les pannes, urgences et numeros a contacter",
+      "questions": [
+        {
+          "id": "faq_urg_001",
+          "question": "Comment signaler une panne d'electricite ?",
+          "reponse": "Contactez le service depannage de votre fournisseur, disponible 24h/24 et 7j/7 pour les coupures d'electricite et problemes urgents.",
+          "fournisseur": "General",
+          "numeros_urgence": {
+            "REDAL": "05 37 26 00 26",
+            "LYDEC": "05 22 31 20 20",
+            "ONEE": "0801 00 00 09"
+          }
+        },
+        {
+          "id": "faq_urg_002",
+          "question": "Quels sont les horaires du service client ?",
+          "reponse": "Le service client est generalement disponible du lundi au samedi, de 8h a 20h, pour les informations compte, clarification factures et questions de consommation. Les numeros d'urgence sont disponibles 24h/24.",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_urg_003",
+          "question": "Que faire en cas de coupure generale dans mon quartier ?",
+          "reponse": "Signalez la panne a votre fournisseur (numero d'urgence disponible 24h/24). Verifiez si vos voisins sont egalement touches. En attendant, debranchez les appareils sensibles pour eviter les dommages lors du retour du courant.",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_urg_004",
+          "question": "Qui contacter en cas de fil electrique tombe au sol ?",
+          "reponse": "Danger de mort ! N'approchez pas a moins de 10 metres. Appelez immediatement le numero d'urgence de votre fournisseur ou les pompiers. Prevenez les passants de ne pas s'approcher.",
+          "fournisseur": "General",
+          "priorite": "critique",
+          "distance_securite_metres": 10
+        },
+        {
+          "id": "faq_urg_005",
+          "question": "Que faire en cas d'odeur de brule venant du compteur ?",
+          "reponse": "Coupez immediatement le disjoncteur principal. N'utilisez pas d'eau. Appelez le numero d'urgence de votre fournisseur. N'essayez pas de reparer vous-meme. En cas de flammes, appelez les pompiers.",
+          "fournisseur": "General",
+          "priorite": "critique"
+        },
+        {
+          "id": "faq_urg_006",
+          "question": "Mon disjoncteur saute regulierement, que faire ?",
+          "reponse": "Cela peut indiquer une surcharge (trop d'appareils), un court-circuit, ou un appareil defectueux. Essayez de brancher moins d'appareils simultanement. Si le probleme persiste, faites verifier votre installation par un electricien. Vous pourriez aussi avoir besoin d'augmenter votre puissance souscrite.",
+          "fournisseur": "General"
+        }
+      ]
+    },
+    {
+      "categorie": "Contrat Professionnel",
+      "description": "Questions specifiques aux contrats professionnels et entreprises",
+      "questions": [
+        {
+          "id": "faq_pro_001",
+          "question": "Quelle est la difference entre un contrat BT et MT pour une entreprise ?",
+          "reponse": "Un contrat Basse Tension (BT) convient aux petites entreprises avec des besoins moderes (jusqu'a ~250 kVA). Un contrat Moyenne Tension (MT) est destine aux grandes entreprises avec de forts besoins energetiques. Le MT offre generalement des tarifs au kWh plus bas mais necessite un poste de transformation.",
+          "fournisseur": "General",
+          "type_client": "professionnel"
+        },
+        {
+          "id": "faq_pro_002",
+          "question": "Qu'est-ce que le tarif heures pleines / heures creuses ?",
+          "reponse": "C'est une option tarifaire ou le prix du kWh varie selon l'heure de la journee. Les heures creuses (generalement la nuit et le week-end) sont moins cheres. Cette option est interessante si vous pouvez decaler une partie de votre consommation vers ces periodes.",
+          "fournisseur": "General",
+          "option_tarifaire": "TO"
+        },
+        {
+          "id": "faq_pro_003",
+          "question": "Comment optimiser ma facture d'electricite professionnelle ?",
+          "reponse": "Analysez votre courbe de charge, decalez les usages vers les heures creuses, corrigez le facteur de puissance (cos phi) pour eviter les penalites, verifiez que votre puissance souscrite est adaptee, et envisagez un audit energetique.",
+          "fournisseur": "General",
+          "type_client": "professionnel"
+        },
+        {
+          "id": "faq_pro_004",
+          "question": "Qu'est-ce que les penalites de depassement de puissance ?",
+          "reponse": "Si votre consommation depasse regulierement la puissance souscrite, des penalites peuvent etre appliquees sur votre facture. Il est alors recommande d'ajuster votre abonnement a la hausse ou de mieux repartir vos usages.",
+          "fournisseur": "General",
+          "type_client": "professionnel"
+        }
+      ]
+    },
+    {
+      "categorie": "Energie Solaire et Autoproduction",
+      "description": "Questions sur l'installation solaire et l'autoproduction",
+      "questions": [
+        {
+          "id": "faq_sol_001",
+          "question": "Puis-je installer des panneaux solaires et vendre l'electricite au reseau ?",
+          "reponse": "Au Maroc, l'autoproduction solaire est encouragee mais la revente au reseau (injection) est encadree par la loi 13-09 et ses decrets d'application. Pour les particuliers basse tension, le net metering (compensation) peut etre disponible selon votre fournisseur. Renseignez-vous aupres de votre distributeur.",
+          "fournisseur": "General",
+          "reference_legale": "Loi 13-09"
+        },
+        {
+          "id": "faq_sol_002",
+          "question": "Qu'est-ce que le net metering (comptage net) ?",
+          "reponse": "Le net metering permet de deduire l'electricite que vous injectez dans le reseau (production solaire excedentaire) de votre consommation. Votre facture est basee sur la difference entre ce que vous consommez et ce que vous produisez.",
+          "fournisseur": "General"
+        },
+        {
+          "id": "faq_sol_003",
+          "question": "Quelles sont les demarches pour installer des panneaux solaires ?",
+          "reponse": "Pour une installation connectee au reseau : 1) Faire une etude technique avec un installateur agree, 2) Deposer une demande aupres de votre fournisseur, 3) Obtenir l'autorisation de raccordement, 4) Realiser l'installation par un professionnel certifie, 5) Faire verifier et mettre en service par le fournisseur.",
+          "fournisseur": "General"
+        }
+      ]
+    },
+    {
+      "categorie": "Conseils Economie d'Energie",
+      "description": "Questions sur les economies d'energie et bonnes pratiques",
+      "questions": [
+        {
+          "id": "faq_eco_001",
+          "question": "Comment reduire ma consommation d'electricite ?",
+          "reponse": "Remplacez les ampoules standards par des lampes basse consommation (5 fois moins energivores), evitez le mode veille sur vos appareils, surveillez regulierement votre compteur, lavez le linge a 30-40 degres C, et evitez le prelavage (economie de 15%).",
+          "fournisseur": "General",
+          "potentiel_economie": "10-30%"
+        }
+      ]
+    }
+  ],
+  "contacts_utiles": {
+    "service_client": {
+      "REDAL": {
+        "telephone": "0537 20 20 80",
+        "horaires": "Lundi-Samedi 8h-20h"
+      },
+      "LYDEC": {
+        "telephone": "0522 31 20 20",
+        "horaires": "Lundi-Samedi 8h-18h"
+      },
+      "ONEE": {
+        "telephone": "0801 00 00 09",
+        "horaires": "Lundi-Vendredi 8h-16h30"
+      }
+    },
+    "urgences_24h": {
+      "REDAL": "05 37 26 00 26",
+      "LYDEC": "05 22 31 20 20",
+      "ONEE": "0801 00 00 09"
+    },
+    "autorite_regulation": {
+      "nom": "ANRE",
+      "telephone": "+212 537 56 31 83",
+      "email": "contact@anre.ma"
+    }
+  }
+}

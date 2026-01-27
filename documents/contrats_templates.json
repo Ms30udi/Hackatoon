@@ -1,0 +1,708 @@
+{
+  "metadata": {
+    "pays": "Maroc",
+    "langue": "fr",
+    "date_extraction": "2026-01-27",
+    "version": "2.0",
+    "description": "Modeles de contrats d'abonnement electricite au Maroc - Templates pour generation automatisee"
+  },
+  "templates": [
+    {
+      "id": "template_bt_particulier",
+      "titre": "Contrat d'Abonnement Basse Tension - Particulier",
+      "fournisseur": "ONEE",
+      "type_client": "Particulier",
+      "niveau_tension": "Basse Tension",
+      "structure": {
+        "parties": {
+          "fournisseur": {
+            "denomination": "Office National de l'Electricite et de l'Eau Potable (ONEE)",
+            "branche": "Branche Electricite",
+            "qualite": "Fournisseur d'energie electrique"
+          },
+          "client": {
+            "champs_requis": [
+              "Nom et prenom",
+              "Numero CNI",
+              "Adresse complete du local",
+              "Numero de telephone"
+            ],
+            "champs_optionnels": [
+              "Email",
+              "Numero de telephone secondaire"
+            ]
+          }
+        },
+        "objet_contrat": "Le present contrat a pour objet de definir les conditions de fourniture d'energie electrique en Basse Tension par l'ONEE au Client pour l'alimentation du local situe a l'adresse indiquee.",
+        "sections": [
+          {
+            "numero": 1,
+            "titre": "Objet du contrat",
+            "contenu": "Fourniture d'energie electrique en Basse Tension pour usage domestique.",
+            "type": "standard"
+          },
+          {
+            "numero": 2,
+            "titre": "Duree du contrat",
+            "contenu": "Le contrat est conclu pour une duree indeterminee. Il peut etre resilie par l'une ou l'autre des parties selon les conditions prevues.",
+            "type": "standard"
+          },
+          {
+            "numero": 3,
+            "titre": "Puissance souscrite",
+            "contenu": "La puissance souscrite est fixee d'un commun accord entre les parties et mentionnee aux conditions particulieres.",
+            "type": "variable",
+            "champ_variable": "puissance_souscrite"
+          },
+          {
+            "numero": 4,
+            "titre": "Tarification",
+            "contenu": "Le client beneficie du tarif en vigueur selon sa categorie de consommation. Les tarifs sont fixes par les autorites competentes et peuvent etre revises.",
+            "reference_document": "tarification.json",
+            "type": "standard"
+          },
+          {
+            "numero": 5,
+            "titre": "Facturation et paiement",
+            "contenu": "La facturation est etablie mensuellement sur la base des releves de compteur. Le paiement doit etre effectue dans les delais indiques sur la facture.",
+            "reference_document": "modes_paiement.json",
+            "type": "standard"
+          },
+          {
+            "numero": 6,
+            "titre": "Cautionnement",
+            "contenu": "Un cautionnement est exige lors de la souscription. Ce montant, non productif d'interets, est remboursable a la resiliation du contrat.",
+            "reference_clause": "clause_paie_001",
+            "type": "standard"
+          },
+          {
+            "numero": 7,
+            "titre": "Obligations du fournisseur",
+            "contenu": "Assurer la continuite de la fourniture d'energie, maintenir la qualite de tension, et effectuer les releves de compteur.",
+            "reference_document": "qualite_service.json",
+            "type": "standard"
+          },
+          {
+            "numero": 8,
+            "titre": "Obligations du client",
+            "contenu": "Payer les factures dans les delais, permettre l'acces au compteur, maintenir les installations interieures en bon etat, et ne pas modifier le branchement.",
+            "type": "standard"
+          },
+          {
+            "numero": 9,
+            "titre": "Penalites de retard",
+            "contenu": "En cas de non-paiement a l'echeance, des penalites de retard seront appliquees conformement a la reglementation en vigueur. Apres mise en demeure restee sans effet, le fournisseur pourra proceder a la coupure de fourniture.",
+            "reference_document": "modes_paiement.json#penalites_retard",
+            "type": "standard"
+          },
+          {
+            "numero": 10,
+            "titre": "Force majeure",
+            "contenu": "Le fournisseur ne sera pas responsable des interruptions de service resultant d'evenements de force majeure (catastrophes naturelles, conditions meteorologiques exceptionnelles, actes de guerre ou decisions des autorites publiques).",
+            "reference_clause": "clause_fm_001",
+            "type": "standard"
+          },
+          {
+            "numero": 11,
+            "titre": "Modification du contrat",
+            "contenu": "Toute modification des conditions du contrat (puissance souscrite, option tarifaire) doit faire l'objet d'un avenant signe par les deux parties.",
+            "reference_procedure": "modification_puissance",
+            "type": "standard"
+          },
+          {
+            "numero": 12,
+            "titre": "Protection des donnees personnelles",
+            "contenu": "Les donnees personnelles du client sont collectees et traitees conformement a la loi 09-08 relative a la protection des personnes physiques a l'egard du traitement des donnees a caractere personnel. Le client dispose d'un droit d'acces, de rectification et d'opposition.",
+            "reference_legale": "Loi 09-08",
+            "type": "standard"
+          },
+          {
+            "numero": 13,
+            "titre": "Resiliation",
+            "contenu": "Le client peut resilier le contrat a tout moment moyennant preavis. Le fournisseur peut resilier en cas de non-paiement apres mise en demeure.",
+            "reference_procedure": "resiliation_contrat",
+            "type": "standard"
+          },
+          {
+            "numero": 14,
+            "titre": "Litiges",
+            "contenu": "En cas de litige, les parties s'engagent a rechercher une solution amiable. A defaut, le litige sera soumis aux juridictions competentes du ressort du lieu de fourniture. Le client peut egalement saisir l'ANRE.",
+            "reference_document": "qualite_service.json#recours_anre",
+            "type": "standard"
+          }
+        ]
+      },
+      "documents_annexes": [
+        "Conditions generales de vente",
+        "Grille tarifaire en vigueur",
+        "Formulaire de demande d'abonnement"
+      ],
+      "references_documents": {
+        "documents_requis": "doc_nouv_res",
+        "clauses_applicables": ["clause_cont_001", "clause_paie_001", "clause_fm_001"],
+        "tarification": "tarifs_residentiels",
+        "procedure_souscription": "nouveau_branchement"
+      },
+      "validation_rules": {
+        "puissance": {
+          "min_kva": 1,
+          "max_kva": 12,
+          "valeurs_standard": [3, 6, 9, 12]
+        },
+        "type_usage": ["domestique"],
+        "type_compteur": ["monophase"],
+        "documents_obligatoires": ["CIN", "justificatif_occupation"]
+      },
+      "modes_signature": {
+        "physique": {
+          "lieu": "Agence commerciale",
+          "documents_requis": ["CIN original", "Justificatif domicile"]
+        },
+        "electronique": {
+          "disponible": true,
+          "fournisseurs": ["ONEE"],
+          "validation": "Code OTP par SMS",
+          "url": "https://www.one.org.ma/services/abonnement-en-ligne"
+        }
+      }
+    },
+    {
+      "id": "template_bt_professionnel",
+      "titre": "Contrat d'Abonnement Basse Tension - Professionnel",
+      "fournisseur": "ONEE",
+      "type_client": "Professionnel",
+      "niveau_tension": "Basse Tension",
+      "structure": {
+        "parties": {
+          "fournisseur": {
+            "denomination": "Office National de l'Electricite et de l'Eau Potable (ONEE)",
+            "branche": "Branche Electricite"
+          },
+          "client": {
+            "champs_requis": [
+              "Raison sociale ou Nom commercial",
+              "Forme juridique",
+              "Registre de commerce",
+              "ICE (Identifiant Commun de l'Entreprise)",
+              "Adresse du siege social",
+              "Adresse du local a alimenter",
+              "Nom du representant legal",
+              "CIN du representant legal",
+              "Telephone",
+              "Email professionnel"
+            ]
+          }
+        },
+        "objet_contrat": "Fourniture d'energie electrique en Basse Tension pour usage professionnel (commerce, artisanat, bureau, petit industrie).",
+        "sections": [
+          {
+            "numero": 1,
+            "titre": "Objet",
+            "contenu": "Fourniture d'energie electrique en Basse Tension pour usage professionnel.",
+            "type": "standard"
+          },
+          {
+            "numero": 2,
+            "titre": "Duree",
+            "contenu": "Contrat a duree indeterminee.",
+            "type": "standard"
+          },
+          {
+            "numero": 3,
+            "titre": "Puissance souscrite",
+            "contenu": "La puissance souscrite est definie selon les besoins de l'activite professionnelle.",
+            "type": "variable",
+            "champ_variable": "puissance_souscrite"
+          },
+          {
+            "numero": 4,
+            "titre": "Tarification",
+            "contenu": "Application du tarif professionnel Basse Tension en vigueur.",
+            "reference_document": "tarification.json#tarifs_professionnels",
+            "type": "standard"
+          },
+          {
+            "numero": 5,
+            "titre": "Facturation",
+            "contenu": "Facturation mensuelle ou bimestrielle selon le choix du client. Possibilite de facturation electronique.",
+            "type": "standard"
+          },
+          {
+            "numero": 6,
+            "titre": "Cautionnement",
+            "contenu": "Cautionnement calcule sur la base de la puissance souscrite et de l'estimation de consommation.",
+            "type": "standard"
+          },
+          {
+            "numero": 7,
+            "titre": "Obligations du fournisseur",
+            "contenu": "Continuite de service, qualite de tension, information sur les tarifs.",
+            "type": "standard"
+          },
+          {
+            "numero": 8,
+            "titre": "Obligations du client",
+            "contenu": "Paiement dans les delais, acces au compteur, respect de la puissance souscrite, declaration de tout changement d'activite.",
+            "type": "standard"
+          },
+          {
+            "numero": 9,
+            "titre": "Penalites",
+            "contenu": "Penalites de retard et frais de coupure/reconnexion en cas d'impaye.",
+            "type": "standard"
+          },
+          {
+            "numero": 10,
+            "titre": "Force majeure",
+            "contenu": "Exoneration de responsabilite en cas de force majeure.",
+            "type": "standard"
+          },
+          {
+            "numero": 11,
+            "titre": "Protection des donnees",
+            "contenu": "Traitement des donnees conforme a la loi 09-08.",
+            "type": "standard"
+          },
+          {
+            "numero": 12,
+            "titre": "Resiliation",
+            "contenu": "Resiliation possible par chaque partie selon les conditions definies.",
+            "type": "standard"
+          },
+          {
+            "numero": 13,
+            "titre": "Litiges",
+            "contenu": "Competence des tribunaux de commerce du lieu de fourniture.",
+            "type": "standard"
+          }
+        ]
+      },
+      "documents_annexes": [
+        "Conditions generales de vente professionnels",
+        "Grille tarifaire professionnels",
+        "Formulaire inscription professionnels"
+      ],
+      "references_documents": {
+        "documents_requis": "doc_nouv_pro",
+        "tarification": "tarifs_professionnels"
+      },
+      "validation_rules": {
+        "puissance": {
+          "min_kva": 3,
+          "max_kva": 250,
+          "valeurs_standard": [6, 9, 12, 18, 24, 36]
+        },
+        "type_usage": ["professionnel", "commercial", "artisanal"],
+        "type_compteur": ["monophase", "triphase"],
+        "documents_obligatoires": ["CIN_gerant", "registre_commerce", "ICE", "justificatif_occupation"]
+      },
+      "modes_signature": {
+        "physique": {
+          "lieu": "Agence commerciale",
+          "documents_requis": ["Registre commerce", "CIN gerant", "Statuts"]
+        },
+        "electronique": {
+          "disponible": true,
+          "conditions": "Entreprise deja cliente avec espace en ligne"
+        }
+      }
+    },
+    {
+      "id": "template_mt_professionnel",
+      "titre": "Contrat d'Abonnement Moyenne Tension",
+      "fournisseur": "ONEE",
+      "type_client": "Professionnel / Industriel",
+      "niveau_tension": "Moyenne Tension",
+      "source_document": "https://rabat.eregulations.org/media/modele%20contrat%20d'abonnement%20MT.pdf",
+      "structure": {
+        "parties": {
+          "fournisseur": {
+            "denomination": "Office National de l'Electricite et de l'Eau Potable (ONEE)",
+            "branche": "Branche Electricite"
+          },
+          "client": {
+            "champs_requis": [
+              "Raison sociale",
+              "Registre de commerce",
+              "ICE",
+              "Adresse du siege social",
+              "Adresse du local a alimenter",
+              "Representant legal",
+              "Responsable technique",
+              "Contact facturation"
+            ]
+          }
+        },
+        "objet_contrat": "Fourniture d'energie electrique en Moyenne Tension pour usage professionnel ou industriel.",
+        "sections": [
+          {
+            "numero": 1,
+            "titre": "Objet",
+            "contenu": "Definition des conditions de fourniture d'energie electrique en Moyenne Tension.",
+            "type": "standard"
+          },
+          {
+            "numero": 2,
+            "titre": "Puissance souscrite",
+            "contenu": "Puissance garantie par l'ONEE selon les besoins du client, definie aux conditions particulieres.",
+            "type": "variable",
+            "champ_variable": "puissance_souscrite"
+          },
+          {
+            "numero": 3,
+            "titre": "Option tarifaire",
+            "contenu": "Choix entre Tarif General, Tarif Optionnel, ou Tarif Optionnel Super Pointe.",
+            "type": "variable",
+            "champ_variable": "option_tarifaire",
+            "valeurs_possibles": ["TG", "TO", "TOSP"]
+          },
+          {
+            "numero": 4,
+            "titre": "Suivi de consommation",
+            "contenu": "Pendant les 6 premiers mois, un ingenieur commercial assure le suivi pour optimiser la puissance souscrite.",
+            "reference_clause": "clause_abon_002",
+            "type": "standard"
+          },
+          {
+            "numero": 5,
+            "titre": "Poste de transformation",
+            "contenu": "Le client s'engage a entretenir en bon etat son poste de transformation et a permettre les verifications du fournisseur.",
+            "reference_clause": "clause_inst_001",
+            "type": "standard"
+          },
+          {
+            "numero": 6,
+            "titre": "Conditions financieres",
+            "contenu": "Redevances, participations aux frais de branchement, et modalites de paiement.",
+            "type": "standard"
+          },
+          {
+            "numero": 7,
+            "titre": "Facteur de puissance",
+            "contenu": "Le client s'engage a maintenir un facteur de puissance (cos phi) superieur a 0.9. Des penalites peuvent s'appliquer en cas de non-respect.",
+            "type": "standard"
+          },
+          {
+            "numero": 8,
+            "titre": "Depassement de puissance",
+            "contenu": "Tout depassement de la puissance souscrite entrainera des penalites tarifaires.",
+            "type": "standard"
+          },
+          {
+            "numero": 9,
+            "titre": "Force majeure",
+            "contenu": "Exoneration de responsabilite en cas d'evenements de force majeure.",
+            "type": "standard"
+          },
+          {
+            "numero": 10,
+            "titre": "Protection des donnees",
+            "contenu": "Conformite a la loi 09-08.",
+            "type": "standard"
+          },
+          {
+            "numero": 11,
+            "titre": "Resiliation",
+            "contenu": "Conditions de resiliation avec preavis de 3 mois minimum.",
+            "type": "standard"
+          },
+          {
+            "numero": 12,
+            "titre": "Litiges",
+            "contenu": "Competence du Tribunal de Commerce.",
+            "type": "standard"
+          }
+        ]
+      },
+      "options_tarifaires": [
+        {
+          "nom": "Tarif General",
+          "code": "TG",
+          "description": "Tarif standard applicable a tous les clients MT",
+          "recommande_pour": "Consommation reguliere sans variation horaire significative"
+        },
+        {
+          "nom": "Tarif Optionnel",
+          "code": "TO",
+          "description": "Tarif avec differenciation heures pleines / heures creuses",
+          "recommande_pour": "Activites pouvant decaler la consommation vers les heures creuses",
+          "periodes": [
+            {"type": "Heures Pleines", "plage": "07h-22h jours ouvrables"},
+            {"type": "Heures Creuses", "plage": "22h-07h et week-ends"}
+          ]
+        },
+        {
+          "nom": "Tarif Optionnel Super Pointe",
+          "code": "TOSP",
+          "description": "Tarif avec periode de super pointe pour optimisation des gros consommateurs",
+          "recommande_pour": "Grandes industries avec capacite de modulation",
+          "periodes": [
+            {"type": "Super Pointe", "plage": "17h-22h decembre-fevrier"},
+            {"type": "Heures Pleines", "plage": "07h-17h jours ouvrables"},
+            {"type": "Heures Creuses", "plage": "22h-07h et week-ends"}
+          ]
+        }
+      ],
+      "references_documents": {
+        "documents_requis": "doc_nouv_pro",
+        "tarification": "options_tarifaires_mt",
+        "clauses_applicables": ["clause_abon_002", "clause_inst_001", "clause_tarif_002"]
+      },
+      "validation_rules": {
+        "puissance": {
+          "min_kva": 100,
+          "max_kva": 10000,
+          "unite": "kVA"
+        },
+        "type_usage": ["industriel", "grande_entreprise", "immeuble_collectif"],
+        "exigences_techniques": {
+          "poste_transformation": "obligatoire",
+          "responsable_technique": "obligatoire",
+          "cos_phi_minimum": 0.9
+        },
+        "documents_obligatoires": ["registre_commerce", "ICE", "plans_installation", "certificat_conformite"]
+      },
+      "modes_signature": {
+        "physique": {
+          "lieu": "Direction regionale ONEE",
+          "documents_requis": ["Dossier technique complet", "Statuts", "PV AG"]
+        }
+      }
+    },
+    {
+      "id": "template_provisoire",
+      "titre": "Contrat d'Abonnement Provisoire",
+      "fournisseur": "ONEE",
+      "type_client": "Tous",
+      "niveau_tension": "Basse Tension",
+      "structure": {
+        "parties": {
+          "fournisseur": {
+            "denomination": "Office National de l'Electricite et de l'Eau Potable (ONEE)",
+            "branche": "Branche Electricite"
+          },
+          "client": {
+            "champs_requis": [
+              "Nom ou Raison sociale",
+              "CIN ou RC",
+              "Adresse du chantier/evenement",
+              "Objet du branchement provisoire",
+              "Duree souhaitee"
+            ]
+          }
+        },
+        "duree_maximale": "12 mois",
+        "renouvelable": true,
+        "usage_type": [
+          "Chantiers de construction",
+          "Evenements temporaires",
+          "Installations provisoires",
+          "Foires et expositions"
+        ],
+        "sections": [
+          {
+            "numero": 1,
+            "titre": "Objet",
+            "contenu": "Fourniture temporaire d'electricite pour une duree limitee.",
+            "type": "standard"
+          },
+          {
+            "numero": 2,
+            "titre": "Duree",
+            "contenu": "Le contrat est conclu pour une duree determinee, maximale de 12 mois, renouvelable sur demande.",
+            "type": "variable",
+            "champ_variable": "duree_mois"
+          },
+          {
+            "numero": 3,
+            "titre": "Puissance",
+            "contenu": "Puissance adaptee aux besoins temporaires du chantier ou de l'evenement.",
+            "type": "variable"
+          },
+          {
+            "numero": 4,
+            "titre": "Installation",
+            "contenu": "L'installation provisoire reste propriete du fournisseur et sera demontee a l'echeance.",
+            "type": "standard"
+          },
+          {
+            "numero": 5,
+            "titre": "Securite",
+            "contenu": "Le client est responsable de la securite des installations sur son site.",
+            "type": "standard"
+          },
+          {
+            "numero": 6,
+            "titre": "Fin du contrat",
+            "contenu": "A l'echeance, le client doit permettre l'acces pour le demontage. Toute prolongation doit etre demandee 15 jours avant l'echeance.",
+            "type": "standard"
+          }
+        ],
+        "conditions_speciales": "Memes obligations que l'abonnement permanent avec duree limitee"
+      },
+      "references_documents": {
+        "documents_requis": "doc_prov",
+        "procedure": "branchement_provisoire"
+      },
+      "validation_rules": {
+        "duree": {
+          "min_mois": 1,
+          "max_mois": 12,
+          "renouvelable": true
+        },
+        "puissance": {
+          "min_kva": 3,
+          "max_kva": 36
+        },
+        "documents_obligatoires": ["CIN_responsable", "permis_construire_ou_autorisation", "plan_site"]
+      }
+    }
+  ],
+  "formulaires": [
+    {
+      "id": "form_demande_abon_bt",
+      "titre": "Formulaire de Demande d'Abonnement Basse Tension",
+      "fournisseur": "ONEE",
+      "champs": [
+        {
+          "section": "Identite du demandeur",
+          "champs": [
+            {"nom": "nom_prenom", "label": "Nom et prenom", "type": "text", "obligatoire": true},
+            {"nom": "date_naissance", "label": "Date de naissance", "type": "date", "obligatoire": true},
+            {"nom": "numero_cni", "label": "Numero CNI", "type": "text", "obligatoire": true, "pattern": "^[A-Z]{1,2}[0-9]+$"},
+            {"nom": "nationalite", "label": "Nationalite", "type": "text", "obligatoire": true, "defaut": "Marocaine"},
+            {"nom": "profession", "label": "Profession", "type": "text", "obligatoire": false},
+            {"nom": "telephone", "label": "Telephone", "type": "tel", "obligatoire": true, "pattern": "^(06|07)[0-9]{8}$"},
+            {"nom": "email", "label": "Email", "type": "email", "obligatoire": false}
+          ]
+        },
+        {
+          "section": "Adresse du local",
+          "champs": [
+            {"nom": "adresse", "label": "Adresse complete", "type": "textarea", "obligatoire": true},
+            {"nom": "ville", "label": "Ville", "type": "text", "obligatoire": true},
+            {"nom": "code_postal", "label": "Code postal", "type": "text", "obligatoire": false},
+            {"nom": "province", "label": "Province/Prefecture", "type": "text", "obligatoire": true}
+          ]
+        },
+        {
+          "section": "Caracteristiques techniques",
+          "champs": [
+            {"nom": "type_usage", "label": "Type d'usage", "type": "select", "obligatoire": true, "options": ["domestique", "professionnel"]},
+            {"nom": "puissance_demandee", "label": "Puissance demandee (kVA)", "type": "select", "obligatoire": true, "options": [3, 6, 9, 12]},
+            {"nom": "type_compteur", "label": "Type de compteur souhaite", "type": "select", "obligatoire": false, "options": ["standard", "prepaiement", "intelligent"]}
+          ]
+        },
+        {
+          "section": "Pieces jointes",
+          "champs": [
+            {"nom": "copie_cni", "label": "Copie CNI", "type": "file", "obligatoire": true, "formats": ["pdf", "jpg", "png"]},
+            {"nom": "justificatif_occupation", "label": "Justificatif d'occupation", "type": "file", "obligatoire": true, "formats": ["pdf", "jpg", "png"]},
+            {"nom": "autorisation_proprietaire", "label": "Autorisation du proprietaire (si locataire)", "type": "file", "obligatoire": false, "formats": ["pdf"]}
+          ]
+        }
+      ],
+      "workflow": {
+        "etapes": ["soumission", "verification", "validation", "traitement"],
+        "delai_traitement": "5-10 jours ouvrables"
+      }
+    },
+    {
+      "id": "form_autorisation_proprietaire",
+      "titre": "Autorisation du Proprietaire",
+      "fournisseur": "REDAL",
+      "source": "https://rabat.eregulations.org/media/Redal_Demande_dabonnement%20et%20autorisation%20du%20propri%C3%A9taire.pdf",
+      "champs": [
+        {
+          "section": "Identite du proprietaire",
+          "champs": [
+            {"nom": "nom_prenom", "label": "Nom et prenom", "type": "text", "obligatoire": true},
+            {"nom": "numero_cni", "label": "Numero CNI", "type": "text", "obligatoire": true},
+            {"nom": "adresse", "label": "Adresse", "type": "textarea", "obligatoire": true}
+          ]
+        },
+        {
+          "section": "Bien concerne",
+          "champs": [
+            {"nom": "adresse_local", "label": "Adresse du local", "type": "textarea", "obligatoire": true},
+            {"nom": "nature_bien", "label": "Nature du bien", "type": "select", "obligatoire": true, "options": ["appartement", "maison", "local_commercial", "terrain"]},
+            {"nom": "titre_propriete", "label": "Reference titre de propriete", "type": "text", "obligatoire": true}
+          ]
+        },
+        {
+          "section": "Autorisation",
+          "champs": [
+            {"nom": "nom_locataire", "label": "Identite du locataire autorise", "type": "text", "obligatoire": true},
+            {"nom": "cni_locataire", "label": "CNI du locataire", "type": "text", "obligatoire": true},
+            {"nom": "duree_autorisation", "label": "Duree de l'autorisation", "type": "select", "obligatoire": true, "options": ["1_an", "2_ans", "duree_bail", "indeterminee"]},
+            {"nom": "signature_legalisee", "label": "Signature legalisee", "type": "checkbox", "obligatoire": true}
+          ]
+        }
+      ],
+      "exigence_legalisation": true,
+      "validite": "Duree du bail ou jusqu'a revocation"
+    },
+    {
+      "id": "form_resiliation",
+      "titre": "Formulaire de Demande de Resiliation",
+      "fournisseur": "General",
+      "champs": [
+        {
+          "section": "Identification du contrat",
+          "champs": [
+            {"nom": "numero_contrat", "label": "Numero de contrat", "type": "text", "obligatoire": true},
+            {"nom": "numero_compteur", "label": "Numero de compteur", "type": "text", "obligatoire": true},
+            {"nom": "adresse_fourniture", "label": "Adresse de fourniture", "type": "textarea", "obligatoire": true}
+          ]
+        },
+        {
+          "section": "Demandeur",
+          "champs": [
+            {"nom": "nom_titulaire", "label": "Nom du titulaire", "type": "text", "obligatoire": true},
+            {"nom": "cni_titulaire", "label": "CNI du titulaire", "type": "text", "obligatoire": true},
+            {"nom": "telephone", "label": "Telephone", "type": "tel", "obligatoire": true}
+          ]
+        },
+        {
+          "section": "Details de la resiliation",
+          "champs": [
+            {"nom": "date_souhaitee", "label": "Date de resiliation souhaitee", "type": "date", "obligatoire": true},
+            {"nom": "motif", "label": "Motif de resiliation", "type": "select", "obligatoire": true, "options": ["demenagement", "vente_bien", "autre"]},
+            {"nom": "rib_remboursement", "label": "RIB pour remboursement cautionnement", "type": "text", "obligatoire": true}
+          ]
+        }
+      ],
+      "reference_procedure": "resiliation_contrat"
+    }
+  ],
+  "clauses_types": {
+    "description": "Clauses standardisees pouvant etre integrees aux contrats",
+    "liste": [
+      {
+        "id": "clause_std_continuite",
+        "titre": "Continuite de service",
+        "texte": "Le Fournisseur s'engage a assurer la continuite de la fourniture d'energie electrique, sous reserve des interruptions necessaires pour travaux de maintenance ou en cas de force majeure."
+      },
+      {
+        "id": "clause_std_qualite",
+        "titre": "Qualite de fourniture",
+        "texte": "La tension fournie sera conforme aux normes en vigueur (220V +/-10% en monophase, 380V +/-5% en triphase). La frequence sera maintenue a 50 Hz +/-1%."
+      },
+      {
+        "id": "clause_std_acces_compteur",
+        "titre": "Acces au compteur",
+        "texte": "Le Client s'engage a permettre l'acces au compteur aux agents du Fournisseur pour les releves, verifications et interventions techniques, aux jours et heures ouvrables."
+      },
+      {
+        "id": "clause_std_paiement",
+        "titre": "Modalites de paiement",
+        "texte": "Le paiement des factures doit etre effectue dans les delais indiques. A defaut, des penalites de retard seront appliquees et le Fournisseur pourra proceder a la coupure de fourniture apres mise en demeure."
+      },
+      {
+        "id": "clause_std_donnees",
+        "titre": "Protection des donnees",
+        "texte": "Les donnees personnelles du Client sont traitees conformement a la loi 09-08. Le Client dispose d'un droit d'acces, de rectification et d'opposition qu'il peut exercer aupres du Fournisseur."
+      }
+    ]
+  }
+}

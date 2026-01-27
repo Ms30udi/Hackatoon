@@ -1,0 +1,201 @@
+{
+  "metadata": {
+    "pays": "Maroc",
+    "langue": "fr",
+    "date_extraction": "2026-01-27",
+    "description": "Types de reclamations et procedures de traitement pour les services d'electricite au Maroc"
+  },
+  "categories_reclamation": [
+    {
+      "id": "cat_rec_001",
+      "categorie": "Facturation",
+      "description": "Reclamations liees aux factures d'electricite",
+      "types": [
+        {
+          "id": "rec_fact_001",
+          "type": "Facture elevee anormale",
+          "description": "Contestation d'une facture jugee trop elevee par rapport a la consommation habituelle",
+          "informations_requises": ["numero_contrat", "periode_contestee", "consommation_habituelle", "copies_factures"],
+          "delai_traitement": "15 jours ouvrables",
+          "resolution_possible": ["verification_compteur", "ajustement_facture", "echeancier_paiement"]
+        },
+        {
+          "id": "rec_fact_002",
+          "type": "Erreur de releve",
+          "description": "Index du compteur mal releve ou estime incorrectement",
+          "informations_requises": ["numero_contrat", "index_reel", "photo_compteur"],
+          "delai_traitement": "7 jours ouvrables",
+          "resolution_possible": ["correction_index", "nouvelle_facture"]
+        },
+        {
+          "id": "rec_fact_003",
+          "type": "Double facturation",
+          "description": "Facturation en double d'une meme periode",
+          "informations_requises": ["numero_contrat", "copies_factures_concernees"],
+          "delai_traitement": "7 jours ouvrables",
+          "resolution_possible": ["annulation_facture", "avoir"]
+        },
+        {
+          "id": "rec_fact_004",
+          "type": "Frais non justifies",
+          "description": "Contestation de frais ou penalites sur la facture",
+          "informations_requises": ["numero_contrat", "detail_frais_contestes"],
+          "delai_traitement": "10 jours ouvrables",
+          "resolution_possible": ["justification_frais", "annulation_frais"]
+        }
+      ]
+    },
+    {
+      "id": "cat_rec_002",
+      "categorie": "Qualite de service",
+      "description": "Reclamations liees a la qualite de la fourniture d'electricite",
+      "types": [
+        {
+          "id": "rec_qual_001",
+          "type": "Coupures frequentes",
+          "description": "Interruptions repetees du service electrique",
+          "informations_requises": ["numero_contrat", "dates_coupures", "durees_coupures"],
+          "delai_traitement": "10 jours ouvrables",
+          "resolution_possible": ["investigation_technique", "reparation_reseau", "compensation"]
+        },
+        {
+          "id": "rec_qual_002",
+          "type": "Variations de tension",
+          "description": "Surtensions ou sous-tensions affectant les equipements",
+          "informations_requises": ["numero_contrat", "description_probleme", "equipements_affectes"],
+          "delai_traitement": "15 jours ouvrables",
+          "resolution_possible": ["verification_installation", "ajustement_reseau"]
+        },
+        {
+          "id": "rec_qual_003",
+          "type": "Coupure prolongee non signalee",
+          "description": "Coupure longue sans information prealable",
+          "informations_requises": ["numero_contrat", "date_debut_coupure", "duree"],
+          "delai_traitement": "5 jours ouvrables",
+          "resolution_possible": ["explication", "compensation_si_eligible"]
+        }
+      ]
+    },
+    {
+      "id": "cat_rec_003",
+      "categorie": "Compteur",
+      "description": "Reclamations liees au compteur electrique",
+      "types": [
+        {
+          "id": "rec_comp_001",
+          "type": "Compteur defectueux",
+          "description": "Suspicion de dysfonctionnement du compteur",
+          "informations_requises": ["numero_contrat", "description_anomalie"],
+          "delai_traitement": "15 jours ouvrables",
+          "resolution_possible": ["test_compteur", "remplacement_compteur", "ajustement_facturation"]
+        },
+        {
+          "id": "rec_comp_002",
+          "type": "Compteur inaccessible",
+          "description": "Impossible d'acceder au compteur pour releve",
+          "informations_requises": ["numero_contrat", "raison_inaccessibilite"],
+          "delai_traitement": "7 jours ouvrables",
+          "resolution_possible": ["prise_rdv_releve", "auto_releve"]
+        }
+      ]
+    },
+    {
+      "id": "cat_rec_004",
+      "categorie": "Service client",
+      "description": "Reclamations liees a la qualite du service client",
+      "types": [
+        {
+          "id": "rec_serv_001",
+          "type": "Delai de traitement excessif",
+          "description": "Demande non traitee dans les delais annonces",
+          "informations_requises": ["numero_contrat", "reference_demande", "date_demande"],
+          "delai_traitement": "5 jours ouvrables",
+          "resolution_possible": ["acceleration_traitement", "explication"]
+        },
+        {
+          "id": "rec_serv_002",
+          "type": "Mauvais accueil",
+          "description": "Comportement inapproprie d'un agent",
+          "informations_requises": ["numero_contrat", "date_incident", "description"],
+          "delai_traitement": "10 jours ouvrables",
+          "resolution_possible": ["enquete_interne", "excuses"]
+        }
+      ]
+    },
+    {
+      "id": "cat_rec_005",
+      "categorie": "Coupure abusive",
+      "description": "Reclamations pour coupure injustifiee",
+      "types": [
+        {
+          "id": "rec_coup_001",
+          "type": "Coupure sans preavis",
+          "description": "Coupure effectuee sans notification prealable reglementaire",
+          "informations_requises": ["numero_contrat", "date_coupure"],
+          "delai_traitement": "24-48 heures",
+          "resolution_possible": ["reconnexion_immediate", "compensation"]
+        },
+        {
+          "id": "rec_coup_002",
+          "type": "Coupure malgre paiement",
+          "description": "Coupure alors que le compte est a jour",
+          "informations_requises": ["numero_contrat", "preuves_paiement"],
+          "delai_traitement": "24 heures",
+          "resolution_possible": ["reconnexion_immediate_gratuite", "excuses"]
+        }
+      ]
+    }
+  ],
+  "procedure_reclamation": {
+    "canaux": [
+      {
+        "canal": "Agence",
+        "description": "Depot en personne dans une agence commerciale",
+        "disponibilite": "Heures ouvrables"
+      },
+      {
+        "canal": "Telephone",
+        "description": "Appel au service client",
+        "numeros": {
+          "REDAL": "0537 20 20 80",
+          "ONEE": "0801 00 00 09",
+          "LYDEC": "0522 31 20 20"
+        }
+      },
+      {
+        "canal": "En ligne",
+        "description": "Via le portail client ou application mobile",
+        "disponibilite": "24h/24"
+      },
+      {
+        "canal": "Courrier",
+        "description": "Lettre recommandee avec accuse de reception",
+        "delai_reponse": "30 jours maximum"
+      }
+    ],
+    "escalade": {
+      "niveau_1": {
+        "instance": "Service client fournisseur",
+        "delai_reponse": "15 jours"
+      },
+      "niveau_2": {
+        "instance": "Direction regionale fournisseur",
+        "delai_reponse": "30 jours"
+      },
+      "niveau_3": {
+        "instance": "ANRE (Autorite Nationale de Regulation de l'Electricite)",
+        "delai_reponse": "60 jours",
+        "contact": "contact@anre.ma",
+        "telephone": "+212 537 56 31 83",
+        "conditions": "Apres epuisement des recours aupres du fournisseur"
+      }
+    }
+  },
+  "droits_consommateur_reclamation": [
+    "Droit a une reponse ecrite dans les delais legaux",
+    "Droit a un numero de suivi de reclamation",
+    "Droit de contester la decision aupres de l'ANRE",
+    "Droit a compensation en cas de coupure abusive",
+    "Droit a un test gratuit du compteur (une fois tous les 24 mois)"
+  ]
+}

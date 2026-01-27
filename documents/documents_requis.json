@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "pays": "Maroc",
+    "langue": "fr",
+    "date_extraction": "2026-01-27",
+    "description": "Documents requis pour chaque type de service electricite au Maroc"
+  },
+  "documents_par_service": {
+    "nouveau_contrat_residentiel": {
+      "id": "doc_nouv_res",
+      "service": "Nouveau contrat residentiel",
+      "documents_obligatoires": [
+        {
+          "id": "doc_001",
+          "nom": "Carte d'identite nationale (CIN)",
+          "description": "Original et copie de la CIN du demandeur",
+          "format_accepte": ["original", "copie_certifiee"],
+          "validite": "CIN en cours de validite"
+        },
+        {
+          "id": "doc_002",
+          "nom": "Justificatif d'occupation",
+          "description": "Document prouvant le droit d'occuper le local",
+          "alternatives": [
+            "Titre de propriete",
+            "Contrat de bail legalise",
+            "Attestation d'hebergement legalisee",
+            "Facture eau ou telephone recente"
+          ]
+        },
+        {
+          "id": "doc_003",
+          "nom": "Formulaire de demande",
+          "description": "Formulaire d'abonnement dument rempli et signe",
+          "disponibilite": "Agence ou telechargeable en ligne"
+        }
+      ],
+      "documents_optionnels": [
+        {
+          "id": "doc_004",
+          "nom": "Plan de situation",
+          "description": "Plan indiquant l'emplacement du local",
+          "requis_si": "Nouvelle construction ou zone non cadastree"
+        }
+      ]
+    },
+    "nouveau_contrat_professionnel": {
+      "id": "doc_nouv_pro",
+      "service": "Nouveau contrat professionnel/entreprise",
+      "documents_obligatoires": [
+        {
+          "id": "doc_010",
+          "nom": "CIN du gerant/representant legal",
+          "description": "Copie de la CIN du representant legal de l'entreprise"
+        },
+        {
+          "id": "doc_011",
+          "nom": "Registre de commerce",
+          "description": "Extrait recent du registre de commerce (moins de 3 mois)"
+        },
+        {
+          "id": "doc_012",
+          "nom": "Statuts de la societe",
+          "description": "Copie des statuts constitutifs"
+        },
+        {
+          "id": "doc_013",
+          "nom": "Justificatif d'occupation du local",
+          "description": "Titre de propriete ou contrat de bail commercial"
+        },
+        {
+          "id": "doc_014",
+          "nom": "Pouvoir/Delegation",
+          "description": "Si le demandeur n'est pas le gerant",
+          "requis_si": "Demande par mandataire"
+        }
+      ]
+    },
+    "transfert_titulaire": {
+      "id": "doc_trans",
+      "service": "Transfert de titulaire",
+      "documents_obligatoires": [
+        {
+          "id": "doc_020",
+          "nom": "CIN nouveau titulaire",
+          "description": "Original et copie"
+        },
+        {
+          "id": "doc_021",
+          "nom": "Preuve de transfert de propriete",
+          "alternatives": [
+            "Acte de vente notarie",
+            "Certificat d'heritage",
+            "Jugement de succession"
+          ]
+        },
+        {
+          "id": "doc_022",
+          "nom": "Derniere facture",
+          "description": "Copie de la derniere facture au nom de l'ancien titulaire"
+        },
+        {
+          "id": "doc_023",
+          "nom": "Attestation de l'ancien titulaire",
+          "description": "Lettre autorisant le transfert (si l'ancien titulaire est joignable)",
+          "requis_si": "Ancien titulaire vivant et joignable"
+        }
+      ]
+    },
+    "modification_puissance": {
+      "id": "doc_mod",
+      "service": "Modification de puissance",
+      "documents_obligatoires": [
+        {
+          "id": "doc_030",
+          "nom": "Demande ecrite",
+          "description": "Formulaire de demande de modification de puissance"
+        },
+        {
+          "id": "doc_031",
+          "nom": "Derniere facture",
+          "description": "Pour identifier le contrat"
+        }
+      ],
+      "documents_conditionnels": [
+        {
+          "id": "doc_032",
+          "nom": "Certificat de conformite electrique",
+          "description": "Attestation de conformite de l'installation",
+          "requis_si": "Augmentation significative de puissance"
+        }
+      ]
+    },
+    "resiliation": {
+      "id": "doc_res",
+      "service": "Resiliation de contrat",
+      "documents_obligatoires": [
+        {
+          "id": "doc_040",
+          "nom": "Demande de resiliation",
+          "description": "Formulaire ou lettre de demande de resiliation"
+        },
+        {
+          "id": "doc_041",
+          "nom": "CIN du titulaire",
+          "description": "Copie de la CIN"
+        },
+        {
+          "id": "doc_042",
+          "nom": "Derniere facture",
+          "description": "Pour identifier le contrat"
+        },
+        {
+          "id": "doc_043",
+          "nom": "RIB",
+          "description": "Releve d'identite bancaire pour remboursement du cautionnement"
+        }
+      ]
+    },
+    "reclamation": {
+      "id": "doc_rec",
+      "service": "Depot de reclamation",
+      "documents_obligatoires": [
+        {
+          "id": "doc_050",
+          "nom": "Formulaire de reclamation",
+          "description": "Formulaire dument rempli"
+        },
+        {
+          "id": "doc_051",
+          "nom": "Pieces justificatives",
+          "description": "Documents appuyant la reclamation",
+          "exemples": ["factures contestees", "photos compteur", "preuves paiement"]
+        }
+      ]
+    },
+    "branchement_provisoire": {
+      "id": "doc_prov",
+      "service": "Branchement provisoire",
+      "documents_obligatoires": [
+        {
+          "id": "doc_060",
+          "nom": "Demande de branchement provisoire",
+          "description": "Formulaire specifique pour branchement temporaire"
+        },
+        {
+          "id": "doc_061",
+          "nom": "CIN du responsable",
+          "description": "CIN du responsable du chantier ou de l'evenement"
+        },
+        {
+          "id": "doc_062",
+          "nom": "Permis de construire ou autorisation",
+          "description": "Justificatif officiel du projet",
+          "alternatives": [
+            "Permis de construire",
+            "Autorisation d'evenement",
+            "Autorisation communale"
+          ]
+        },
+        {
+          "id": "doc_063",
+          "nom": "Plan du site",
+          "description": "Plan indiquant l'emplacement souhaite du branchement"
+        }
+      ]
+    },
+    "reconnexion": {
+      "id": "doc_recon",
+      "service": "Reconnexion apres coupure",
+      "documents_obligatoires": [
+        {
+          "id": "doc_070",
+          "nom": "Preuve de paiement",
+          "description": "Justificatif du paiement des impayes et frais de reconnexion",
+          "alternatives": [
+            "Recu de paiement",
+            "Releve bancaire",
+            "Confirmation de virement"
+          ]
+        },
+        {
+          "id": "doc_071",
+          "nom": "CIN du titulaire",
+          "description": "Pour verification d'identite"
+        }
+      ]
+    }
+  },
+  "formats_acceptes": {
+    "pieces_identite": ["CIN", "Passeport", "Carte de sejour pour etrangers"],
+    "justificatifs_domicile": ["Facture eau", "Facture telephone", "Attestation de residence"],
+    "formats_numeriques": ["PDF", "JPG", "PNG"],
+    "taille_max_fichier": "5 Mo par document"
+  },
+  "notes_importantes": [
+    "Tous les documents doivent etre lisibles et non expires",
+    "Les copies doivent etre certifiees conformes si demande",
+    "Les documents en langue etrangere doivent etre traduits par un traducteur assermente",
+    "Le fournisseur se reserve le droit de demander des documents supplementaires selon le cas"
+  ]
+}

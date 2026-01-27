@@ -1,0 +1,405 @@
+{
+  "metadata": {
+    "pays": "Maroc",
+    "langue": "fr",
+    "date_extraction": "2026-01-27",
+    "description": "Conseils detailles pour economiser l'energie electrique"
+  },
+  "conseils_par_categorie": {
+    "eclairage": {
+      "categorie": "Eclairage",
+      "potentiel_economie": "5-15% de la facture",
+      "conseils": [
+        {
+          "id": "ecl_001",
+          "conseil": "Remplacer les ampoules par des LED",
+          "detail": "Les ampoules LED consomment 80-90% de moins que les incandescentes et durent 15-25 fois plus longtemps",
+          "economie_estimee": "Jusqu'a 80% sur l'eclairage",
+          "investissement": "Faible",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "ecl_002",
+          "conseil": "Profiter de la lumiere naturelle",
+          "detail": "Ouvrir les rideaux et stores pendant la journee pour reduire l'usage de l'eclairage artificiel",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "ecl_003",
+          "conseil": "Eteindre les lumieres en quittant une piece",
+          "detail": "Une habitude simple mais efficace. Installer des detecteurs de presence dans les couloirs et pieces de passage",
+          "investissement": "Aucun a moyen",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "ecl_004",
+          "conseil": "Nettoyer les luminaires regulierement",
+          "detail": "La poussiere reduit la luminosite. Un luminaire propre eclaire mieux sans augmenter la consommation",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "ecl_005",
+          "conseil": "Utiliser des variateurs d'intensite",
+          "detail": "Adapter la luminosite au besoin reel permet d'economiser de l'energie",
+          "investissement": "Moyen",
+          "difficulte": "Moyen"
+        }
+      ]
+    },
+    "climatisation_chauffage": {
+      "categorie": "Climatisation et chauffage",
+      "potentiel_economie": "20-40% de la facture",
+      "conseils": [
+        {
+          "id": "clim_001",
+          "conseil": "Regler la climatisation a 25-26 degres C",
+          "detail": "Chaque degre en moins represente environ 7% de consommation supplementaire",
+          "economie_estimee": "15-20% sur la climatisation",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "clim_002",
+          "conseil": "Nettoyer les filtres du climatiseur mensuellement",
+          "detail": "Des filtres encrasses reduisent l'efficacite et augmentent la consommation de 5-15%",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "clim_003",
+          "conseil": "Fermer portes et fenetres quand la clim fonctionne",
+          "detail": "Eviter les deperditions thermiques pour ne pas faire fonctionner l'appareil inutilement",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "clim_004",
+          "conseil": "Utiliser des rideaux ou stores",
+          "detail": "Bloquer le soleil direct en ete peut reduire les besoins de climatisation de 30%",
+          "investissement": "Faible",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "clim_005",
+          "conseil": "Entretenir regulierement le climatiseur",
+          "detail": "Un entretien annuel par un professionnel garantit un fonctionnement optimal",
+          "investissement": "Moyen",
+          "difficulte": "Necessite un professionnel"
+        },
+        {
+          "id": "clim_006",
+          "conseil": "Utiliser un ventilateur en complement",
+          "detail": "Un ventilateur consomme 20 fois moins qu'un climatiseur et peut permettre d'augmenter la temperature de consigne",
+          "investissement": "Faible",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "clim_007",
+          "conseil": "Programmer l'arret automatique",
+          "detail": "Utiliser la minuterie pour eteindre la climatisation la nuit ou pendant les absences",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        }
+      ]
+    },
+    "electromenager": {
+      "categorie": "Electromenager",
+      "potentiel_economie": "10-25% de la facture",
+      "conseils": [
+        {
+          "id": "elec_001",
+          "conseil": "Choisir des appareils classe A+++ ou A++",
+          "detail": "Un refrigerateur A+++ consomme 60% de moins qu'un modele A",
+          "economie_estimee": "Jusqu'a 60% par appareil",
+          "investissement": "Eleve (achat)",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "elec_002",
+          "conseil": "Regler le refrigerateur entre 3 et 5 degres C",
+          "detail": "Le congelateur entre -18 et -20 degres C. Des temperatures plus basses gaspillent de l'energie",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "elec_003",
+          "conseil": "Ne pas placer le refrigerateur pres d'une source de chaleur",
+          "detail": "L'eloigner du four, du radiateur et des fenetres ensoleillees",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "elec_004",
+          "conseil": "Laver le linge a 30 degres C",
+          "detail": "Le chauffage de l'eau represente 90% de l'energie du cycle de lavage. 30 degres C suffit pour la plupart des textiles",
+          "economie_estimee": "Jusqu'a 50% par lavage",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "elec_005",
+          "conseil": "Faire tourner les appareils a pleine charge",
+          "detail": "Lave-linge et lave-vaisselle consomment presque autant d'energie qu'ils soient pleins ou a moitie vides",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "elec_006",
+          "conseil": "Utiliser le programme eco du lave-vaisselle",
+          "detail": "Meme s'il est plus long, il consomme moins d'eau et d'electricite",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "elec_007",
+          "conseil": "Degivrer regulierement le congelateur",
+          "detail": "Une couche de givre de 3mm augmente la consommation de 30%",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "elec_008",
+          "conseil": "Nettoyer la grille arriere du refrigerateur",
+          "detail": "La poussiere sur le condenseur reduit l'efficacite de l'appareil",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        }
+      ]
+    },
+    "veille_electronique": {
+      "categorie": "Veille des appareils electroniques",
+      "potentiel_economie": "5-10% de la facture",
+      "conseils": [
+        {
+          "id": "veille_001",
+          "conseil": "Utiliser des multiprises avec interrupteur",
+          "detail": "Permet de couper completement l'alimentation de plusieurs appareils d'un seul geste",
+          "economie_estimee": "50-100 DH/an",
+          "investissement": "Faible",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "veille_002",
+          "conseil": "Debrancher les chargeurs non utilises",
+          "detail": "Un chargeur branche sans appareil consomme toujours un peu d'electricite",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "veille_003",
+          "conseil": "Eteindre les box internet la nuit",
+          "detail": "Une box consomme 150-300 kWh/an. L'eteindre la nuit economise 25-50 kWh/an",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "veille_004",
+          "conseil": "Parametrer la mise en veille des ordinateurs",
+          "detail": "Activer la mise en veille automatique apres 10-15 minutes d'inactivite",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "veille_005",
+          "conseil": "Eteindre completement la television",
+          "detail": "En veille, une TV peut consommer 10-15W en permanence",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        }
+      ]
+    },
+    "eau_chaude": {
+      "categorie": "Eau chaude sanitaire",
+      "potentiel_economie": "10-20% de la facture",
+      "conseils": [
+        {
+          "id": "eau_001",
+          "conseil": "Regler le chauffe-eau a 55-60 degres C",
+          "detail": "Suffisant pour l'usage sanitaire tout en evitant le developpement bacterien. Au-dela, c'est du gaspillage",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "eau_002",
+          "conseil": "Installer un programmateur sur le chauffe-eau",
+          "detail": "Faire fonctionner le chauffe-eau uniquement quelques heures avant les pics d'utilisation",
+          "investissement": "Faible",
+          "difficulte": "Moyen"
+        },
+        {
+          "id": "eau_003",
+          "conseil": "Preferer les douches aux bains",
+          "detail": "Une douche de 5 minutes consomme 2-3 fois moins d'eau chaude qu'un bain",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "eau_004",
+          "conseil": "Isoler les tuyaux d'eau chaude",
+          "detail": "Reduit les pertes de chaleur entre le chauffe-eau et les points d'utilisation",
+          "investissement": "Faible",
+          "difficulte": "Moyen"
+        },
+        {
+          "id": "eau_005",
+          "conseil": "Installer un pommeau de douche economique",
+          "detail": "Reduit le debit d'eau sans diminuer le confort, donc moins d'eau a chauffer",
+          "investissement": "Faible",
+          "difficulte": "Facile"
+        }
+      ]
+    },
+    "cuisine": {
+      "categorie": "Cuisine",
+      "potentiel_economie": "5-10% de la facture",
+      "conseils": [
+        {
+          "id": "cuis_001",
+          "conseil": "Couvrir les casseroles pendant la cuisson",
+          "detail": "Permet de reduire de 25% l'energie necessaire a la cuisson",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "cuis_002",
+          "conseil": "Adapter la taille du feu a celle du recipient",
+          "detail": "Une flamme qui depasse du fond de la casserole est de l'energie perdue",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "cuis_003",
+          "conseil": "Utiliser le micro-ondes pour rechauffer",
+          "detail": "Plus econome que le four traditionnel pour de petites quantites",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "cuis_004",
+          "conseil": "Eviter d'ouvrir la porte du four pendant la cuisson",
+          "detail": "Chaque ouverture fait baisser la temperature de 25-30 degres C et gaspille de l'energie",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "cuis_005",
+          "conseil": "Decongeler au refrigerateur plutot qu'au micro-ondes",
+          "detail": "Le froid des aliments congeles aide a refroidir le refrigerateur gratuitement",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "cuis_006",
+          "conseil": "Utiliser une bouilloire electrique pour chauffer l'eau",
+          "detail": "Plus rapide et plus econome que de chauffer l'eau dans une casserole",
+          "investissement": "Faible",
+          "difficulte": "Facile"
+        },
+        {
+          "id": "cuis_007",
+          "conseil": "Ne remplir la bouilloire que du necessaire",
+          "detail": "Chauffer plus d'eau que necessaire est du gaspillage",
+          "investissement": "Aucun",
+          "difficulte": "Facile"
+        }
+      ]
+    }
+  },
+  "simulateur_economie": {
+    "description": "Estimation des economies potentielles selon les actions",
+    "exemples": [
+      {
+        "action": "Remplacer 10 ampoules incandescentes par LED",
+        "economie_annuelle_dh": "200-300",
+        "investissement_dh": "200-400",
+        "retour_investissement": "1-2 ans"
+      },
+      {
+        "action": "Regler la clim a 25 degres C au lieu de 22 degres C",
+        "economie_annuelle_dh": "300-500",
+        "investissement_dh": "0",
+        "retour_investissement": "Immediat"
+      },
+      {
+        "action": "Eliminer les veilles (multiprises a interrupteur)",
+        "economie_annuelle_dh": "100-200",
+        "investissement_dh": "100-200",
+        "retour_investissement": "1 an"
+      },
+      {
+        "action": "Laver a 30 degres C au lieu de 60 degres C",
+        "economie_annuelle_dh": "50-100",
+        "investissement_dh": "0",
+        "retour_investissement": "Immediat"
+      },
+      {
+        "action": "Eteindre la box internet 8h/jour",
+        "economie_annuelle_dh": "30-50",
+        "investissement_dh": "0",
+        "retour_investissement": "Immediat"
+      },
+      {
+        "action": "Degivrer le congelateur regulierement",
+        "economie_annuelle_dh": "50-80",
+        "investissement_dh": "0",
+        "retour_investissement": "Immediat"
+      }
+    ],
+    "note": "Les economies dependent de vos habitudes de consommation actuelles"
+  },
+  "appareils_consommation": {
+    "description": "Consommation typique des appareils domestiques",
+    "appareils": [
+      {
+        "appareil": "Climatiseur",
+        "puissance_w": "1000-3500",
+        "consommation_annuelle_kwh": "400-1500",
+        "pourcentage_facture": "20-40%"
+      },
+      {
+        "appareil": "Chauffe-eau electrique",
+        "puissance_w": "1500-3000",
+        "consommation_annuelle_kwh": "1500-2500",
+        "pourcentage_facture": "15-25%"
+      },
+      {
+        "appareil": "Refrigerateur",
+        "puissance_w": "100-400",
+        "consommation_annuelle_kwh": "200-500",
+        "pourcentage_facture": "10-15%"
+      },
+      {
+        "appareil": "Lave-linge",
+        "puissance_w": "500-2500",
+        "consommation_annuelle_kwh": "150-300",
+        "pourcentage_facture": "5-8%"
+      },
+      {
+        "appareil": "Television",
+        "puissance_w": "50-200",
+        "consommation_annuelle_kwh": "100-300",
+        "pourcentage_facture": "3-5%"
+      },
+      {
+        "appareil": "Eclairage (maison)",
+        "puissance_w": "200-500",
+        "consommation_annuelle_kwh": "200-500",
+        "pourcentage_facture": "5-10%"
+      },
+      {
+        "appareil": "Ordinateur",
+        "puissance_w": "50-300",
+        "consommation_annuelle_kwh": "50-200",
+        "pourcentage_facture": "2-5%"
+      },
+      {
+        "appareil": "Box internet",
+        "puissance_w": "10-30",
+        "consommation_annuelle_kwh": "80-250",
+        "pourcentage_facture": "2-4%"
+      }
+    ]
+  }
+}

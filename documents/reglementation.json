@@ -1,0 +1,149 @@
+{
+  "metadata": {
+    "pays": "Maroc",
+    "langue": "fr",
+    "date_extraction": "2026-01-26",
+    "description": "Cadre réglementaire du secteur de l'électricité au Maroc"
+  },
+  "cadre_juridique": {
+    "lois_principales": [
+      {
+        "reference": "Loi n°40-09",
+        "titre": "Loi relative à l'Office National de l'Électricité et de l'Eau Potable (ONEE)",
+        "objet": "Création et organisation de l'ONEE",
+        "dispositions_cles": [
+          "Fusion de l'ONE et l'ONEP en 2012",
+          "Missions de production, transport et distribution",
+          "Statut d'établissement public"
+        ]
+      },
+      {
+        "reference": "Loi n°13-09",
+        "titre": "Loi relative aux énergies renouvelables",
+        "objet": "Développement des énergies renouvelables",
+        "dispositions_cles": [
+          "Autorisation pour les développeurs d'investir dans des projets d'énergie renouvelable",
+          "Possibilité de vendre l'électricité à des clients choisis",
+          "Cadre pour les producteurs indépendants (IPP)"
+        ]
+      }
+    ],
+    "dahirs": [
+      {
+        "reference": "Dahir ONEE",
+        "dispositions": "L'ONEE et les personnes morales de droit privé peuvent conclure des conventions pour la production d'énergie électrique (autre que renouvelable) dépassant 50 MW"
+      }
+    ]
+  },
+  "autorite_regulation": {
+    "nom": "ANRE - Autorité Nationale de Régulation de l'Électricité",
+    "creation": 2016,
+    "statut": "Autorité administrative indépendante",
+    "competences": [
+      "Régulation du segment ouvert du secteur électrique",
+      "Supervision du marché libre de l'électricité"
+    ],
+    "note": "Le Ministère des Affaires Générales reste en charge de la fixation des tarifs dans le segment régulé"
+  },
+  "structure_marche": {
+    "modele": "Acheteur unique",
+    "description": "L'ONEE agit comme acheteur unique pour toute l'électricité produite",
+    "segments": [
+      {
+        "nom": "Segment régulé",
+        "description": "Clients non éligibles alimentés au tarif réglementé",
+        "operateur": "ONEE et distributeurs délégués"
+      },
+      {
+        "nom": "Segment ouvert",
+        "description": "Clients éligibles pouvant choisir leur fournisseur",
+        "statut": "En cours de mise en œuvre"
+      }
+    ],
+    "liberalisation_prevue": {
+      "description": "Division des clients en catégories éligibles et non éligibles",
+      "statut": "Détails de mise en œuvre non encore définis"
+    }
+  },
+  "acteurs": {
+    "production": [
+      {
+        "type": "Production publique",
+        "operateur": "ONEE",
+        "role": "Producteur principal et acheteur unique"
+      },
+      {
+        "type": "Producteurs indépendants (IPP)",
+        "conditions": "Peuvent opérer des centrales sous conditions spécifiques",
+        "vente": "Obligatoirement à l'ONEE (acheteur unique)"
+      }
+    ],
+    "transport": {
+      "operateur": "ONEE",
+      "infrastructure": "Près de 23 000 km de lignes de transmission",
+      "interconnexions": [
+        {
+          "pays": "Espagne",
+          "capacite_mw": 1400
+        },
+        {
+          "pays": "Algérie",
+          "capacite_mw": 1500
+        }
+      ]
+    },
+    "distribution": {
+      "operateurs": [
+        {
+          "nom": "ONEE",
+          "couverture": "Majorité du territoire national"
+        },
+        {
+          "nom": "Régies municipales",
+          "nombre": 7,
+          "villes": ["Marrakech", "Fès", "Meknès", "Tétouan", "Safi", "El Jadida-Azemmour", "Larache-Ksar El Kébir"]
+        },
+        {
+          "nom": "Opérateurs privés (gestion déléguée)",
+          "nombre": 4,
+          "operateurs": [
+            {"nom": "LYDEC", "zone": "Casablanca"},
+            {"nom": "REDAL", "zone": "Rabat-Salé"},
+            {"nom": "AMENDIS Tanger", "zone": "Tanger"},
+            {"nom": "AMENDIS Tétouan", "zone": "Kénitra"}
+          ],
+          "fin_contrats": "2026-2027",
+          "remplacement": "Sociétés Régionales Multiservices (SRM)"
+        }
+      ]
+    }
+  },
+  "reforme_distribution": {
+    "titre": "Réforme de la gestion déléguée",
+    "description": "Suppression de la gestion déléguée de l'eau, électricité et assainissement liquide",
+    "nouvelle_structure": {
+      "nom": "Sociétés Régionales Multiservices (SRM)",
+      "forme_juridique": "Sociétés anonymes à actionnariat public",
+      "role": "Remplacement des délégataires et régies"
+    },
+    "calendrier": {
+      "fin_contrats_delegataires": "2026-2027",
+      "operateurs_concernes": ["LYDEC", "AMENDIS", "REDAL"]
+    }
+  },
+  "droits_consommateurs": {
+    "acces_service": "Droit à l'accès au service d'électricité",
+    "qualite_fourniture": "Droit à une fourniture continue et de qualité",
+    "information": "Droit à l'information sur les tarifs et conditions",
+    "reclamation": "Droit de réclamation auprès du fournisseur et de l'autorité de régulation",
+    "protection_donnees": "Protection des données personnelles des consommateurs"
+  },
+  "obligations_fournisseurs": [
+    "Assurer la continuité du service",
+    "Maintenir la qualité de la tension",
+    "Respecter les délais de raccordement",
+    "Informer les clients des interruptions programmées",
+    "Traiter les réclamations dans les délais",
+    "Protéger les données des consommateurs"
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "metadata": {
+    "pays": "Maroc",
+    "langue": "fr",
+    "date_extraction": "2026-01-26",
+    "description": "Clauses contractuelles des services d'électricité au Maroc"
+  },
+  "clauses": {
+    "continuite_service": [
+      {
+        "id": "clause_cont_001",
+        "titre": "Disponibilité du courant",
+        "contenu": "Le courant sera tenu en permanence à la disposition du client.",
+        "fournisseur": "REDAL",
+        "type": "Obligation fournisseur"
+      },
+      {
+        "id": "clause_cont_002",
+        "titre": "Interruptions autorisées",
+        "contenu": "Le fournisseur aura la faculté d'interrompre le service les jours ouvrables, entre midi et quatorze heures, les dimanches et jours fériés, entre le lever et le coucher du soleil, à charge d'en aviser le client.",
+        "fournisseur": "REDAL",
+        "type": "Droit fournisseur"
+      }
+    ],
+    "tarification": [
+      {
+        "id": "clause_tarif_001",
+        "titre": "Révision tarifaire",
+        "contenu": "La tarification fixée aux conditions particulières pourra être révisée par le fournisseur.",
+        "fournisseur": "REDAL",
+        "type": "Droit fournisseur"
+      },
+      {
+        "id": "clause_tarif_002",
+        "titre": "Options tarifaires",
+        "contenu": "Le client peut choisir parmi les options tarifaires suivantes : Tarif Général, Tarif Optionnel, Tarif Optionnel Super Pointe.",
+        "fournisseur": "ONEE",
+        "type": "Droit client"
+      }
+    ],
+    "installations": [
+      {
+        "id": "clause_inst_001",
+        "titre": "Droit de vérification",
+        "contenu": "Le fournisseur est autorisé à vérifier, à toute époque, l'installation intérieure du client et à s'assurer que celui-ci entretient en bon état le poste de transformation.",
+        "fournisseur": "REDAL",
+        "type": "Droit fournisseur"
+      },
+      {
+        "id": "clause_inst_002",
+        "titre": "Refus de fourniture",
+        "contenu": "Le fournisseur pourra refuser de fournir l'énergie électrique si les installations sont reconnues défectueuses.",
+        "fournisseur": "REDAL",
+        "type": "Droit fournisseur"
+      },
+      {
+        "id": "clause_inst_003",
+        "titre": "Emplacement du compteur",
+        "contenu": "Le compteur doit être installé sur un emplacement approprié (façade, mur ou chambre enterrée) avec accès permanent et positionné à la limite de propriété.",
+        "fournisseur": "REDAL",
+        "type": "Obligation client"
+      }
+    ],
+    "abonnement": [
+      {
+        "id": "clause_abon_001",
+        "titre": "Contrats personnalisés",
+        "contenu": "L'Office met au point des contrats personnalisés afin de satisfaire les besoins spécifiques des clients, avec l'objectif de répondre au mieux aux conditions particulières de chaque client.",
+        "fournisseur": "ONEE",
+        "type": "Service"
+      },
+      {
+        "id": "clause_abon_002",
+        "titre": "Suivi de consommation",
+        "contenu": "Durant les premiers six mois de votre contrat d'abonnement, un suivi de votre consommation est assuré par un ingénieur commercial pour déterminer la puissance souscrite adéquate selon vos besoins réels.",
+        "fournisseur": "ONEE",
+        "type": "Service"
+      },
+      {
+        "id": "clause_abon_003",
+        "titre": "Abonnement provisoire",
+        "contenu": "Des abonnements provisoires sont disponibles pour des périodes inférieures à 12 mois avec possibilité de renouvellement.",
+        "fournisseur": "ONEE",
+        "type": "Option"
+      }
+    ],
+    "paiement": [
+      {
+        "id": "clause_paie_001",
+        "titre": "Cautionnement",
+        "contenu": "Une avance sur consommation (cautionnement) est requise. Ce cautionnement est non productif d'intérêts et remboursable à la résiliation du contrat.",
+        "fournisseur": "ONEE",
+        "type": "Obligation client"
+      },
+      {
+        "id": "clause_paie_002",
+        "titre": "Report des frais",
+        "contenu": "Les frais d'abonnement seront reportés au niveau de votre première facture, sauf le cautionnement qui doit être viré au compte du fournisseur au préalable.",
+        "fournisseur": "ONEE",
+        "type": "Modalité paiement"
+      }
+    ],
+    "force_majeure": [
+      {
+        "id": "clause_fm_001",
+        "titre": "Événements de force majeure",
+        "contenu": "Le fournisseur ne sera pas responsable de la fourniture des services en cas de circonstances indépendantes de sa volonté telles que des événements de force majeure.",
+        "fournisseur": "Général",
+        "type": "Limitation responsabilité"
+      }
+    ],
+    "resiliation": [
+      {
+        "id": "clause_res_001",
+        "titre": "Remboursement cautionnement",
+        "contenu": "Le cautionnement est remboursé au client lors de la résiliation du contrat d'abonnement.",
+        "fournisseur": "ONEE",
+        "type": "Droit client"
+      }
+    ]
+  }
+}

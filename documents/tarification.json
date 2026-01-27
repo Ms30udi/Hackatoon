@@ -1,0 +1,198 @@
+{
+  "metadata": {
+    "pays": "Maroc",
+    "langue": "fr",
+    "date_extraction": "2026-01-26",
+    "description": "Grilles tarifaires de l'électricité au Maroc"
+  },
+  "tarifs_residentiels": {
+    "description": "Tarification sociale par tranches pour les clients résidentiels",
+    "devise": "MAD",
+    "unite": "kWh",
+    "tranches": [
+      {
+        "tranche": 1,
+        "consommation_min": 0,
+        "consommation_max": 100,
+        "prix_kwh": 0.9,
+        "type": "Tarif social"
+      },
+      {
+        "tranche": 2,
+        "consommation_min": 101,
+        "consommation_max": 150,
+        "prix_kwh": 1.0,
+        "type": "Tarif intermédiaire"
+      },
+      {
+        "tranche": 3,
+        "consommation_min": 151,
+        "consommation_max": 200,
+        "prix_kwh": 1.1,
+        "type": "Tarif normal"
+      },
+      {
+        "tranche": 4,
+        "consommation_min": 201,
+        "consommation_max": 300,
+        "prix_kwh": 1.2,
+        "type": "Tarif normal"
+      },
+      {
+        "tranche": 5,
+        "consommation_min": 301,
+        "consommation_max": 500,
+        "prix_kwh": 1.35,
+        "type": "Tarif élevé"
+      },
+      {
+        "tranche": 6,
+        "consommation_min": 501,
+        "consommation_max": null,
+        "prix_kwh": 1.49,
+        "type": "Tarif maximum"
+      }
+    ],
+    "source": "Energypedia"
+  },
+  "tarifs_professionnels": {
+    "description": "Tarification pour les clients professionnels",
+    "devise": "MAD",
+    "unite": "kWh",
+    "fourchette": {
+      "min": 0.61,
+      "max": 1.33
+    },
+    "facteurs_variation": [
+      "Niveau de tension (BT/MT/HT)",
+      "Période horaire (pointe/pleine/creuse)",
+      "Puissance souscrite"
+    ]
+  },
+  "structure_facturation_redal": {
+    "fournisseur": "REDAL",
+    "modes": [
+      {
+        "nom": "Facturation Progressive",
+        "seuil_consommation_max_kwh": 150,
+        "tranches": [
+          {
+            "min": 0,
+            "max": 100,
+            "description": "Première tranche"
+          },
+          {
+            "min": 101,
+            "max": 150,
+            "description": "Deuxième tranche"
+          }
+        ]
+      },
+      {
+        "nom": "Facturation Sélective",
+        "seuil_consommation_min_kwh": 151,
+        "tranches": [
+          {
+            "min": 151,
+            "max": 210,
+            "description": "Tranche 1"
+          },
+          {
+            "min": 211,
+            "max": 310,
+            "description": "Tranche 2"
+          },
+          {
+            "min": 311,
+            "max": 510,
+            "description": "Tranche 3"
+          },
+          {
+            "min": 511,
+            "max": null,
+            "description": "Tranche 4"
+          }
+        ],
+        "tolerance": {
+          "valeur": 10,
+          "unite": "kWh",
+          "description": "Marge de tolérance permettant un dépassement de 10 kWh par mois pour chaque tranche"
+        }
+      }
+    ]
+  },
+  "frais_abonnement": {
+    "fournisseur": "ONEE",
+    "elements": [
+      {
+        "designation": "Redevance de plombage et pose du compteur",
+        "montant": 107.23,
+        "devise": "MAD",
+        "tva_incluse": true
+      },
+      {
+        "designation": "Coût du contrat d'abonnement",
+        "montant_min": 12,
+        "montant_max": 24,
+        "devise": "MAD"
+      },
+      {
+        "designation": "Avance sur consommation (cautionnement)",
+        "montant": "Variable selon puissance souscrite",
+        "remboursable": true,
+        "interets": false
+      },
+      {
+        "designation": "Participation aux frais de branchement",
+        "montant": "Variable selon type de compteur et puissance",
+        "devise": "MAD"
+      }
+    ]
+  },
+  "options_tarifaires_mt": {
+    "fournisseur": "ONEE",
+    "niveau_tension": "Moyenne Tension",
+    "options": [
+      {
+        "nom": "Tarif Général",
+        "code": "TG",
+        "description": "Tarif uniforme sans différenciation horaire"
+      },
+      {
+        "nom": "Tarif Optionnel",
+        "code": "TO",
+        "description": "Tarif avec différenciation heures pleines / heures creuses",
+        "periodes": [
+          {
+            "type": "Heures Pleines",
+            "coefficient": "Plus élevé"
+          },
+          {
+            "type": "Heures Creuses",
+            "coefficient": "Réduit"
+          }
+        ]
+      },
+      {
+        "nom": "Tarif Optionnel Super Pointe",
+        "code": "TOSP",
+        "description": "Tarif avec période de super pointe pour optimisation des gros consommateurs",
+        "periodes": [
+          {
+            "type": "Super Pointe",
+            "coefficient": "Maximum"
+          },
+          {
+            "type": "Heures Pleines",
+            "coefficient": "Élevé"
+          },
+          {
+            "type": "Heures Creuses",
+            "coefficient": "Réduit"
+          }
+        ]
+      }
+    ]
+  },
+  "note_importante": "Les tarifs sont fixés par les autorités compétentes et peuvent être révisés. Les prix restent inférieurs aux coûts de production malgré les augmentations récentes réduisant les subventions énergétiques."
+}

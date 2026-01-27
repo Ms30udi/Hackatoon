@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "pays": "Maroc",
+    "langue": "fr",
+    "date_extraction": "2026-01-26",
+    "description": "Liste des fournisseurs d'électricité au Maroc"
+  },
+  "fournisseurs": [
+    {
+      "id": "onee",
+      "nom": "ONEE - Office National de l'Électricité et de l'Eau Potable",
+      "type": "Établissement public",
+      "couverture": "National",
+      "nombre_clients": 6084493,
+      "site_web": "https://www.one.org.ma",
+      "email": "info@onee.ma",
+      "adresse": "Avenue Mohammed BelHassan El Ouazzani, BP Rabat-Chellah 10 002 Rabat",
+      "services": ["Production", "Transport", "Distribution"]
+    },
+    {
+      "id": "lydec",
+      "nom": "LYDEC",
+      "type": "Opérateur privé",
+      "couverture": "Casablanca",
+      "site_web": "https://www.lydec.ma",
+      "fin_contrat": "2026-2027"
+    },
+    {
+      "id": "redal",
+      "nom": "REDAL",
+      "type": "Opérateur privé",
+      "couverture": "Rabat-Salé",
+      "site_web": "https://www.redal.ma",
+      "telephone_client": "0537 20 20 80",
+      "telephone_urgence": "05 37 26 00 26",
+      "fin_contrat": "2026-2027"
+    },
+    {
+      "id": "amendis",
+      "nom": "AMENDIS",
+      "type": "Opérateur privé",
+      "couverture": "Tanger-Tétouan",
+      "site_web": "https://www.amendis.ma",
+      "fin_contrat": "2026-2027"
+    },
+    {
+      "id": "radeema",
+      "nom": "RADEEMA",
+      "type": "Régie municipale",
+      "couverture": "Marrakech",
+      "site_web": "https://www.radeema.ma"
+    }
+  ]
+}

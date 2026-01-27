@@ -1,0 +1,154 @@
+{
+  "metadata": {
+    "pays": "Maroc",
+    "langue": "fr",
+    "date_extraction": "2026-01-27",
+    "description": "Types de compteurs electriques et informations techniques"
+  },
+  "types_compteurs": [
+    {
+      "id": "compt_001",
+      "type": "Electromecanique (analogique)",
+      "description": "Compteur traditionnel avec disque rotatif",
+      "caracteristiques": {
+        "technologie": "Mecanique",
+        "affichage": "Cadrans ou rouleaux mecaniques",
+        "releve": "Manuel uniquement",
+        "precision": "Classe 2 (+/-2%)"
+      },
+      "avantages": ["Fiable", "Longue duree de vie", "Simple"],
+      "inconvenients": ["Pas de tele-releve", "Moins precis", "Pas de suivi en temps reel"],
+      "usage_typique": "Installations anciennes, zones rurales"
+    },
+    {
+      "id": "compt_002",
+      "type": "Electronique (digital)",
+      "description": "Compteur numerique avec affichage LCD",
+      "caracteristiques": {
+        "technologie": "Electronique",
+        "affichage": "Ecran LCD",
+        "releve": "Manuel ou automatique",
+        "precision": "Classe 1 (+/-1%)"
+      },
+      "avantages": ["Plus precis", "Multi-tarif possible", "Affichage clair"],
+      "inconvenients": ["Sensible aux surtensions"],
+      "usage_typique": "Residentiel standard, petits commerces"
+    },
+    {
+      "id": "compt_003",
+      "type": "Compteur intelligent (smart meter)",
+      "description": "Compteur communicant avec tele-releve",
+      "caracteristiques": {
+        "technologie": "Electronique avec communication",
+        "affichage": "Ecran LCD avec donnees detaillees",
+        "releve": "Automatique a distance",
+        "precision": "Classe 1 ou mieux",
+        "communication": "PLC, GPRS, ou RF"
+      },
+      "avantages": [
+        "Tele-releve automatique",
+        "Suivi consommation en temps reel",
+        "Facturation precise",
+        "Detection anomalies",
+        "Multi-tarif"
+      ],
+      "inconvenients": ["Cout plus eleve", "Dependance reseau communication"],
+      "usage_typique": "Deploiement progressif au Maroc"
+    },
+    {
+      "id": "compt_004",
+      "type": "Compteur a prepaiement",
+      "description": "Compteur rechargeable a l'avance",
+      "caracteristiques": {
+        "technologie": "Electronique avec module prepaiement",
+        "affichage": "LCD avec credit restant",
+        "mode_paiement": "Recharge par carte, code ou application"
+      },
+      "avantages": [
+        "Controle budget",
+        "Pas de factures impayees",
+        "Pas de coupure surprise",
+        "Pas de cautionnement"
+      ],
+      "inconvenients": ["Necessite rechargement regulier", "Coupure si credit epuise"],
+      "usage_typique": "Clients souhaitant controler leur budget, zones a faible recouvrement"
+    }
+  ],
+  "configurations_branchement": {
+    "monophase": {
+      "id": "config_001",
+      "nom": "Monophase",
+      "description": "Branchement standard pour usage domestique",
+      "tension": "220V",
+      "frequence": "50 Hz",
+      "puissances_disponibles": ["3 kVA", "6 kVA", "9 kVA", "12 kVA"],
+      "usage_typique": "Residentiel, petits commerces",
+      "caracteristiques": "Un fil phase + un fil neutre"
+    },
+    "triphase": {
+      "id": "config_002",
+      "nom": "Triphase",
+      "description": "Branchement pour charges elevees ou equipements industriels",
+      "tension": "380V entre phases, 220V phase-neutre",
+      "frequence": "50 Hz",
+      "puissances_disponibles": ["12 kVA", "18 kVA", "24 kVA", "36 kVA et plus"],
+      "usage_typique": "Industries, ateliers, gros commerces",
+      "caracteristiques": "Trois fils phases + un fil neutre",
+      "avantages": ["Meilleure repartition de charge", "Plus de puissance disponible", "Moteurs triphases plus efficaces"]
+    }
+  },
+  "niveaux_tension": {
+    "basse_tension": {
+      "id": "tension_bt",
+      "abreviation": "BT",
+      "plage": "Jusqu'a 1000V",
+      "tension_distribution": "220V monophase / 380V triphase",
+      "clients_types": "Residentiel, petits commerces, artisans",
+      "tarification": "Tarifs residentiels ou professionnels BT"
+    },
+    "moyenne_tension": {
+      "id": "tension_mt",
+      "abreviation": "MT",
+      "plage": "1 kV a 50 kV",
+      "tension_distribution": "Generalement 22 kV ou 33 kV",
+      "clients_types": "Industries, grands commerces, immeubles collectifs",
+      "note": "Necessite un poste de transformation chez le client",
+      "tarification": "Options tarifaires TG, TO, TOSP"
+    },
+    "haute_tension": {
+      "id": "tension_ht",
+      "abreviation": "HT",
+      "plage": "Superieure a 50 kV",
+      "clients_types": "Tres grandes industries, reseaux de distribution",
+      "note": "Generalement reserve au transport d'electricite"
+    }
+  },
+  "lecture_compteur": {
+    "compteur_mecanique": {
+      "instructions": [
+        "Lire les chiffres de gauche a droite",
+        "Noter uniquement les chiffres noirs (pas les rouges/decimales)",
+        "Si un cadran est entre deux chiffres, prendre le chiffre inferieur"
+      ]
+    },
+    "compteur_electronique": {
+      "instructions": [
+        "L'index s'affiche directement sur l'ecran LCD",
+        "Appuyer sur le bouton de defilement pour voir les differents index (HP/HC si applicable)",
+        "Noter le nombre affiche sans les decimales"
+      ]
+    },
+    "auto_releve": {
+      "description": "Possibilite de communiquer son releve au fournisseur",
+      "canaux": ["Application mobile", "Espace client en ligne", "SMS", "Telephone"],
+      "periode": "Generalement entre le 20 et le 30 du mois"
+    }
+  },
+  "test_compteur": {
+    "droit_client": "Un test gratuit tous les 24 mois",
+    "tolerance_acceptee": "+/- 2% pour classe 2, +/- 1% pour classe 1",
+    "procedure": "Demande ecrite au fournisseur",
+    "delai": "15 jours ouvrables",
+    "resultat_defavorable": "Si le compteur est hors tolerance, ajustement de la facturation"
+  }
+}

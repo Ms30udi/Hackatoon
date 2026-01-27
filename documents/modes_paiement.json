@@ -1,0 +1,134 @@
+{
+  "metadata": {
+    "pays": "Maroc",
+    "langue": "fr",
+    "date_extraction": "2026-01-27",
+    "description": "Modes de paiement des factures d'electricite au Maroc"
+  },
+  "modes_paiement": [
+    {
+      "id": "paie_001",
+      "mode": "Paiement en agence",
+      "description": "Paiement au guichet d'une agence commerciale",
+      "moyens_acceptes": ["Especes", "Cheque", "Carte bancaire"],
+      "avantages": ["Recu immediat", "Assistance en cas de probleme"],
+      "inconvenients": ["Deplacement necessaire", "Files d'attente possibles"],
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC", "AMENDIS", "RADEEMA"]
+    },
+    {
+      "id": "paie_002",
+      "mode": "Paiement en ligne",
+      "description": "Paiement via le portail web du fournisseur",
+      "moyens_acceptes": ["Carte bancaire nationale", "Carte bancaire internationale"],
+      "avantages": ["Disponible 24h/24", "Pas de deplacement", "Historique accessible"],
+      "inconvenients": ["Necessite connexion internet", "Carte bancaire requise"],
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC"]
+    },
+    {
+      "id": "paie_003",
+      "mode": "Application mobile",
+      "description": "Paiement via l'application officielle du fournisseur",
+      "moyens_acceptes": ["Carte bancaire", "Portefeuille mobile"],
+      "avantages": ["Rapide et pratique", "Notifications", "Suivi consommation"],
+      "fournisseurs": ["REDAL", "LYDEC"]
+    },
+    {
+      "id": "paie_004",
+      "mode": "Prelevement automatique",
+      "description": "Debit automatique du compte bancaire a chaque echeance",
+      "moyens_acceptes": ["Compte bancaire"],
+      "avantages": ["Aucun risque d'oubli", "Pas de deplacement"],
+      "inconvenients": ["Necessite un compte bancaire", "Montant variable"],
+      "procedure_activation": "Signer un mandat de prelevement a l'agence ou en ligne",
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC"]
+    },
+    {
+      "id": "paie_005",
+      "mode": "Points de paiement partenaires",
+      "description": "Paiement dans des points agrees (epiceries, tabacs, etc.)",
+      "moyens_acceptes": ["Especes"],
+      "avantages": ["Proximite", "Horaires etendus"],
+      "inconvenients": ["Frais de service possibles"],
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC"]
+    },
+    {
+      "id": "paie_006",
+      "mode": "Guichet automatique bancaire (GAB)",
+      "description": "Paiement via les distributeurs automatiques des banques",
+      "moyens_acceptes": ["Carte bancaire"],
+      "avantages": ["Disponible 24h/24", "Rapide"],
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC"]
+    },
+    {
+      "id": "paie_007",
+      "mode": "Virement bancaire",
+      "description": "Virement vers le compte bancaire du fournisseur",
+      "moyens_acceptes": ["Compte bancaire"],
+      "avantages": ["Trace bancaire"],
+      "inconvenients": ["Delai de traitement", "Reference a mentionner obligatoirement"],
+      "note": "Mentionner imperativement le numero de contrat dans le libelle",
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC", "AMENDIS", "RADEEMA"]
+    },
+    {
+      "id": "paie_008",
+      "mode": "Paiement mobile (M-Wallet)",
+      "description": "Paiement via portefeuilles electroniques mobiles",
+      "moyens_acceptes": ["inwi money", "Orange Money", "Barid Cash"],
+      "avantages": ["Rapide", "Pas de carte bancaire necessaire"],
+      "fournisseurs": ["ONEE", "REDAL"]
+    }
+  ],
+  "echeancier_paiement": {
+    "description": "Possibilite de payer en plusieurs fois en cas de difficulte",
+    "conditions": [
+      "Montant minimum de la dette",
+      "Demande motivee",
+      "Engagement ecrit du client"
+    ],
+    "duree_max": "6 a 12 mois selon le montant",
+    "procedure": "Demande a deposer en agence avec justificatifs",
+    "frais": "Aucun interet de retard pendant l'echeancier si respecte"
+  },
+  "penalites_retard": {
+    "description": "Frais appliques en cas de non-paiement a l'echeance",
+    "delai_grace": "15 jours apres date d'echeance",
+    "taux_penalite": "Variable selon fournisseur (generalement 1-2% par mois)",
+    "consequences": [
+      "Majoration de la facture",
+      "Mise en demeure",
+      "Coupure de fourniture apres mise en demeure"
+    ],
+    "processus_recouvrement": [
+      {
+        "etape": 1,
+        "action": "Rappel de paiement",
+        "delai": "J+15 apres echeance"
+      },
+      {
+        "etape": 2,
+        "action": "Mise en demeure",
+        "delai": "J+30 apres echeance"
+      },
+      {
+        "etape": 3,
+        "action": "Coupure de fourniture",
+        "delai": "J+45 apres echeance (si non regularise)"
+      }
+    ]
+  },
+  "frais_reconnexion": {
+    "description": "Frais factures pour retablir le service apres coupure",
+    "montant_indicatif": "100 a 300 DH selon le fournisseur",
+    "conditions": "Paiement integral des impayes + frais de reconnexion"
+  },
+  "facturation": {
+    "periodicite": "Mensuelle ou bimestrielle selon le fournisseur",
+    "date_echeance": "Generalement 15 a 20 jours apres emission de la facture",
+    "modes_reception": [
+      "Courrier postal",
+      "Email",
+      "Espace client en ligne",
+      "Application mobile"
+    ]
+  }
+}
