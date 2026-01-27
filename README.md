@@ -27,3 +27,12 @@ npm run dev
 mohim dik **venv** : bhala kandiro wahd lprojet virtuelle bach manb9awch nl9aw mochkil f les versions dial dependencies 
 **dependencies** dial lbackend kaynin f requirements.txt
 **frontend** rah bghina nkhedmo b react w tailwind css
+
+
+
+**to push in github**
+cd hackatoon
+git add .
+git commit -m "message"
+git checkout -b dev 
+git push origin dev
