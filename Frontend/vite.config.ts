@@ -1,6 +1,6 @@
 /**
  * Vite Configuration
- * 
+ *
  * Build tool configuration for the Service Intelligence Portal.
  * Uses React with SWC for fast compilation and development.
  */
@@ -26,6 +26,15 @@ export default defineConfig(({ mode }) => ({
     resolve: {
         alias: {
             "@": path.resolve(__dirname, "./src"),
+        },
+    },
+    test: {
+        globals: true,
+        environment: "jsdom",
+        setupFiles: ["./src/test/setup.ts"],
+        include: ["src/**/*.{test,spec}.{ts,tsx}"],
+        coverage: {
+            reporter: ["text", "json", "html"],
         },
     },
 }));

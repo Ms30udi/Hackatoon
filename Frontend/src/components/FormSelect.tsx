@@ -59,6 +59,7 @@ export const FormSelect: React.FC<FormSelectProps> = ({
           className={cn(
             'input-institutional appearance-none pr-10 cursor-pointer',
             error && 'border-destructive focus:border-destructive focus:ring-destructive/20',
+            props.disabled && 'opacity-50 cursor-not-allowed bg-muted',
             className
           )}
           {...props}
