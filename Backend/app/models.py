@@ -1,5 +1,17 @@
-from sqlalchemy import Column, Integer, String, Date, DateTime, Float, ForeignKey, Text, JSON
+from sqlalchemy import (
+    Column,
+    Integer,
+    String,
+    Date,
+    DateTime,
+    Float,
+    ForeignKey,
+    Text,
+    JSON
+)
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
+
 from .database import Base
 
 
@@ -20,6 +32,11 @@ class Customer(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
+    # Relationships
+    contracts = relationship("Contract", back_populates="customer", cascade="all, delete-orphan")
+    meters = relationship("Meter", back_populates="customer", cascade="all, delete-orphan")
+    complaints = relationship("Complaint", back_populates="customer", cascade="all, delete-orphan")
+
 
 # -------------------------
 # METERS
@@ -39,6 +56,9 @@ class Meter(Base):
     status = Column(String(50), default="active")
     installation_date = Column(Date)
     replacement_due_date = Column(Date)
+
+    # Relationships
+    customer = relationship("Customer", back_populates="meters")
 
 
 # -------------------------
@@ -83,28 +103,30 @@ class Contract(Base):
     # Status of pipeline
     status = Column(String(50), default="draft")  # draft, verified, signed, active, rejected
 
-    # Identity verification fields (STEP 2 later)
+    # Identity verification fields (STEP 2)
     cin_image_path = Column(String(255), nullable=True)
     extracted_name = Column(String(150), nullable=True)
     extracted_id = Column(String(100), nullable=True)
     verification_status = Column(String(50), nullable=True)
     confidence_score = Column(Float, nullable=True)
 
-    # Signature fields (STEP 4 later)
+    # Signature fields (STEP 4)
     signature_path = Column(String(255), nullable=True)
     signed_at = Column(DateTime(timezone=True), nullable=True)
 
-    # PDF document (STEP 5 later)
+    # PDF document (STEP 5)
     pdf_path = Column(String(255), nullable=True)
 
     # Dates
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
+    # Relationships
+    customer = relationship("Customer", back_populates="contracts")
 
 
 # -------------------------
-# COMPLAINTS (INTELLIGENT REQUESTS CORE TABLE)
+# COMPLAINTS (INTELLIGENT REQUESTS)
 # -------------------------
 class Complaint(Base):
     __tablename__ = "complaints"
@@ -131,3 +153,6 @@ class Complaint(Base):
 
     proposed_solutions = Column(JSON, nullable=True)
     attached_documents = Column(JSON, nullable=True)
+
+    # Relationships
+    customer = relationship("Customer", back_populates="complaints")

@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from .database import engine, Base
 from . import models
+from dotenv import load_dotenv
+load_dotenv()
 
 from .routes import customers, complaints, contracts
 
