@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(venvScriptspython.exe -m uvicorn app.main:app --reload --port 8000)",
-      "Bash(npm run dev:*)",
-      "Bash(npm run test:*)"
-    ]
-  }
-}
