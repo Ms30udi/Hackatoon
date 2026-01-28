@@ -9,11 +9,11 @@
  */
 
 // Import JSON data
-import reclamationsData from '../../../documents/reclamations.json';
-import documentsRequisData from '../../../documents/documents_requis.json';
-import proceduresData from '../../../documents/procedures.json';
-import typesCompteursData from '../../../documents/types_compteurs.json';
-import modesPaiementData from '../../../documents/modes_paiement.json';
+import reclamationsData from '../../../documents/services/reclamations.json';
+import documentsRequisData from '../../../documents/contracts/documents_requis.json';
+import proceduresData from '../../../documents/services/procedures.json';
+import typesCompteursData from '../../../documents/reference/types_compteurs.json';
+import modesPaiementData from '../../../documents/services/modes_paiement.json';
 
 // ============================================================================
 // TYPES

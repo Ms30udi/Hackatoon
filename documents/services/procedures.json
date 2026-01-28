@@ -1,0 +1,264 @@
+{
+  "metadata": {
+    "pays": "Maroc",
+    "langue": "fr",
+    "date_extraction": "2026-01-27",
+    "version": "2.0",
+    "description": "Procedures detaillees pour les services d'electricite au Maroc - inclut procedures administratives et reclamations"
+  },
+  "procedures": {
+    "nouveau_branchement": {
+      "id": "proc_nouv_001",
+      "titre": "Nouvelle connexion electrique",
+      "description": "Procedure complete pour obtenir un nouveau branchement electrique",
+      "type_client": ["residentiel", "professionnel"],
+      "delai_estime": "4-6 semaines",
+      "etapes": [
+        {
+          "ordre": 1,
+          "titre": "Preparation du dossier",
+          "description": "Rassembler tous les documents requis",
+          "documents_requis": ["CIN", "justificatif_occupation", "plan_situation"],
+          "responsable": "client"
+        },
+        {
+          "ordre": 2,
+          "titre": "Depot de la demande",
+          "description": "Soumettre le dossier a l'agence ou en ligne",
+          "canaux": ["agence", "en_ligne"],
+          "responsable": "client"
+        },
+        {
+          "ordre": 3,
+          "titre": "Etude technique",
+          "description": "Le fournisseur evalue la faisabilite technique",
+          "delai": "5-10 jours ouvrables",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 4,
+          "titre": "Devis et paiement",
+          "description": "Reception du devis et paiement des frais",
+          "frais": ["frais_branchement", "cautionnement", "frais_contrat"],
+          "responsable": "client"
+        },
+        {
+          "ordre": 5,
+          "titre": "Travaux de raccordement",
+          "description": "Installation du compteur et raccordement au reseau",
+          "delai": "2-3 semaines",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 6,
+          "titre": "Mise en service",
+          "description": "Activation du compteur et debut de la fourniture",
+          "responsable": "fournisseur"
+        }
+      ],
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC", "AMENDIS", "RADEEMA"]
+    },
+    "resiliation_contrat": {
+      "id": "proc_res_001",
+      "titre": "Resiliation de contrat",
+      "description": "Procedure pour mettre fin a un contrat d'electricite",
+      "type_client": ["residentiel", "professionnel"],
+      "delai_estime": "7-15 jours",
+      "etapes": [
+        {
+          "ordre": 1,
+          "titre": "Demande de resiliation",
+          "description": "Soumettre une demande ecrite ou en ligne",
+          "preavis": "Aucun preavis obligatoire",
+          "responsable": "client"
+        },
+        {
+          "ordre": 2,
+          "titre": "Releve final du compteur",
+          "description": "Le fournisseur effectue un releve final",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 3,
+          "titre": "Facture de cloture",
+          "description": "Emission de la derniere facture",
+          "delai": "15 jours",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 4,
+          "titre": "Remboursement cautionnement",
+          "description": "Restitution de l'avance sur consommation apres deduction des impayes",
+          "delai": "30 jours apres solde de tout compte",
+          "responsable": "fournisseur"
+        }
+      ],
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC", "AMENDIS", "RADEEMA"]
+    },
+    "modification_puissance": {
+      "id": "proc_mod_001",
+      "titre": "Modification de puissance souscrite",
+      "description": "Procedure pour augmenter ou diminuer la puissance souscrite",
+      "type_client": ["residentiel", "professionnel"],
+      "delai_estime": "7-21 jours",
+      "etapes": [
+        {
+          "ordre": 1,
+          "titre": "Demande de modification",
+          "description": "Soumettre une demande avec la nouvelle puissance souhaitee",
+          "responsable": "client"
+        },
+        {
+          "ordre": 2,
+          "titre": "Etude de faisabilite",
+          "description": "Verification de la capacite du reseau",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 3,
+          "titre": "Mise a jour du contrat",
+          "description": "Signature d'un avenant au contrat",
+          "responsable": "client"
+        },
+        {
+          "ordre": 4,
+          "titre": "Ajustement technique",
+          "description": "Modification du disjoncteur si necessaire",
+          "responsable": "fournisseur"
+        }
+      ],
+      "restrictions": "Une seule modification par an autorisee",
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC"]
+    },
+    "transfert_nom": {
+      "id": "proc_trans_001",
+      "titre": "Transfert de titulaire (changement de nom)",
+      "description": "Procedure pour transferer un contrat suite a une vente ou succession",
+      "type_client": ["residentiel", "professionnel"],
+      "delai_estime": "7-10 jours ouvrables",
+      "etapes": [
+        {
+          "ordre": 1,
+          "titre": "Constitution du dossier",
+          "description": "Preparer les documents de transfert",
+          "documents_requis": ["CIN_nouveau_titulaire", "acte_vente_ou_succession", "derniere_facture", "attestation_ancien_titulaire"],
+          "responsable": "client"
+        },
+        {
+          "ordre": 2,
+          "titre": "Depot de la demande",
+          "description": "Soumettre le dossier complet a l'agence",
+          "responsable": "client"
+        },
+        {
+          "ordre": 3,
+          "titre": "Verification et validation",
+          "description": "Controle des documents et de l'etat du compte",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 4,
+          "titre": "Nouveau contrat",
+          "description": "Etablissement du contrat au nom du nouveau titulaire",
+          "frais": ["frais_transfert", "nouveau_cautionnement"],
+          "responsable": "client"
+        }
+      ],
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC", "AMENDIS", "RADEEMA"]
+    },
+    "changement_adresse": {
+      "id": "proc_adr_001",
+      "titre": "Changement d'adresse (demenagement)",
+      "description": "Procedure lors d'un demenagement",
+      "type_client": ["residentiel", "professionnel"],
+      "etapes": [
+        {
+          "ordre": 1,
+          "titre": "Resiliation ancien contrat",
+          "description": "Demander la resiliation a l'ancienne adresse",
+          "preavis_recommande": "15 jours avant demenagement",
+          "responsable": "client"
+        },
+        {
+          "ordre": 2,
+          "titre": "Nouvelle souscription",
+          "description": "Souscrire un nouveau contrat a la nouvelle adresse",
+          "responsable": "client"
+        }
+      ],
+      "note": "Les contrats ne sont pas transferables d'une adresse a une autre",
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC", "AMENDIS", "RADEEMA"]
+    },
+    "branchement_provisoire": {
+      "id": "proc_prov_001",
+      "titre": "Branchement provisoire (chantier/evenement)",
+      "description": "Procedure pour une connexion temporaire",
+      "type_client": ["professionnel"],
+      "delai_estime": "2-4 semaines",
+      "duree_max": "12 mois renouvelable",
+      "etapes": [
+        {
+          "ordre": 1,
+          "titre": "Demande avec justificatif",
+          "description": "Soumettre la demande avec permis de construire ou autorisation d'evenement",
+          "documents_requis": ["permis_construire", "plan_chantier", "CIN_responsable"],
+          "responsable": "client"
+        },
+        {
+          "ordre": 2,
+          "titre": "Etude et devis",
+          "description": "Evaluation technique et etablissement du devis",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 3,
+          "titre": "Installation provisoire",
+          "description": "Mise en place du branchement temporaire",
+          "responsable": "fournisseur"
+        },
+        {
+          "ordre": 4,
+          "titre": "Demontage en fin de periode",
+          "description": "Retrait de l'installation a l'echeance",
+          "responsable": "fournisseur"
+        }
+      ],
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC"]
+    },
+    "reconnexion": {
+      "id": "proc_recon_001",
+      "titre": "Reconnexion apres coupure",
+      "description": "Procedure pour retablir le service apres une coupure pour impaye",
+      "type_client": ["residentiel", "professionnel"],
+      "delai_estime": "24-48 heures apres paiement",
+      "etapes": [
+        {
+          "ordre": 1,
+          "titre": "Regularisation des impayes",
+          "description": "Payer la totalite des sommes dues ou convenir d'un echeancier",
+          "responsable": "client"
+        },
+        {
+          "ordre": 2,
+          "titre": "Paiement frais de reconnexion",
+          "description": "S'acquitter des frais de retablissement du service",
+          "responsable": "client"
+        },
+        {
+          "ordre": 3,
+          "titre": "Demande de reconnexion",
+          "description": "Presenter la preuve de paiement et demander la reconnexion",
+          "responsable": "client"
+        },
+        {
+          "ordre": 4,
+          "titre": "Retablissement du service",
+          "description": "Intervention technique pour remettre le courant",
+          "delai": "24-48 heures",
+          "responsable": "fournisseur"
+        }
+      ],
+      "fournisseurs": ["ONEE", "REDAL", "LYDEC", "AMENDIS", "RADEEMA"]
+    }
+  }
+}
