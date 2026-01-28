@@ -159,6 +159,52 @@ export const translations = {
     // Footer content
     helpLine: 'Service client disponible du lundi au vendredi, 8h-18h',
     dataProtection: 'Vos données sont protégées conformément au RGPD',
+
+    // Request type toggle (Information/Complaint)
+    requestType: 'Type de demande',
+    informationRequest: 'Demande d\'information',
+    complaint: 'Réclamation',
+
+    // Complaint categories
+    complaintCategory: 'Catégorie de réclamation',
+    complaintType: 'Type de réclamation',
+    selectCategory: 'Sélectionnez une catégorie',
+    selectType: 'Sélectionnez un type',
+    complaintCategories: {
+      billing: 'Facturation',
+      serviceQuality: 'Qualité de service',
+      meter: 'Compteur',
+      customerService: 'Service client',
+      wrongfulDisconnection: 'Coupure abusive',
+    },
+
+    // Consumer rights
+    consumerRights: 'Vos droits',
+    consumerRightsIntro: 'En tant que consommateur, vous avez droit à :',
+
+    // Required documents panel
+    requiredDocuments: 'Documents requis',
+    requiredDocumentsInfo: 'Documents à préparer pour votre demande',
+    documentAlternatives: 'Alternatives acceptées',
+    conditionalDocument: 'Requis si',
+    optionalDocuments: 'Documents optionnels',
+
+    // Procedure steps panel
+    procedureSteps: 'Étapes de la procédure',
+    procedureStepsInfo: 'Voici les étapes de votre demande',
+    estimatedDelay: 'Délai estimé',
+    responsibility: 'Responsable',
+    client: 'Vous',
+    provider: 'Fournisseur',
+
+    // Power selection
+    subscribedPower: 'Puissance souscrite',
+    selectPower: 'Sélectionnez la puissance',
+    suggestedPower: 'Puissance suggérée selon votre profil',
+
+    // Payment method preference
+    paymentMethodPreference: 'Mode de paiement préféré (optionnel)',
+    selectPaymentMethod: 'Sélectionnez un mode de paiement',
   },
 
   // English translations
@@ -300,6 +346,52 @@ export const translations = {
     // Footer content
     helpLine: 'Customer service available Monday to Friday, 8am-6pm',
     dataProtection: 'Your data is protected in accordance with GDPR',
+
+    // Request type toggle (Information/Complaint)
+    requestType: 'Request type',
+    informationRequest: 'Information request',
+    complaint: 'Complaint',
+
+    // Complaint categories
+    complaintCategory: 'Complaint category',
+    complaintType: 'Complaint type',
+    selectCategory: 'Select a category',
+    selectType: 'Select a type',
+    complaintCategories: {
+      billing: 'Billing',
+      serviceQuality: 'Service quality',
+      meter: 'Meter',
+      customerService: 'Customer service',
+      wrongfulDisconnection: 'Wrongful disconnection',
+    },
+
+    // Consumer rights
+    consumerRights: 'Your rights',
+    consumerRightsIntro: 'As a consumer, you are entitled to:',
+
+    // Required documents panel
+    requiredDocuments: 'Required documents',
+    requiredDocumentsInfo: 'Documents to prepare for your request',
+    documentAlternatives: 'Accepted alternatives',
+    conditionalDocument: 'Required if',
+    optionalDocuments: 'Optional documents',
+
+    // Procedure steps panel
+    procedureSteps: 'Procedure steps',
+    procedureStepsInfo: 'Here are the steps for your request',
+    estimatedDelay: 'Estimated delay',
+    responsibility: 'Responsibility',
+    client: 'You',
+    provider: 'Provider',
+
+    // Power selection
+    subscribedPower: 'Subscribed power',
+    selectPower: 'Select the power',
+    suggestedPower: 'Suggested power based on your profile',
+
+    // Payment method preference
+    paymentMethodPreference: 'Preferred payment method (optional)',
+    selectPaymentMethod: 'Select a payment method',
   },
 } as const;
 
