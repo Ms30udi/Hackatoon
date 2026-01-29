@@ -16,19 +16,21 @@ import { ModifyContractForm } from './forms/ModifyContractForm';
 import { InformationRequestForm } from './forms/InformationRequestForm';
 import { NewConnectionForm } from './forms/NewConnectionForm';
 import { ConfirmationScreen } from './ConfirmationScreen';
+import { ContractPage } from '@/pages/ContractPage';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 /** Possible states of the portal workflow */
-type PortalState = 'selection' | 'form' | 'confirmation';
+type PortalState = 'selection' | 'form' | 'confirmation' | 'contract';
 
 /**
  * ServicePortal - Primary component for the service request workflow
  * 
- * Implements a three-step process:
+ * Implements a four-step process:
  * 1. Selection: User chooses the type of request
- * 2. Form: User fills out the appropriate form
+ * 2. Form: User fills out the appropriate form (or contract workflow)
  * 3. Confirmation: Display success message with reference number
+ * 4. Contract: Complete contract digitalization workflow
  */
 export const ServicePortal: React.FC = () => {
   const { t } = useLanguage();
@@ -56,13 +58,24 @@ export const ServicePortal: React.FC = () => {
   /** Advances from selection to form state when a type is chosen */
   const handleContinue = useCallback(() => {
     if (selectedType) {
-      setPortalState('form');
+      // Route to contract workflow for digitalization
+      if (selectedType === 'newContract') {
+        setPortalState('contract');
+      } else {
+        setPortalState('form');
+      }
     }
   }, [selectedType]);
 
   /** Returns to the selection state from the form */
   const handleBack = useCallback(() => {
     setPortalState('selection');
+  }, []);
+
+  /** Returns from contract page to selection */
+  const handleBackFromContract = useCallback(() => {
+    setPortalState('selection');
+    setSelectedType(null);
   }, []);
 
   /**
@@ -151,6 +164,11 @@ export const ServicePortal: React.FC = () => {
             referenceNumber={referenceNumber}
             onNewRequest={handleNewRequest}
           />
+        )}
+
+        {/* Contract Workflow State */}
+        {portalState === 'contract' && (
+          <ContractPage onBack={handleBackFromContract} />
         )}
 
         {/* Selection State */}

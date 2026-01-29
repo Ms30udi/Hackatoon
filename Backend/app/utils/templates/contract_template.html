@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Contrat d'Abonnement – Électricité</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.4;
+      margin: 30px;
+      color: #222;
+      font-size: 11px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    h2 {
+      font-size: 14px;
+      margin-top: 20px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 5px;
+    }
+
+    h3 {
+      font-size: 12px;
+      margin: 10px 0;
+    }
+
+    .section {
+      margin-bottom: 15px;
+    }
+
+    .field {
+      margin: 3px 0;
+    }
+
+    .label {
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 10px;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #000;
+    }
+
+    th,
+    td {
+      padding: 5px;
+      text-align: center;
+    }
+
+    .signature {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      page-break-inside: avoid;
+    }
+
+    .signature-box {
+      text-align: center;
+      width: 45%;
+    }
+
+    .signature-image {
+      min-height: 60px;
+      margin: 5px 0;
+    }
+
+    .signature-image img {
+      max-width: 50px !important;
+      max-height: 35px !important;
+      height: auto !important;
+      border: 1px solid #000 !important;
+      padding: 3px !important;
+    }
+
+    .page-break {
+      page-break-after: always;
+    }
+
+    ul {
+      margin: 5px 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 3px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PAGE 1 -->
+  <h1>ROYAUME DU MAROC</h1>
+  <h2>CONTRAT D'ABONNEMENT<br>SERVICE D'ÉLECTRICITÉ</h2>
+
+  <div class="section">
+    <p><span class="label">Numéro de contrat :</span> {{contract_number}}</p>
+    <p><span class="label">Date d'établissement :</span> {{contract_date}}</p>
+    <p><span class="label">Type de contrat :</span> Basse Tension – Particulier</p>
+  </div>
+
+  <h2>PARTIES AU CONTRAT</h2>
+
+  <div class="section">
+    <h3>Le Fournisseur</h3>
+    <p>
+      Office National de l'Électricité et de l'Eau Potable (ONEE) – Branche Électricité,
+      représenté par le directeur de l'agence commerciale de {{provider_city}}.
+    </p>
+  </div>
+
+  <div class="section">
+    <h3>Le Client</h3>
+    <p><span class="label">Nom et Prénom :</span> {{customer_name}}</p>
+    <p><span class="label">Numéro CNI :</span> {{customer_cni}}</p>
+    <p><span class="label">Date de naissance :</span> {{customer_dob}}</p>
+    <p><span class="label">Adresse :</span> {{customer_address}}</p>
+    <p><span class="label">Téléphone :</span> {{customer_phone}}</p>
+    <p><span class="label">Email :</span> {{customer_email}}</p>
+  </div>
+
+  <h2>ARTICLE 1 – OBJET DU CONTRAT</h2>
+  <p>
+    Le présent contrat définit les conditions de fourniture d'énergie électrique en basse tension à usage domestique.
+  </p>
+
+  <div class="section">
+    <p><span class="label">Adresse de fourniture :</span> {{supply_address}}</p>
+    <p><span class="label">Ville :</span> {{supply_city}} | <span class="label">Province :</span> {{supply_province}} |
+      <span class="label">Code postal :</span> {{supply_zip}}
+    </p>
+  </div>
+
+  <h2>ARTICLE 2 – CARACTÉRISTIQUES TECHNIQUES</h2>
+  <ul>
+    <li>Puissance souscrite : {{subscribed_power}} kVA</li>
+    <li>Type de compteur : {{meter_type}}</li>
+    <li>Numéro de compteur : {{meter_number}}</li>
+    <li>Tension : 220V ±10% (Monophasé) | Fréquence : 50 Hz ±1%</li>
+  </ul>
+
+  <div class="page-break"></div>
+
+  <!-- PAGE 2 -->
+  <h2>ARTICLE 3 – TARIFICATION</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tranche</th>
+        <th>Consommation (kWh/mois)</th>
+        <th>Prix (MAD/kWh)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>0 – 100</td>
+        <td>0,90</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>101 – 150</td>
+        <td>1,00</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>151 – 200</td>
+        <td>1,10</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>201 – 300</td>
+        <td>1,20</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>301 – 500</td>
+        <td>1,35</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>501 et plus</td>
+        <td>1,49</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>ARTICLE 4 – FACTURATION ET PAIEMENT</h2>
+  <ul>
+    <li>Facturation mensuelle avec délai de paiement de 20 jours</li>
+    <li>Moyens : virement, prélèvement, espèces, chèque, paiement en ligne</li>
+    <li>Pénalités de retard applicables selon le barème en vigueur</li>
+  </ul>
+
+  <h2>ARTICLE 5 – OBLIGATIONS DU CLIENT</h2>
+  <ul>
+    <li>Payer les factures dans les délais</li>
+    <li>Assurer l'accès au compteur pour les relevés</li>
+    <li>Informer le fournisseur de tout changement</li>
+    <li>Utiliser l'électricité conformément aux conditions contractuelles</li>
+  </ul>
+
+  <h2>ARTICLE 6 – OBLIGATIONS DU FOURNISSEUR</h2>
+  <ul>
+    <li>Assurer la continuité de la fourniture d'électricité</li>
+    <li>Maintenir la qualité de service selon les normes</li>
+    <li>Informer le client des interruptions programmées</li>
+  </ul>
+
+  <h2>ARTICLE 7 – RÉSILIATION</h2>
+  <p>
+    Le Client peut résilier à tout moment par demande écrite. Le Fournisseur peut résilier en cas de non-paiement ou
+    fraude.
+  </p>
+
+  <h2>ARTICLE 8 – PROTECTION DES DONNÉES</h2>
+  <p>
+    Les données personnelles sont traitées conformément à la loi n°09-08.
+  </p>
+
+  <div class="page-break"></div>
+
+  <!-- PAGE 3 -->
+  <h2>FRAIS D'ABONNEMENT</h2>
+  <table>
+    <tr>
+      <th>Désignation</th>
+      <th>Montant (MAD)</th>
+    </tr>
+    <tr>
+      <td>Pose du compteur</td>
+      <td>107,23</td>
+    </tr>
+    <tr>
+      <td>Coût du contrat</td>
+      <td>12 – 24</td>
+    </tr>
+    <tr>
+      <td>Cautionnement</td>
+      <td>{{fee_caution}}</td>
+    </tr>
+    <tr>
+      <td>Frais de branchement</td>
+      <td>{{fee_frais}}</td>
+    </tr>
+    <tr>
+      <th>Total</th>
+      <th>{{fee_total}}</th>
+    </tr>
+  </table>
+
+  <h2>ACCEPTATION DU CONTRAT</h2>
+  <p style="margin: 15px 0;">
+    Les parties déclarent avoir pris connaissance de l'ensemble des conditions du présent contrat et les accepter sans
+    réserve.
+  </p>
+
+  <div class="signature">
+    <div class="signature-box">
+      <p><strong>LE FOURNISSEUR</strong></p>
+      <p style="font-size: 10px;">Signature et cachet</p>
+      <div class="signature-image" style="height: 60px;"></div>
+      <p style="font-size: 9px;">{{provider_city}}, le {{signature_date}}</p>
+    </div>
+    <div class="signature-box">
+      <p><strong>LE CLIENT</strong></p>
+      <p style="font-size: 10px;">« Lu et approuvé »</p>
+      <div class="signature-image">
+        {{signature_image}}
+      </div>
+      <p style="font-size: 9px;">{{signature_city}}, le {{signature_date}}</p>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -101,7 +101,7 @@ class Contract(Base):
     contract_address = Column(String(255))
 
     # Status of pipeline
-    status = Column(String(50), default="draft")  # draft, verified, signed, active, rejected
+    status = Column(String(50), default="draft")  # draft, verified, email_sent, signed, active, rejected
 
     # Identity verification fields (STEP 2)
     cin_image_path = Column(String(255), nullable=True)
@@ -109,6 +109,9 @@ class Contract(Base):
     extracted_id = Column(String(100), nullable=True)
     verification_status = Column(String(50), nullable=True)
     confidence_score = Column(Float, nullable=True)
+
+    # Email verification fields (STEP 3)
+    email_sent_at = Column(DateTime(timezone=True), nullable=True)
 
     # Signature fields (STEP 4)
     signature_path = Column(String(255), nullable=True)
