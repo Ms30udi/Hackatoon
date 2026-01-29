@@ -31,6 +31,8 @@ interface NewConnectionFormProps {
   onSubmit: (data: Record<string, unknown>) => void;
   /** Callback to navigate back to selection */
   onBack: () => void;
+  /** Whether the form is currently being submitted */
+  isSubmitting?: boolean;
 }
 
 /** Type of property for the connection */
@@ -47,7 +49,7 @@ type PropertyType = 'newConstruction' | 'existingBuilding';
  * 5. Procedure steps panel (always visible)
  * 6. Required documents panel (always visible)
  */
-export const NewConnectionForm: React.FC<NewConnectionFormProps> = ({ onSubmit, onBack }) => {
+export const NewConnectionForm: React.FC<NewConnectionFormProps> = ({ onSubmit, onBack, isSubmitting }) => {
   const { t } = useLanguage();
 
   // Form state management
@@ -298,8 +300,15 @@ export const NewConnectionForm: React.FC<NewConnectionFormProps> = ({ onSubmit, 
             >
               {t.back}
             </button>
-            <button type="submit" className="btn-institutional">
-              {t.submit}
+            <button type="submit" className="btn-institutional" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                  Loading...
+                </>
+              ) : (
+                t.submit
+              )}
             </button>
           </div>
         </form>

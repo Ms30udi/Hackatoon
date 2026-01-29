@@ -9,7 +9,7 @@
  * @module components/forms/NewContractForm
  */
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { FormInput } from '../FormInput';
 import { FormSelect } from '../FormSelect';
@@ -17,18 +17,18 @@ import { ContractTypeSelector, ContractType } from '../ContractTypeSelector';
 import {
   getPowerOptions,
   getContractDocuments,
-  getPaymentMethodOptions,
   formatDocumentAlternatives,
   type PowerOption,
   type RequiredDocument
 } from '@/lib/knowledgeBase';
-import { cn } from '@/lib/utils';
 
 interface NewContractFormProps {
   /** Callback when form is successfully submitted */
   onSubmit: (data: Record<string, unknown>) => void;
   /** Callback to navigate back to selection */
   onBack: () => void;
+  /** Whether the form is currently being submitted */
+  isSubmitting?: boolean;
 }
 
 /**
@@ -38,24 +38,59 @@ interface NewContractFormProps {
  * 1. Contract type selection (individual/household/company)
  * 2. Personal information
  * 3. Address information
- * 4. Conditional household details (if household type)
- * 5. Conditional company details (if company type)
- * 6. Contract details (power, start date, payment preference)
- * 7. Required documents info panel (always visible)
+ * 4. Contract details (power selection)
+ * 5. Required documents info panel (always visible)
  */
-export const NewContractForm: React.FC<NewContractFormProps> = ({ onSubmit, onBack }) => {
+export const NewContractForm: React.FC<NewContractFormProps> = ({ onSubmit, onBack, isSubmitting }) => {
   const { t } = useLanguage();
 
   // Form state management
   const [contractType, setContractType] = useState<ContractType>('individual');
   const [formData, setFormData] = useState<Record<string, string>>({});
 
+  // CIN duplicate check state
+  const [cinError, setCinError] = useState<string | null>(null);
+  const [cinChecking, setCinChecking] = useState(false);
+  const cinDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const checkCinExists = useCallback(async (cin: string) => {
+    console.log('[CIN CHECK] Called with:', cin);
+    if (cin.length < 3) {
+      setCinError(null);
+      setCinChecking(false);
+      console.log('[CIN CHECK] Skipped - less than 3 chars');
+      return;
+    }
+    setCinChecking(true);
+    try {
+      const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+      const url = `${apiBase}/customers/check-cin/${encodeURIComponent(cin)}`;
+      console.log('[CIN CHECK] Fetching:', url);
+      const res = await fetch(url);
+      console.log('[CIN CHECK] Response status:', res.status);
+      const data = await res.json();
+      console.log('[CIN CHECK] Response data:', data);
+      console.log('[CIN CHECK] t.cinAlreadyExists =', t.cinAlreadyExists);
+      const errorValue = data.exists ? t.cinAlreadyExists : null;
+      console.log('[CIN CHECK] Setting cinError to:', errorValue);
+      setCinError(errorValue);
+    } catch (err) {
+      console.error('[CIN CHECK] Error:', err);
+      setCinError(null);
+    } finally {
+      setCinChecking(false);
+    }
+  }, [t.cinAlreadyExists]);
+
+  // Cleanup debounce timer on unmount
+  useEffect(() => {
+    return () => {
+      if (cinDebounceRef.current) clearTimeout(cinDebounceRef.current);
+    };
+  }, []);
+
   // Get data from knowledge base
   const powerOptions = useMemo(() => getPowerOptions(), []);
-  const paymentOptions = useMemo(() => [
-    { value: '', label: t.selectPaymentMethod },
-    ...getPaymentMethodOptions()
-  ], [t.selectPaymentMethod]);
 
   // Get required documents based on contract type
   const isCompany = contractType === 'company';
@@ -77,7 +112,14 @@ export const NewContractForm: React.FC<NewContractFormProps> = ({ onSubmit, onBa
    * Handles changes to form input fields
    */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+
+    if (name === 'cin') {
+      setCinError(null);
+      if (cinDebounceRef.current) clearTimeout(cinDebounceRef.current);
+      cinDebounceRef.current = setTimeout(() => checkCinExists(value), 500);
+    }
   };
 
   /**
@@ -85,6 +127,7 @@ export const NewContractForm: React.FC<NewContractFormProps> = ({ onSubmit, onBa
    */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (cinError) return;
     onSubmit({ ...formData, contractType });
   };
 
@@ -111,6 +154,8 @@ export const NewContractForm: React.FC<NewContractFormProps> = ({ onSubmit, onBa
                 value={formData.cin || ''}
                 onChange={handleChange}
                 required
+                error={cinError || undefined}
+                helper={cinChecking ? t.cinChecking : undefined}
               />
               <div className="hidden md:block" />
               <FormInput
@@ -155,150 +200,31 @@ export const NewContractForm: React.FC<NewContractFormProps> = ({ onSubmit, onBa
             <h3 className="text-lg font-serif font-medium text-foreground border-b border-border pb-3">
               {t.addressInfo}
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div className="md:col-span-2">
-                <FormInput
-                  label={t.address}
-                  name="address"
-                  placeholder={t.addressPlaceholder}
-                  value={formData.address || ''}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <FormInput
-                label={t.city}
-                name="city"
-                placeholder={t.cityPlaceholder}
-                value={formData.city || ''}
-                onChange={handleChange}
-                required
-              />
-              <FormInput
-                label={t.postalCode}
-                name="postalCode"
-                placeholder={t.postalCodePlaceholder}
-                value={formData.postalCode || ''}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            <FormInput
+              label={t.address}
+              name="address"
+              placeholder={t.addressPlaceholder}
+              value={formData.address || ''}
+              onChange={handleChange}
+              required
+            />
           </section>
 
-          {/* Household-specific Fields (conditional) */}
-          <section className={cn(
-            'space-y-6 overflow-hidden transition-all duration-500',
-            contractType === 'household' ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-          )}>
-            <h3 className="text-lg font-serif font-medium text-foreground border-b border-border pb-3">
-              {t.householdInfo}
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <FormInput
-                label={t.occupants}
-                name="occupants"
-                type="number"
-                min="1"
-                placeholder={t.occupantsPlaceholder}
-                value={formData.occupants || ''}
-                onChange={handleChange}
-              />
-              <FormSelect
-                label={t.ownershipStatus}
-                name="ownershipStatus"
-                value={formData.ownershipStatus || ''}
-                onChange={handleChange}
-                options={[
-                  { value: '', label: '—' },
-                  { value: 'owner', label: t.owner },
-                  { value: 'tenant', label: t.tenant },
-                ]}
-              />
-            </div>
-          </section>
 
-          {/* Company-specific Fields (conditional) */}
-          <section className={cn(
-            'space-y-6 overflow-hidden transition-all duration-500',
-            contractType === 'company' ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
-          )}>
-            <h3 className="text-lg font-serif font-medium text-foreground border-b border-border pb-3">
-              {t.companyInfo}
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <FormInput
-                label={t.companyName}
-                name="companyName"
-                placeholder={t.companyNamePlaceholder}
-                value={formData.companyName || ''}
-                onChange={handleChange}
-              />
-              <FormInput
-                label={t.registrationNumber}
-                name="registrationNumber"
-                placeholder={t.registrationNumberPlaceholder}
-                value={formData.registrationNumber || ''}
-                onChange={handleChange}
-              />
-              <div className="md:col-span-2">
-                <FormInput
-                  label={t.companyAddress}
-                  name="companyAddress"
-                  placeholder={t.companyAddressPlaceholder}
-                  value={formData.companyAddress || ''}
-                  onChange={handleChange}
-                />
-              </div>
-              <FormInput
-                label={t.legalRepresentative}
-                name="legalRepresentative"
-                placeholder={t.legalRepresentativePlaceholder}
-                value={formData.legalRepresentative || ''}
-                onChange={handleChange}
-              />
-              <FormInput
-                label={t.businessContact}
-                name="businessContact"
-                type="tel"
-                placeholder={t.businessContactPlaceholder}
-                value={formData.businessContact || ''}
-                onChange={handleChange}
-              />
-            </div>
-          </section>
 
           {/* Contract Details Section */}
           <section className="space-y-6">
             <h3 className="text-lg font-serif font-medium text-foreground border-b border-border pb-3">
               {t.contractDetails}
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <FormSelect
-                label={t.subscribedPower}
-                name="subscribedPower"
-                value={formData.subscribedPower || ''}
-                onChange={handleChange}
-                options={filteredPowerOptions}
-                required
-              />
-              <FormInput
-                label={t.startDate}
-                name="startDate"
-                type="date"
-                value={formData.startDate || ''}
-                onChange={handleChange}
-                required
-              />
-              <div className="md:col-span-2">
-                <FormSelect
-                  label={t.paymentMethodPreference}
-                  name="paymentMethod"
-                  value={formData.paymentMethod || ''}
-                  onChange={handleChange}
-                  options={paymentOptions}
-                />
-              </div>
-            </div>
+            <FormSelect
+              label={t.subscribedPower}
+              name="subscribedPower"
+              value={formData.subscribedPower || ''}
+              onChange={handleChange}
+              options={filteredPowerOptions}
+              required
+            />
           </section>
 
           {/* Form Actions */}
@@ -310,8 +236,15 @@ export const NewContractForm: React.FC<NewContractFormProps> = ({ onSubmit, onBa
             >
               {t.back}
             </button>
-            <button type="submit" className="btn-institutional">
-              {t.submit}
+            <button type="submit" className="btn-institutional" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                  Loading...
+                </>
+              ) : (
+                t.submit
+              )}
             </button>
           </div>
         </form>

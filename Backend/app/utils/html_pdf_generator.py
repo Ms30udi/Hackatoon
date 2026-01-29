@@ -103,10 +103,10 @@ def generate_contract_from_html(
     contract_data: Dict[str, str],
     customer_type: str = "individual",
     output_dir: str = "uploads/contracts",
-    template_name: str = "contract_template.html"
+    template_name: str = None  # Deprecated, will use JSON templates
 ) -> str:
     """
-    Generate signed contract PDF from HTML template
+    Generate signed contract PDF from JSON template definitions
     
     Args:
         contract_id: Contract ID
@@ -115,62 +115,30 @@ def generate_contract_from_html(
         contract_data: Contract details
         customer_type: "individual" or "company"
         output_dir: Output directory
-        template_name: HTML template filename
+        template_name: HTML template filename (Deprecated)
     
     Returns:
         Path to generated PDF
     """
     try:
-        # Load template
-        template_dir = os.path.join(os.path.dirname(__file__), 'templates')
-        template_path = os.path.join(template_dir, template_name)
+        # Use dynamic generator instead of static HTML
+        from .dynamic_contract_generator import DynamicContractGenerator
         
-        if not os.path.exists(template_path):
-            print(f"❌ Template not found: {template_path}")
-            return ""
+        generator = DynamicContractGenerator()
         
-        template_html = load_html_template(template_path)
+        # Generator needs to know about full context (customer & contract merged or separate)
+        # The generator signature is generate_html(customer_type, customer_data, contract_data, contract_id)
         
-        # Prepare data for template
-        current_date = datetime.now().strftime('%d/%m/%Y')
-        contract_ref = f"REF-{contract_id:06d}"
+        # Ensure output directory exists to avoid errors later
+        os.makedirs(output_dir, exist_ok=True)
         
-        template_data = {
-            'contract_number': contract_ref,
-            'contract_date': current_date,
-            'provider_city': 'Marrakech',
-            
-            # Customer info
-            'customer_name': customer_data.get('full_name', ''),
-            'customer_cni': customer_data.get('national_id', ''),
-            'customer_dob': customer_data.get('dob', '01/01/1990'),
-            'customer_address': customer_data.get('address', ''),
-            'customer_phone': customer_data.get('phone', ''),
-            'customer_email': customer_data.get('email', ''),
-            
-            # Supply details
-            'supply_address': contract_data.get('contract_address', ''),
-            'supply_city': 'Marrakech',
-            'supply_province': 'Marrakech',
-            'supply_zip': '40000',
-            
-            # Technical specs
-            'subscribed_power': contract_data.get('subscribed_power', '3'),
-            'meter_type': 'Bi-Horaire',
-            'meter_number': f'M-{contract_id:06d}',
-            
-            # Fees
-            'fee_caution': '500.00',
-            'fee_frais': '200.00',
-            'fee_total': '819.23',
-            
-            # Signature
-            'signature_city': 'Marrakech',
-            'signature_date': current_date
-        }
-        
-        # Fill template
-        filled_html = fill_html_template(template_html, template_data)
+        # Generate HTML from JSON template
+        filled_html = generator.generate_html(
+            customer_type=customer_type,
+            customer_data=customer_data,
+            contract_data=contract_data,
+            contract_id=contract_id
+        )
         
         # Embed signature image
         filled_html = embed_signature_in_html(filled_html, signature_image_path)
@@ -184,7 +152,7 @@ def generate_contract_from_html(
         return result
         
     except Exception as e:
-        print(f"❌ Error generating contract from HTML: {e}")
+        print(f"❌ Error generating contract from JSON template: {e}")
         import traceback
         traceback.print_exc()
         return ""

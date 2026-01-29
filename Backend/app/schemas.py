@@ -76,7 +76,16 @@ class ContractDraftCreate(BaseModel):
     applied_tariff: str
 
     # Contract address (can be different from customer address)
+    # Contract address (can be different from customer address)
     contract_address: str
+
+    # Enterprise fields (Optional)
+    company_name: Optional[str] = None
+    legal_form: Optional[str] = None
+    trade_register: Optional[str] = None
+    ice_number: Optional[str] = None
+    legal_representative_name: Optional[str] = None
+    legal_representative_cin: Optional[str] = None
 
 
 class ContractDraftRead(BaseModel):

@@ -8,7 +8,7 @@
  * @module components/forms/ContractDraftForm
  */
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { FormInput } from '../FormInput';
 import { FormSelect } from '../FormSelect';
@@ -29,18 +29,59 @@ export const ContractDraftForm: React.FC<ContractDraftFormProps> = ({ onSubmit, 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
+  // CIN duplicate check state
+  const [cinError, setCinError] = useState<string | null>(null);
+  const [cinChecking, setCinChecking] = useState(false);
+  const cinDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const checkCinExists = useCallback(async (cin: string) => {
+    if (cin.length < 3) {
+      setCinError(null);
+      setCinChecking(false);
+      return;
+    }
+    setCinChecking(true);
+    try {
+      const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+      const res = await fetch(`${apiBase}/customers/check-cin/${encodeURIComponent(cin)}`);
+      const data = await res.json();
+      setCinError(data.exists
+        ? (language === 'en' ? 'This CIN already exists in the system' : 'Ce CIN existe déjà dans le système')
+        : null
+      );
+    } catch {
+      setCinError(null);
+    } finally {
+      setCinChecking(false);
+    }
+  }, [language]);
+
+  useEffect(() => {
+    return () => {
+      if (cinDebounceRef.current) clearTimeout(cinDebounceRef.current);
+    };
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+
+    if (name === 'cin') {
+      setCinError(null);
+      if (cinDebounceRef.current) clearTimeout(cinDebounceRef.current);
+      cinDebounceRef.current = setTimeout(() => checkCinExists(value), 500);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (cinError) return;
     setIsLoading(true);
     setError('');
 
     try {
       const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
-      
+
       // Prepare data for backend
       const payload = {
         full_name: `${formData.firstName} ${formData.lastName}`,
@@ -49,10 +90,17 @@ export const ContractDraftForm: React.FC<ContractDraftFormProps> = ({ onSubmit, 
         phone: formData.phone,
         address: formData.address,
         customer_type: formData.customerType || 'individual',
-        provider: formData.provider || 'Energy Company',
-        subscribed_power: parseFloat(formData.subscribedPower) || 3,
-        applied_tariff: formData.appliedTariff || 'Standard',
-        contract_address: formData.contractAddress || formData.address
+        provider: formData.provider || 'ONEE',
+        subscribed_power: parseFloat(formData.subscribedPower) || 6,
+        applied_tariff: formData.appliedTariff || 'Tarif résidentiel',
+        contract_address: formData.contractAddress || formData.address,
+        // Enterprise fields
+        company_name: formData.customerType === 'company' ? formData.companyName : undefined,
+        legal_form: formData.customerType === 'company' ? formData.legalForm : undefined,
+        trade_register: formData.customerType === 'company' ? formData.tradeRegister : undefined,
+        ice_number: formData.customerType === 'company' ? formData.iceNumber : undefined,
+        legal_representative_name: formData.customerType === 'company' ? formData.legalRepName : undefined,
+        legal_representative_cin: formData.customerType === 'company' ? formData.legalRepCin : undefined,
       };
 
       const response = await fetch(`${apiBaseUrl}/contracts/draft`, {
@@ -89,8 +137,8 @@ export const ContractDraftForm: React.FC<ContractDraftFormProps> = ({ onSubmit, 
             </h2>
           </div>
           <p className="text-sm text-muted-foreground">
-            {language === 'en' 
-              ? 'Step 1: Enter your personal information and contract details' 
+            {language === 'en'
+              ? 'Step 1: Enter your personal information and contract details'
               : 'Étape 1: Entrez vos informations personnelles et les détails du contrat'}
           </p>
         </div>
@@ -114,6 +162,8 @@ export const ContractDraftForm: React.FC<ContractDraftFormProps> = ({ onSubmit, 
               value={formData.cin || ''}
               onChange={handleChange}
               required
+              error={cinError || undefined}
+              helper={cinChecking ? (language === 'en' ? 'Checking...' : 'Vérification...') : undefined}
             />
             <div className="hidden md:block" />
             <FormInput
@@ -176,6 +226,66 @@ export const ContractDraftForm: React.FC<ContractDraftFormProps> = ({ onSubmit, 
             />
           </div>
         </section>
+        {/* Enterprise Information Section - Conditional */}
+        {formData.customerType === 'company' && (
+          <section className="space-y-6">
+            <h3 className="text-lg font-serif font-medium text-foreground border-b border-border pb-3">
+              {language === 'en' ? 'Company Information' : 'Informations de l\'entreprise'}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <FormInput
+                label={language === 'en' ? 'Company Name' : 'Raison sociale'}
+                name="companyName"
+                value={formData.companyName || ''}
+                onChange={handleChange}
+                required
+              />
+              <FormSelect
+                label={language === 'en' ? 'Legal Form' : 'Forme juridique'}
+                name="legalForm"
+                value={formData.legalForm || ''}
+                onChange={handleChange}
+                options={[
+                  { value: 'SARL', label: 'SARL - Société à Responsabilité Limitée' },
+                  { value: 'SA', label: 'SA - Société Anonyme' },
+                  { value: 'SNC', label: 'SNC - Société en Nom Collectif' },
+                  { value: 'SCS', label: 'SCS - Société en Commandite Simple' },
+                  { value: 'Auto-entrepreneur', label: 'Auto-entrepreneur' }
+                ]}
+              />
+              <FormInput
+                label={language === 'en' ? 'Trade Register' : 'Registre de commerce'}
+                name="tradeRegister"
+                placeholder="RC123456"
+                value={formData.tradeRegister || ''}
+                onChange={handleChange}
+                required
+              />
+              <FormInput
+                label="ICE (Identifiant Commun de l'Entreprise)"
+                name="iceNumber"
+                placeholder="002345678000012"
+                value={formData.iceNumber || ''}
+                onChange={handleChange}
+                required
+              />
+              <FormInput
+                label={language === 'en' ? 'Legal Representative Name' : 'Nom du représentant légal'}
+                name="legalRepName"
+                value={formData.legalRepName || ''}
+                onChange={handleChange}
+                required
+              />
+              <FormInput
+                label={language === 'en' ? 'Legal Representative CIN' : 'CIN du représentant légal'}
+                name="legalRepCin"
+                value={formData.legalRepCin || ''}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </section>
+        )}
 
         {/* Contract Details Section */}
         <section className="space-y-6">
@@ -193,28 +303,46 @@ export const ContractDraftForm: React.FC<ContractDraftFormProps> = ({ onSubmit, 
                 { value: 'company', label: language === 'en' ? 'Company' : 'Entreprise' }
               ]}
             />
-            <FormInput
+            <FormSelect
               label={language === 'en' ? 'Provider' : 'Fournisseur'}
               name="provider"
-              placeholder={language === 'en' ? 'Energy Company' : 'Compagnie d\'électricité'}
-              value={formData.provider || ''}
+              value={formData.provider || 'ONEE'}
               onChange={handleChange}
+              options={[
+                { value: 'ONEE', label: 'ONEE - Office National de l\'Électricité et de l\'Eau Potable' },
+                { value: 'LYDEC', label: 'LYDEC (Casablanca)' },
+                { value: 'REDAL', label: 'REDAL (Rabat-Salé)' },
+                { value: 'AMENDIS', label: 'AMENDIS (Tanger-Tétouan)' },
+                { value: 'RADEEMA', label: 'RADEEMA (Marrakech)' }
+              ]}
             />
-            <FormInput
-              label={language === 'en' ? 'Subscribed Power (kW)' : 'Puissance souscrite (kW)'}
+            <FormSelect
+              label={language === 'en' ? 'Subscribed Power' : 'Puissance souscrite'}
               name="subscribedPower"
-              type="number"
-              step="0.1"
-              placeholder="3"
-              value={formData.subscribedPower || ''}
+              value={formData.subscribedPower || '6'}
               onChange={handleChange}
+              options={[
+                { value: '3', label: '3 kVA - ' + (language === 'en' ? 'Small apartment' : 'Petit logement') },
+                { value: '6', label: '6 kVA - ' + (language === 'en' ? 'Standard apartment' : 'Logement standard') },
+                { value: '9', label: '9 kVA - ' + (language === 'en' ? 'Large house' : 'Grand logement') },
+                { value: '12', label: '12 kVA - ' + (language === 'en' ? 'Very large house' : 'Grande maison') },
+                { value: '18', label: '18 kVA - ' + (language === 'en' ? 'Three-phase (Professional)' : 'Triphasé (Professionnel)') },
+                { value: '24', label: '24 kVA - ' + (language === 'en' ? 'Three-phase (Industrial)' : 'Triphasé (Industriel)') },
+                { value: '36', label: '36+ kVA - ' + (language === 'en' ? 'Three-phase (Heavy Industry)' : 'Triphasé (Industrie lourde)') }
+              ]}
             />
-            <FormInput
+            <FormSelect
               label={language === 'en' ? 'Applied Tariff' : 'Tarif appliqué'}
               name="appliedTariff"
-              placeholder={language === 'en' ? 'Standard' : 'Standard'}
-              value={formData.appliedTariff || ''}
+              value={formData.appliedTariff || 'Tarif résidentiel'}
               onChange={handleChange}
+              options={[
+                { value: 'Tarif résidentiel', label: language === 'en' ? 'Residential Tariff (Progressive)' : 'Tarif résidentiel (Progressif)' },
+                { value: 'Tarif professionnel BT', label: language === 'en' ? 'Professional Tariff (Low Voltage)' : 'Tarif professionnel (Basse Tension)' },
+                { value: 'Tarif Général MT', label: language === 'en' ? 'General Tariff (Medium Voltage)' : 'Tarif Général (Moyenne Tension)' },
+                { value: 'Tarif Optionnel MT', label: language === 'en' ? 'Optional Tariff MT (Peak/Off-peak)' : 'Tarif Optionnel MT (Heures pleines/creuses)' },
+                { value: 'Tarif Optionnel Super Pointe', label: language === 'en' ? 'Super Peak Optional Tariff' : 'Tarif Optionnel Super Pointe' }
+              ]}
             />
           </div>
         </section>

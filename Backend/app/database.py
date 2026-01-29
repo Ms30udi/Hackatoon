@@ -6,6 +6,9 @@ import os
 load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
+# Remove ssl-mode query param (handled via connect_args for PyMySQL)
+if DATABASE_URL and "?" in DATABASE_URL:
+    DATABASE_URL = DATABASE_URL.split("?")[0]
 
 engine = create_engine(
     DATABASE_URL,

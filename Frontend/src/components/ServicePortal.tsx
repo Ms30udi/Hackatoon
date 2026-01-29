@@ -39,6 +39,7 @@ export const ServicePortal: React.FC = () => {
   const [portalState, setPortalState] = useState<PortalState>('selection');
   const [selectedType, setSelectedType] = useState<RequestType>(null);
   const [referenceNumber, setReferenceNumber] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   /**
    * Generates a unique reference number for submitted requests
@@ -84,21 +85,22 @@ export const ServicePortal: React.FC = () => {
    */
   const handleSubmit = useCallback(async (data: Record<string, unknown>) => {
     console.log('Submitting form:', { type: selectedType, data });
+    setIsSubmitting(true);
 
     try {
       let endpoint = '';
       switch (selectedType) {
         case 'newContract':
-          endpoint = '/api/contracts/new';
+          endpoint = '/contracts/draft';
           break;
         case 'modifyContract':
-          endpoint = '/api/contracts/modify';
+          endpoint = '/contracts/draft';
           break;
         case 'information':
-          endpoint = '/api/complaints/new';
+          endpoint = '/complaints/';
           break;
         case 'newConnection':
-          endpoint = '/api/connections/new';
+          endpoint = '/contracts/draft';
           break;
       }
 
@@ -121,6 +123,8 @@ export const ServicePortal: React.FC = () => {
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('Une erreur est survenue lors de la soumission. Veuillez réessayer.');
+    } finally {
+      setIsSubmitting(false);
     }
   }, [selectedType, generateReferenceNumber]);
 
@@ -137,13 +141,13 @@ export const ServicePortal: React.FC = () => {
   const renderForm = () => {
     switch (selectedType) {
       case 'newContract':
-        return <NewContractForm onSubmit={handleSubmit} onBack={handleBack} />;
+        return <NewContractForm onSubmit={handleSubmit} onBack={handleBack} isSubmitting={isSubmitting} />;
       case 'modifyContract':
-        return <ModifyContractForm onSubmit={handleSubmit} onBack={handleBack} />;
+        return <ModifyContractForm onSubmit={handleSubmit} onBack={handleBack} isSubmitting={isSubmitting} />;
       case 'information':
-        return <InformationRequestForm onSubmit={handleSubmit} onBack={handleBack} />;
+        return <InformationRequestForm onSubmit={handleSubmit} onBack={handleBack} isSubmitting={isSubmitting} />;
       case 'newConnection':
-        return <NewConnectionForm onSubmit={handleSubmit} onBack={handleBack} />;
+        return <NewConnectionForm onSubmit={handleSubmit} onBack={handleBack} isSubmitting={isSubmitting} />;
       default:
         return null;
     }

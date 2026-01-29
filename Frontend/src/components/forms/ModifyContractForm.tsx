@@ -33,6 +33,8 @@ interface ModifyContractFormProps {
   onSubmit: (data: Record<string, unknown>) => void;
   /** Callback to navigate back to selection */
   onBack: () => void;
+  /** Whether the form is currently being submitted */
+  isSubmitting?: boolean;
 }
 
 /** Available modification types */
@@ -50,7 +52,7 @@ type ModificationReason = 'changeFormula' | 'changePower' | 'changeAddress' | 'c
  * 6. Required documents panel (conditional based on modification type)
  * 7. Procedure steps panel (conditional based on modification type)
  */
-export const ModifyContractForm: React.FC<ModifyContractFormProps> = ({ onSubmit, onBack }) => {
+export const ModifyContractForm: React.FC<ModifyContractFormProps> = ({ onSubmit, onBack, isSubmitting }) => {
   const { t } = useLanguage();
 
   // Form state management
@@ -317,8 +319,15 @@ export const ModifyContractForm: React.FC<ModifyContractFormProps> = ({ onSubmit
             >
               {t.back}
             </button>
-            <button type="submit" className="btn-institutional">
-              {t.submit}
+            <button type="submit" className="btn-institutional" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                  Loading...
+                </>
+              ) : (
+                t.submit
+              )}
             </button>
           </div>
         </form>

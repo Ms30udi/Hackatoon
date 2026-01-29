@@ -39,7 +39,14 @@ def create_contract_draft(
             address=data.address,
             phone=data.phone,
             email=data.email,
-            status="active"
+            status="active",
+            # Enterprise fields
+            company_name=data.company_name,
+            legal_form=data.legal_form,
+            trade_register=data.trade_register,
+            ice_number=data.ice_number,
+            legal_representative_name=data.legal_representative_name,
+            legal_representative_cin=data.legal_representative_cin,
         )
         db.add(customer)
         db.commit()
@@ -314,7 +321,14 @@ def sign_contract(
         'phone': customer.phone,
         'email': customer.email,
         'contract_address': contract.contract_address,
-        'subscribed_power': contract.subscribed_power
+        'subscribed_power': contract.subscribed_power,
+        # Enterprise fields
+        'company_name': customer.company_name,
+        'legal_form': customer.legal_form,
+        'trade_register': customer.trade_register,
+        'ice_number': customer.ice_number,
+        'legal_representative_name': customer.legal_representative_name,
+        'legal_representative_cin': customer.legal_representative_cin,
     }
 
     signed_pdf_path = generate_signed_contract_pdf(

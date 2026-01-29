@@ -34,6 +34,17 @@ def create_customer(customer: schemas.CustomerCreate, db: Session = Depends(get_
 
 
 # -------------------------
+# CHECK CIN EXISTS
+# -------------------------
+@router.get("/check-cin/{national_id}")
+def check_cin_exists(national_id: str, db: Session = Depends(get_db)):
+    existing = db.query(models.Customer).filter(
+        models.Customer.national_id == national_id
+    ).first()
+    return {"exists": existing is not None}
+
+
+# -------------------------
 # GET ALL CUSTOMERS
 # -------------------------
 @router.get("/", response_model=list[schemas.CustomerRead])

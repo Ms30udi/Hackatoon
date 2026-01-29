@@ -32,6 +32,14 @@ class Customer(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
+    # Enterprise fields
+    company_name = Column(String(255), nullable=True)
+    legal_form = Column(String(50), nullable=True)  # SARL, SA, SNC, etc.
+    trade_register = Column(String(100), nullable=True)
+    ice_number = Column(String(100), nullable=True)  # Identifiant Commun de l'Entreprise
+    legal_representative_name = Column(String(150), nullable=True)
+    legal_representative_cin = Column(String(50), nullable=True)
+
     # Relationships
     contracts = relationship("Contract", back_populates="customer", cascade="all, delete-orphan")
     meters = relationship("Meter", back_populates="customer", cascade="all, delete-orphan")
