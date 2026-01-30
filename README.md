@@ -1,4 +1,4 @@
-# Inteligent Electricty contract manager 
+# Inteligent Electricty Contract Manager 
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.128+-009688?style=flat&logo=fastapi)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/React-18+-61DAFB?style=flat&logo=react)](https://react.dev)
