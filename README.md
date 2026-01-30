@@ -1,18 +1,19 @@
-# ⚡ Service Intelligence Portal - Energy Management System
+# Service Intelligence Portal
 
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-009688?style=flat&logo=fastapi)](https://fastapi.tiangolo.com)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.128+-009688?style=flat&logo=fastapi)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/React-18+-61DAFB?style=flat&logo=react)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat&logo=python)](https://www.python.org)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A professional, multi-language web portal for managing electricity contracts, connections, and customer inquiries. Built for hackathon with production-grade architecture and modern best practices.
+An AI-powered web portal for managing electricity contracts, identity verification, and customer service operations in the Moroccan energy market. Features OCR-based CIN verification, automated PDF contract generation, email delivery, and bilingual support (French/English).
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
+- [Architecture](#architecture)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Configuration](#configuration)
@@ -20,80 +21,112 @@ A professional, multi-language web portal for managing electricity contracts, co
 - [API Documentation](#api-documentation)
 - [Testing](#testing)
 - [Project Structure](#project-structure)
+- [Knowledge Base](#knowledge-base)
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 - [License](#license)
 
-## 🎯 Overview
+## Overview
 
-This repository contains a full-stack application designed to streamline the interaction between energy providers and their customers. It features an institutional-grade frontend and a robust FastAPI backend with MySQL integration.
-
-### Monorepo Structure
+This monorepo contains a full-stack application that streamlines electricity contract subscription and customer service for Moroccan energy providers (ONEE, LYDEC, REDAL, AMENDIS). It combines a React frontend with a FastAPI backend, integrating AI services for document processing, contract generation, and intelligent inquiry handling.
 
 ```
-hackathon/
-├── Frontend/          # React 18 + TypeScript SPA
-├── Backend/           # FastAPI application
-├── documents/         # Technical specifications & knowledge base
+Hackatoon/
+├── Frontend/       # React 18 + TypeScript SPA
+├── Backend/        # FastAPI REST API
+├── documents/      # Knowledge base (14 JSON files)
 └── README.md
 ```
 
-## ✨ Features
+## Features
 
-- 🌐 **Multi-language Support**: Real-time switching between French and English
-- 📝 **Dynamic Forms**: Context-aware forms that adapt to request types
-  - New Contract Requests
-  - Contract Modifications
-  - New Connection Requests
-  - Information Inquiries
-- 🎫 **Reference Tracking**: Automated reference number generation for all submissions
-- 📱 **Responsive Design**: Fully optimized for mobile, tablet, and desktop
-- 🎨 **Institutional Aesthetics**: Clean, professional design language
-- 🔐 **Type Safety**: End-to-end TypeScript and Pydantic validation
-- 📊 **Database Persistence**: SQLAlchemy ORM with MySQL backend
-- 🧪 **Test Coverage**: Comprehensive test suites for backend
+- **Contract Management** — Create, modify, and track electricity contracts through a guided workflow (draft, sent, signed, active).
+- **OCR Identity Verification** — Upload a CIN (Carte d'Identite Nationale) image; the system extracts data via Mistral Vision API with EasyOCR fallback, then verifies it against form inputs.
+- **PDF Contract Generation** — Automatically generate professional PDF contracts from templates (individual, household, commercial) and deliver them by email.
+- **E-Signature Workflow** — Digital signature capture via a canvas-based signing page.
+- **Complaint Management** — Submit complaints with automatic classification by category (billing, technical, connection, service quality) and severity (low, normal, high, urgent).
+- **Bilingual Interface** — Real-time switching between French and English with 1000+ translated strings.
+- **Responsive Design** — Mobile-first layout built with Tailwind CSS and shadcn/ui components.
+- **Type Safety** — End-to-end validation with TypeScript + Zod on the frontend and Pydantic v2 on the backend.
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Frontend
+
 | Technology | Purpose |
-|-----------|---------|
-| **React 18** | UI framework with modern hooks |
-| **TypeScript** | Type-safe JavaScript |
-| **Tailwind CSS** | Utility-first styling |
-| **Radix UI** | Accessible component primitives (via shadcn/ui) |
-| **React Hook Form** | Performant form management |
-| **Zod** | Schema validation |
-| **Vite** | Next-generation build tool |
+|---|---|
+| React 18 | UI framework |
+| TypeScript 5 | Type-safe JavaScript |
+| Vite 5 | Build tool and dev server |
+| Tailwind CSS 3 | Utility-first styling |
+| shadcn/ui (Radix) | Accessible component primitives |
+| React Hook Form + Zod | Form management and validation |
+| TanStack Query v5 | Async state management |
+| React Router DOM v6 | Client-side routing |
+| React Signature Canvas | E-signature capture |
+| Recharts | Data visualization |
 
 ### Backend
+
 | Technology | Purpose |
-|-----------|---------|
-| **FastAPI** | Modern Python web framework |
-| **SQLAlchemy 2.0** | SQL toolkit and ORM |
-| **MySQL** | Relational database (Aiven hosted) |
-| **Pydantic v2** | Data validation using Python type hints |
-| **Uvicorn** | Lightning-fast ASGI server |
-| **Pytest** | Testing framework |
+|---|---|
+| FastAPI 0.128 | Async Python web framework |
+| SQLAlchemy 2.0 | ORM and database toolkit |
+| Pydantic v2 | Request/response validation |
+| Uvicorn 0.40 | ASGI server |
+| MySQL 8.0 (Aiven) | Relational database |
+| EasyOCR + OpenCV | Local OCR text extraction |
+| Mistral Vision API | AI-powered document data extraction |
+| ReportLab + xhtml2pdf | PDF generation |
+| SMTP | Email delivery |
 
-## 📦 Prerequisites
+## Architecture
 
-Before you begin, ensure you have the following installed:
-
-- **Python**: 3.10 or higher ([Download](https://www.python.org/downloads/))
-- **Node.js**: 18.x or higher ([Download](https://nodejs.org/))
-- **npm**: 9.x or higher (comes with Node.js)
-- **MySQL**: 8.0+ (or Aiven/cloud-hosted instance)
-- **Git**: For cloning the repository
-
-Verify installations:
-```bash
-python --version  # Should be 3.10+
-node --version    # Should be 18.x+
-npm --version     # Should be 9.x+
+```
+┌───────────────────────────────────────────────────────────┐
+│                      CLIENT LAYER                         │
+│  React 18 + TypeScript  |  Tailwind CSS  |  shadcn/ui    │
+└─────────────────────────┬─────────────────────────────────┘
+                          │ REST API
+┌─────────────────────────▼─────────────────────────────────┐
+│                       API LAYER                           │
+│  FastAPI  |  Pydantic Validation  |  Uvicorn  |  CORS    │
+└─────────────────────────┬─────────────────────────────────┘
+                          │
+        ┌─────────────────┼─────────────────┐
+        ▼                 ▼                 ▼
+┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+│  DATA LAYER  │  │   AI LAYER   │  │   SERVICES   │
+│ MySQL(Aiven) │  │ Mistral OCR  │  │ SMTP Email   │
+│ JSON KBase   │  │ EasyOCR      │  │ PDF Gen      │
+└──────────────┘  └──────────────┘  └──────────────┘
 ```
 
-## 🚀 Installation
+### Data Flow
+
+1. User selects a request type on the frontend (new contract, modification, connection, inquiry, complaint).
+2. Form data is validated client-side with Zod, then sent as a POST request to FastAPI.
+3. Backend creates Customer/Contract/Complaint records in MySQL.
+4. For CIN uploads: OCR extraction via Mistral Vision (with EasyOCR fallback) extracts identity data, which is verified against form inputs.
+5. A PDF contract is generated from a template and emailed to the customer via SMTP.
+6. The frontend displays a confirmation screen with a reference number.
+
+## Prerequisites
+
+- **Python** 3.10+ — [python.org](https://www.python.org/downloads/)
+- **Node.js** 18+ — [nodejs.org](https://nodejs.org/)
+- **MySQL** 8.0+ (or an Aiven cloud instance)
+- **Git**
+
+Verify installations:
+
+```bash
+python --version   # 3.10+
+node --version     # 18+
+npm --version      # 9+
+```
+
+## Installation
 
 ### 1. Clone the Repository
 
@@ -107,13 +140,11 @@ cd Hackatoon
 ```bash
 cd Backend
 
-# Create virtual environment
+# Create and activate virtual environment
 python -m venv venv
-
-# Activate virtual environment
-# On Windows:
+# Windows:
 venv\Scripts\activate
-# On macOS/Linux:
+# macOS/Linux:
 source venv/bin/activate
 
 # Install dependencies
@@ -124,26 +155,27 @@ pip install -r requirements.txt
 
 ```bash
 cd Frontend
-
-# Install dependencies
 npm install
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 ### Backend Environment Variables
 
 Create a `.env` file in the `Backend/` directory:
 
 ```env
-# Database Configuration
+# Database
 DATABASE_URL=mysql+pymysql://username:password@host:port/database_name
 
-# Example for local MySQL:
-# DATABASE_URL=mysql+pymysql://root:password@localhost:3306/energy_portal
+# SMTP Email
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_USER=your-email@example.com
+SMTP_PASSWORD=your-password
 
-# Example for Aiven:
-# DATABASE_URL=mysql+pymysql://user:pass@mysql-service.aivencloud.com:12345/defaultdb
+# Mistral API (for OCR)
+MISTRAL_API_KEY=your-mistral-api-key
 ```
 
 ### Frontend Environment Variables
@@ -151,277 +183,292 @@ DATABASE_URL=mysql+pymysql://username:password@host:port/database_name
 Create a `.env` file in the `Frontend/` directory:
 
 ```env
-# API Configuration
 VITE_API_BASE_URL=http://localhost:8000
 ```
 
 ### Database Initialization
 
-Tables are created automatically on first startup. The FastAPI app will:
-1. Connect to your MySQL database
-2. Create all required tables if they don't exist
-3. Initialize schema based on SQLAlchemy models
+Tables are created automatically on first startup. The FastAPI application connects to MySQL and creates all required tables via SQLAlchemy if they don't already exist. No manual migrations are needed.
 
-No manual migrations required for initial setup!
+## Running the Application
 
-## 🏃 Running the Application
-
-### Start Backend Server
+### Start the Backend
 
 ```bash
 cd Backend
 
-# Development mode (with auto-reload)
+# Development (with auto-reload)
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-
-# Production mode (optional)
-gunicorn app.main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
 ```
 
-Backend will be available at: **http://localhost:8000**
+Backend available at: **http://localhost:8000**
 
-### Start Frontend Development Server
+### Start the Frontend
 
 ```bash
 cd Frontend
-
 npm run dev
 ```
 
-Frontend will be available at: **http://localhost:5173** (or the port shown in terminal)
+Frontend available at: **http://localhost:5173**
 
 ### Verify Installation
 
-1. **Backend Health Check**: Visit http://localhost:8000/
-   - Should return: `{"status":"Backend running, Aiven DB connected"}`
+1. **Health check**: `GET http://localhost:8000/` should return `{"status":"Backend running, database connected"}`
+2. **API docs**: Open http://localhost:8000/docs (Swagger UI)
+3. **Frontend**: Open http://localhost:5173 to see the Service Portal
 
-2. **API Documentation**: Visit http://localhost:8000/api/docs
-   - Interactive Swagger UI for testing endpoints
+## API Documentation
 
-3. **Frontend**: Open http://localhost:5173
-   - Should display the Service Portal homepage
+### Interactive Docs
 
-## 📚 API Documentation
+- **Swagger UI**: http://localhost:8000/docs
+- **ReDoc**: http://localhost:8000/redoc
 
-### Interactive Documentation
+### Endpoints
 
-- **Swagger UI**: http://localhost:8000/api/docs
-- **ReDoc**: http://localhost:8000/api/redoc
-
-### Main Endpoints
+#### Contracts
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
+|---|---|---|
+| POST | `/contracts/draft` | Create a contract draft |
+| POST | `/contracts/{id}/upload-cin` | Upload CIN image for OCR verification |
+| POST | `/contracts/{id}/send-verification-email` | Send verification email |
+| POST | `/contracts/{id}/sign` | Sign a contract |
+
+#### Customers
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/customers/` | Create a customer |
+| GET | `/customers/` | List all customers |
+| GET | `/customers/{id}` | Get customer by ID |
+| GET | `/customers/check-cin/{national_id}` | Check if CIN exists |
+
+#### Complaints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/complaints/` | Create a complaint |
+| GET | `/complaints/` | List all complaints |
+| GET | `/complaints/{id}` | Get complaint by ID |
+
+#### Health
+
+| Method | Endpoint | Description |
+|---|---|---|
 | GET | `/` | Health check |
-| POST | `/api/contracts/new` | Create new contract |
-| POST | `/api/connections/new` | Request new connection |
-| POST | `/api/contracts/modify` | Modify existing contract |
-| POST | `/api/complaints/new` | Submit inquiry/complaint |
 
-### Example Request
+## Testing
 
-```bash
-curl -X POST "http://localhost:8000/api/contracts/new" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "cin": "AB123456",
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "john@example.com",
-    "phone": "0612345678",
-    "address": "123 Main St",
-    "city": "Casablanca",
-    "postalCode": "20000",
-    "contractType": "individual",
-    "startDate": "2026-02-01",
-    "subscribedPower": "6"
-  }'
-```
-
-## 🧪 Testing
-
-### Backend Tests
+### Backend
 
 ```bash
 cd Backend
 
-# Run all tests
-pytest
-
-# Run with coverage
-pytest --cov=app tests/
-
-# Run specific test file
-pytest tests/test_api_endpoints.py
-
-# Verbose output
-pytest -v
+pytest                              # Run all tests
+pytest --cov=app tests/             # With coverage report
+pytest tests/test_api_endpoints.py  # API tests only
+pytest tests/test_database_storage.py  # Database tests only
+pytest -v                           # Verbose output
 ```
 
-### Frontend Tests
+### Frontend
 
 ```bash
 cd Frontend
 
-# Run tests
-npm test
-
-# Run with coverage
-npm run test:coverage
+npm test              # Run tests (Vitest)
+npm run test:watch    # Watch mode
+npm run lint          # ESLint
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
-hackathon/
+Hackatoon/
 ├── Backend/
 │   ├── app/
-│   │   ├── __init__.py
-│   │   ├── main.py           # FastAPI app & routes
-│   │   ├── models.py         # SQLAlchemy models
-│   │   ├── schemas.py        # Pydantic schemas
-│   │   ├── database.py       # DB connection
-│   │   └── routes.py         # (unused - routes in main.py)
+│   │   ├── main.py                        # FastAPI app, CORS, route registration
+│   │   ├── database.py                    # MySQL connection and session management
+│   │   ├── models.py                      # SQLAlchemy ORM models (5 tables)
+│   │   ├── schemas.py                     # Pydantic request/response schemas
+│   │   ├── routes/
+│   │   │   ├── contracts.py               # Contract CRUD, CIN upload, PDF, signing
+│   │   │   ├── customers.py               # Customer CRUD
+│   │   │   └── complaints.py              # Complaint CRUD
+│   │   └── utils/
+│   │       ├── ocr.py                     # EasyOCR text extraction
+│   │       ├── ocr_cleaning.py            # OCR output post-processing
+│   │       ├── mistral_extraction.py      # Mistral Vision API integration
+│   │       ├── verification.py            # Identity comparison logic
+│   │       ├── identity_rules.py          # Moroccan ID validation rules
+│   │       ├── cin_id.py                  # CIN format validation
+│   │       ├── pdf_generator.py           # PDF creation (ReportLab)
+│   │       ├── html_pdf_generator.py      # HTML-to-PDF conversion
+│   │       ├── json_pdf_generator.py      # JSON template PDF rendering
+│   │       ├── json_template_loader.py    # Contract template loader
+│   │       ├── email_service.py           # SMTP email sending
+│   │       └── dynamic_contract_generator.py  # Contract generation logic
 │   ├── tests/
 │   │   ├── test_api_endpoints.py
 │   │   └── test_database_storage.py
-│   ├── .env                  # Environment variables
 │   ├── requirements.txt
 │   └── pytest.ini
 ├── Frontend/
 │   ├── src/
-│   │   ├── components/       # React components
-│   │   │   ├── forms/        # Form components
-│   │   │   └── ui/           # shadcn/ui components
-│   │   ├── contexts/         # React contexts
-│   │   ├── lib/              # Utilities & translations
-│   │   ├── pages/            # Route pages
-│   │   └── main.tsx          # Entry point
-│   ├── .env                  # Environment variables
+│   │   ├── main.tsx                       # Entry point
+│   │   ├── App.tsx                        # Root component with routing
+│   │   ├── pages/
+│   │   │   ├── Index.tsx                  # Homepage
+│   │   │   ├── ContractSigningPage.tsx    # E-signature workflow
+│   │   │   └── NotFound.tsx               # 404 page
+│   │   ├── components/
+│   │   │   ├── ServicePortal.tsx          # Main portal container
+│   │   │   ├── Header.tsx                 # Navigation header
+│   │   │   ├── Footer.tsx                 # Footer
+│   │   │   ├── ContractTypeSelector.tsx   # Request type selection
+│   │   │   ├── LanguageToggle.tsx         # FR/EN language switcher
+│   │   │   ├── ConfirmationScreen.tsx     # Submission confirmation
+│   │   │   ├── forms/
+│   │   │   │   ├── NewContractForm.tsx
+│   │   │   │   ├── ModifyContractForm.tsx
+│   │   │   │   ├── NewConnectionForm.tsx
+│   │   │   │   ├── InformationRequestForm.tsx
+│   │   │   │   ├── CINVerificationForm.tsx
+│   │   │   │   └── ContractDraftForm.tsx
+│   │   │   └── ui/                        # 40+ shadcn/ui components
+│   │   ├── contexts/
+│   │   │   └── LanguageContext.tsx         # i18n state (FR/EN)
+│   │   └── lib/
+│   │       └── translations.ts            # Translation strings
 │   ├── package.json
 │   ├── vite.config.ts
-│   └── tailwind.config.ts
-├── documents/                # Knowledge base & specs
-│   ├── faqs.json
-│   ├── contrats_templates.json
-│   └── ...
+│   ├── tailwind.config.ts
+│   └── tsconfig.json
+├── documents/                             # Knowledge base (14 JSON files)
+│   ├── contracts/
+│   │   ├── clauses.json
+│   │   ├── contrats_templates.json
+│   │   └── documents_requis.json
+│   ├── knowledge/
+│   │   ├── faqs.json
+│   │   └── conseils_energie.json
+│   ├── reference/
+│   │   ├── fournisseurs.json
+│   │   ├── qualite_service.json
+│   │   ├── reglementation.json
+│   │   └── types_compteurs.json
+│   └── services/
+│       ├── modes_paiement.json
+│       ├── procedures.json
+│       ├── reclamations.json
+│       └── tarification.json
+├── PRD_HACKATHON PROJECT.md               # Product Requirements Document
 └── README.md
 ```
 
-## 🔧 Troubleshooting
+## Knowledge Base
 
-### Common Issues
+The `documents/` directory contains 14 structured JSON files used as a knowledge base for the system:
 
-#### 1. "Failed to submit request" / Connection Error
+| File | Content |
+|---|---|
+| `clauses.json` | Contract legal terms and conditions |
+| `contrats_templates.json` | Contract document templates |
+| `documents_requis.json` | Required documentation checklist |
+| `faqs.json` | Frequently asked questions |
+| `conseils_energie.json` | Energy conservation tips |
+| `fournisseurs.json` | Electricity provider details |
+| `qualite_service.json` | Service quality standards and SLA |
+| `reglementation.json` | Moroccan electricity regulations |
+| `types_compteurs.json` | Meter types and technical specs |
+| `modes_paiement.json` | Payment methods |
+| `procedures.json` | Service procedures |
+| `reclamations.json` | Complaint handling guidelines |
+| `tarification.json` | Pricing and tariff information |
 
-**Problem**: Frontend can't connect to backend
+## Database Schema
 
-**Solution**:
-- Ensure backend is running on port 8000
-- Check `Frontend/.env` has `VITE_API_BASE_URL=http://localhost:8000`
-- Restart frontend dev server after changing `.env`
-- Verify CORS is enabled in backend
+Five tables with the following relationships:
 
-#### 2. Database Connection Error
+- **Customer (1) -> Meter (N)**: One customer can have multiple meters
+- **Customer (1) -> Contract (N)**: One customer can have multiple contracts
+- **Customer (1) -> Complaint (N)**: One customer can file multiple complaints
 
-**Problem**: `DATABASE_URL not found` or connection fails
+Status enumerations:
 
-**Solution**:
-- Check `Backend/.env` exists with valid `DATABASE_URL`
-- Verify MySQL server is running
-- Test connection string with a MySQL client
-- Ensure firewall allows connection to database port
+| Entity | Statuses |
+|---|---|
+| Customer | active, suspended, terminated |
+| Contract | draft, sent, signed, active, suspended, terminated |
+| Complaint | open, in_progress, resolved, rejected |
+| Severity | low, normal, high, urgent |
 
-#### 3. Module Not Found Errors (Python)
+## Troubleshooting
 
-**Problem**: Import errors when starting backend
+### Frontend can't connect to backend
 
-**Solution**:
+- Ensure the backend is running on port 8000.
+- Check `Frontend/.env` contains `VITE_API_BASE_URL=http://localhost:8000`.
+- Restart the frontend dev server after changing `.env`.
+
+### Database connection error
+
+- Verify `Backend/.env` exists with a valid `DATABASE_URL`.
+- Test the connection string with a MySQL client.
+- Ensure firewall rules allow connections to the database port.
+
+### Python import errors
+
 ```bash
-# Make sure virtual environment is activated
-source venv/bin/activate  # or venv\Scripts\activate on Windows
+# Ensure virtual environment is activated
+venv\Scripts\activate          # Windows
+source venv/bin/activate       # macOS/Linux
 
-# Reinstall dependencies
 pip install -r requirements.txt
 ```
 
-#### 4. Frontend Build Errors
+### Frontend build errors
 
-**Problem**: TypeScript or dependency errors
-
-**Solution**:
 ```bash
-# Clear node_modules and reinstall
 rm -rf node_modules package-lock.json
 npm install
-
-# Clear Vite cache
-rm -rf .vite
 ```
 
-#### 5. Port Already in Use
+### Port already in use
 
-**Problem**: `Address already in use` error
-
-**Solution**:
 ```bash
-# Find process using port 8000 (backend)
 # Windows:
 netstat -ano | findstr :8000
 taskkill /PID <PID> /F
 
 # macOS/Linux:
 lsof -ti:8000 | xargs kill -9
-
-# Or use different port:
-uvicorn app.main:app --reload --port 8001
 ```
 
-### Enable Debug Logging
-
-**Backend**:
-```python
-# In app/main.py, add:
-import logging
-logging.basicConfig(level=logging.DEBUG)
-```
-
-**Frontend**:
-Check browser console (F12) for error messages
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
+## Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'feat: add your feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
 5. Open a Pull Request
 
 ### Code Style
 
-- **Python**: Follow PEP 8, use type hints
-- **TypeScript**: ESLint configuration provided
-- **Commits**: Use conventional commits (feat:, fix:, docs:, etc.)
+- **Python**: PEP 8, type hints
+- **TypeScript**: ESLint (config provided)
+- **Commits**: Conventional Commits (`feat:`, `fix:`, `docs:`, etc.)
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
-## 👥 Authors
+## Authors
 
-- **Ms30udi** - *Initial work* - [GitHub](https://github.com/Ms30udi)
-
-## 🙏 Acknowledgments
-
-- Built for hackathon demonstration
-- Energy sector workflow inspiration
-- shadcn/ui for beautiful components
-- FastAPI community for excellent documentation
+- **Ms30udi** — [GitHub](https://github.com/Ms30udi)
 
 ---
 
-**Need help?** Open an issue on GitHub or contact the maintainers.
-
-**⭐ Star this repo if you find it useful!**
+**Need help?** Open an [issue](https://github.com/Ms30udi/Hackatoon/issues) on GitHub.
