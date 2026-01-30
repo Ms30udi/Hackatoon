@@ -172,37 +172,44 @@ class DynamicContractGenerator:
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.4;
-      margin: 30px;
+      line-height: 1.3;
+      margin: 20px 25px;
       color: #222;
       font-size: 11px;
     }
     h1, h2, h3 { text-align: center; }
-    h1 { font-size: 16px; margin: 10px 0; }
-    h2 { font-size: 14px; margin-top: 20px; border-bottom: 2px solid #000; padding-bottom: 5px; }
-    h3 { font-size: 12px; margin: 10px 0; }
-    .section { margin-bottom: 15px; }
+    h1 { font-size: 16px; margin: 8px 0; }
+    h2 { font-size: 14px; margin-top: 14px; margin-bottom: 6px; border-bottom: 2px solid #000; padding-bottom: 4px; }
+    h3 { font-size: 12px; margin: 8px 0; }
+    .section { margin-bottom: 10px; }
     .label { font-weight: bold; }
-    p { margin: 5px 0; }
-    .signature { margin-top: 40px; display: flex; justify-content: space-between; }
-    .signature-box { text-align: center; width: 45%; }
-    .signature-image img { max-width: 150px; height: auto; border: 1px solid #ccc; padding: 5px; }
+    p { margin: 3px 0; }
+    .signature-table { width: 100%; margin-top: 10px; border: none; }
+    .signature-table td { text-align: center; vertical-align: top; border: none; padding: 4px; }
+    .signature-image img { max-width: 200px; height: auto; padding: 3px; }
   </style>
 """
     
     def _build_signature_section(self, customer_data: Dict) -> str:
         """Build signature section"""
-        return """
-  <div class="signature">
-    <div class="signature-box">
-      <p><strong>LE FOURNISSEUR</strong></p>
-      <p style="font-size: 10px;">Signature et cachet</p>
-      <div style="height: 60px;"></div>
-    </div>
-    <div class="signature-box">
-      <p><strong>LE CLIENT</strong></p>
-      <p style="font-size: 10px;">« Lu et approuvé »</p>
-      <div class="signature-image">{{signature_image}}</div>
-    </div>
-  </div>
+        client_name = customer_data.get('full_name', '')
+        signed_date = datetime.now().strftime('%d/%m/%Y')
+
+        return f"""
+  <table class="signature-table">
+    <tr>
+      <td>
+        <p><strong>LE FOURNISSEUR</strong></p>
+        <p style="font-size: 10px;">Signature et cachet</p>
+      </td>
+      <td>
+        <p><strong>LE CLIENT</strong></p>
+        <p style="font-size: 10px;">&laquo; Lu et approuv&eacute; &raquo;</p>
+        <p style="font-size: 10px;">Signature et cachet</p>
+        <div class="signature-image">{{{{signature_image}}}}</div>
+        <p style="margin-top: 5px; font-size: 10px;"><strong>{client_name}</strong></p>
+        <p style="font-size: 10px;">Sign&eacute; le : {signed_date}</p>
+      </td>
+    </tr>
+  </table>
 """
