@@ -3,9 +3,7 @@ from typing import Optional
 from datetime import date, datetime
 
 
-# -------------------------
-# CUSTOMER SCHEMAS
-# -------------------------
+# Customer schemas
 class CustomerBase(BaseModel):
     full_name: str
     national_id: str
@@ -27,9 +25,7 @@ class CustomerRead(CustomerBase):
         from_attributes = True
 
 
-# -------------------------
-# COMPLAINT SCHEMAS
-# -------------------------
+# Complaint schemas
 class ComplaintBase(BaseModel):
     complaint_number: str
     id_customer: int
@@ -57,10 +53,7 @@ class ComplaintRead(ComplaintBase):
         from_attributes = True
 
 
-# -------------------------
-# CONTRACT DRAFT SCHEMAS (STEP 1)
-# -------------------------
-
+# Contract schemas
 class ContractDraftCreate(BaseModel):
     # Customer info
     full_name: str

@@ -1,7 +1,5 @@
-"""
-HTML to PDF Contract Generator
-Generates contracts from HTML templates with better formatting control
-"""
+# HTML to PDF Contract Generator
+# Generates contracts from HTML templates with better formatting control
 
 import os
 import base64
@@ -81,18 +79,16 @@ def html_to_pdf_xhtml2pdf(html_content: str, output_path: str) -> str:
             pisa_status = pisa.CreatePDF(html_content, dest=pdf_file)
         
         if pisa_status.err:
-            print(f"⚠️ PDF generated with {pisa_status.err} errors")
+            print(f"PDF generated with {pisa_status.err} errors")
         else:
-            print(f"✅ PDF generated with xhtml2pdf: {output_path}")
+            print(f"PDF generated with xhtml2pdf: {output_path}")
         
         return output_path
     except ImportError:
-        print("❌ xhtml2pdf not installed. Install with: pip install xhtml2pdf")
+        print("xhtml2pdf not installed. Install with: pip install xhtml2pdf")
         return ""
     except Exception as e:
-        print(f"❌ Error converting HTML to PDF: {e}")
-        import traceback
-        traceback.print_exc()
+        print(f"Error converting HTML to PDF: {e}")
         return ""
 
 
@@ -152,7 +148,5 @@ def generate_contract_from_html(
         return result
         
     except Exception as e:
-        print(f"❌ Error generating contract from JSON template: {e}")
-        import traceback
-        traceback.print_exc()
+        print(f"Error generating contract from JSON template: {e}")
         return ""

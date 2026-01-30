@@ -10,9 +10,7 @@ router = APIRouter(
 )
 
 
-# -------------------------
-# CREATE CUSTOMER
-# -------------------------
+# create customer
 @router.post("/", response_model=schemas.CustomerRead)
 def create_customer(customer: schemas.CustomerCreate, db: Session = Depends(get_db)):
 
@@ -33,9 +31,7 @@ def create_customer(customer: schemas.CustomerCreate, db: Session = Depends(get_
     return db_customer
 
 
-# -------------------------
-# CHECK CIN EXISTS
-# -------------------------
+# check if CIN exists
 @router.get("/check-cin/{national_id}")
 def check_cin_exists(national_id: str, db: Session = Depends(get_db)):
     existing = db.query(models.Customer).filter(
@@ -44,17 +40,13 @@ def check_cin_exists(national_id: str, db: Session = Depends(get_db)):
     return {"exists": existing is not None}
 
 
-# -------------------------
-# GET ALL CUSTOMERS
-# -------------------------
+# get all customers
 @router.get("/", response_model=list[schemas.CustomerRead])
 def get_customers(db: Session = Depends(get_db)):
     return db.query(models.Customer).all()
 
 
-# -------------------------
-# GET CUSTOMER BY ID
-# -------------------------
+# get customer by ID
 @router.get("/{customer_id}", response_model=schemas.CustomerRead)
 def get_customer(customer_id: int, db: Session = Depends(get_db)):
 

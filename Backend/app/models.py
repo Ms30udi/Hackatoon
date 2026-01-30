@@ -15,9 +15,7 @@ from sqlalchemy.orm import relationship
 from .database import Base
 
 
-# -------------------------
-# CUSTOMERS
-# -------------------------
+# Customer table
 class Customer(Base):
     __tablename__ = "customers"
 
@@ -46,9 +44,7 @@ class Customer(Base):
     complaints = relationship("Complaint", back_populates="customer", cascade="all, delete-orphan")
 
 
-# -------------------------
-# METERS
-# -------------------------
+# Meter table
 class Meter(Base):
     __tablename__ = "meters"
 
@@ -69,9 +65,7 @@ class Meter(Base):
     customer = relationship("Customer", back_populates="meters")
 
 
-# -------------------------
-# TARIFFS
-# -------------------------
+# Tariff table
 class Tariff(Base):
     __tablename__ = "tariffs"
 
@@ -86,9 +80,7 @@ class Tariff(Base):
     reference_document = Column(String(255))
 
 
-# -------------------------
-# CONTRACTS (DRAFT + FINAL)
-# -------------------------
+# Contract table
 class Contract(Base):
     __tablename__ = "contracts"
 
@@ -136,9 +128,7 @@ class Contract(Base):
     customer = relationship("Customer", back_populates="contracts")
 
 
-# -------------------------
-# COMPLAINTS (INTELLIGENT REQUESTS)
-# -------------------------
+# Complaint table
 class Complaint(Base):
     __tablename__ = "complaints"
 

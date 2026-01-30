@@ -1,24 +1,5 @@
-/**
- * Translations Module
- * 
- * Contains all localized text strings for the application.
- * Supports French (fr) and English (en) languages.
- * 
- * Structure mirrors the UI components that consume these strings,
- * organized by feature area (header, forms, validation, etc.).
- * 
- * @module lib/translations
- */
-
-/** Supported language codes */
 export type Language = 'fr' | 'en';
 
-/**
- * Translation dictionary containing all UI strings
- * 
- * Organized by language with identical structure for each language.
- * All keys must exist in both language objects.
- */
 export const translations = {
   // French translations
   fr: {
@@ -160,7 +141,6 @@ export const translations = {
 
     // Footer content
     helpLine: 'Service client disponible du lundi au vendredi, 8h-18h',
-    dataProtection: 'Vos données sont protégées conformément au RGPD',
 
     // Request type toggle (Information/Complaint)
     requestType: 'Type de demande',
@@ -349,7 +329,6 @@ export const translations = {
 
     // Footer content
     helpLine: 'Customer service available Monday to Friday, 8am-6pm',
-    dataProtection: 'Your data is protected in accordance with GDPR',
 
     // Request type toggle (Information/Complaint)
     requestType: 'Request type',
@@ -399,5 +378,5 @@ export const translations = {
   },
 } as const;
 
-/** Type for accessing translation keys */
+
 export type TranslationKey = keyof typeof translations.fr;

@@ -20,9 +20,7 @@ router = APIRouter(
 UPLOAD_DIR = "uploads/cin"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-# =====================================================
-# STEP 1 — CREATE CONTRACT DRAFT
-# =====================================================
+# create contract draft
 @router.post("/draft", response_model=schemas.ContractDraftRead)
 def create_contract_draft(
     data: schemas.ContractDraftCreate,
@@ -69,9 +67,7 @@ def create_contract_draft(
     return contract
 
 
-# =====================================================
-# STEP 2 — UPLOAD CIN + OCR + LLM + VERIFICATION
-# =====================================================
+# upload CIN and verify identity
 @router.post("/{contract_id}/upload-cin")
 def upload_cin_and_verify(
     contract_id: int,
@@ -92,9 +88,7 @@ def upload_cin_and_verify(
     if not customer:
         raise HTTPException(status_code=404, detail="Customer not found")
 
-    # -----------------------------
-    # Save CIN image
-    # -----------------------------
+    # save image
     filename = f"{uuid.uuid4()}.png"
     image_path = os.path.join(UPLOAD_DIR, filename)
 
@@ -104,50 +98,26 @@ def upload_cin_and_verify(
     contract.cin_image_path = image_path
     db.commit()
 
-    # -----------------------------
-    # OCR extraction
-    # -----------------------------
+    # extract text with OCR
     ocr_texts = extract_text_from_image(image_path)
 
     if not ocr_texts:
         raise HTTPException(status_code=400, detail="OCR failed to read image")
     
-    print(f"[DEBUG] OCR output: {ocr_texts}")
-    
-    # -----------------------------
-    # OCR PRE-CLEAN (🔥 ADD THIS 🔥)
-    # -----------------------------
     ocr_texts = preprocess_ocr(ocr_texts)
-    print(f"[DEBUG] After preprocess: {ocr_texts}")
 
-    # -----------------------------
-    # LLM extraction (Mistral)
-    # -----------------------------
+    # use LLM to extract identity data
     llm_result = extract_identity_with_llm(ocr_texts)
-    print(f"[DEBUG] LLM result: {llm_result}")
 
     extracted_name = llm_result.get("full_name")
     extracted_cin = llm_result.get("national_id")
 
-    print(f"[DEBUG] Extracted name: '{extracted_name}' (type: {type(extracted_name)})")
-    print(f"[DEBUG] Extracted CIN: '{extracted_cin}' (type: {type(extracted_cin)})")
-    print(f"[DEBUG] DB name: '{customer.full_name}'")
-    print(f"[DEBUG] DB CIN: '{customer.national_id}'")
-
     contract.extracted_name = extracted_name
     contract.extracted_id = extracted_cin
 
-    # -----------------------------
-    # Verification logic
-    # -----------------------------
+    # verify against database
     name_match_score = compare_names(customer.full_name, extracted_name)
     cin_match = compare_cin(customer.national_id, extracted_cin)
-
-    print(f"[DEBUG] Name match score: {name_match_score}")
-    print(f"[DEBUG] CIN match: {cin_match}")
-    print(f"[DEBUG] Condition (score >= 0.8): {name_match_score >= 0.8}")
-    print(f"[DEBUG] Condition (cin_match): {cin_match}")
-    print(f"[DEBUG] Both conditions: {name_match_score >= 0.8 and cin_match}")
 
     confidence = round(name_match_score * 100, 2)
     contract.confidence_score = confidence
@@ -158,8 +128,6 @@ def upload_cin_and_verify(
     else:
         contract.verification_status = "rejected"
         contract.status = "rejected"
-    
-    print(f"[DEBUG] Final status: {contract.status}")
 
 
     db.commit()
@@ -173,18 +141,12 @@ def upload_cin_and_verify(
         "extracted_id": extracted_cin
     }
 
-# =====================================================
-# STEP 3 — SEND VERIFICATION EMAIL WITH PDFs
-# =====================================================
+# send verification email
 @router.post("/{contract_id}/send-verification-email")
 def send_contract_verification_email(
     contract_id: int,
     db: Session = Depends(get_db)
 ):
-    """
-    Send verification email with contract PDFs and e-signature link.
-    Only works if contract status is "verified".
-    """
     
     contract = db.query(models.Contract).filter(
         models.Contract.id_contract == contract_id
@@ -208,14 +170,13 @@ def send_contract_verification_email(
 
     try:
 
-        # Attach static PDFs from app/utils/closes/
+        # attach PDFs
         closes_dir = os.path.join(os.path.dirname(__file__), '../utils/closes')
         pdf_paths = [
             os.path.abspath(os.path.join(closes_dir, 'Guide_Explicatif_Clauses.pdf')),
         ]
-        print(f"✅ PDFs attached: {pdf_paths}")
 
-        # Configure email settings from environment
+        # get email config from env
         smtp_server = os.getenv("SMTP_SERVER", "smtp.gmail.com")
         smtp_port = int(os.getenv("SMTP_PORT", "587"))
         sender_email = os.getenv("SENDER_EMAIL")
@@ -228,7 +189,7 @@ def send_contract_verification_email(
                 detail="Email service not configured. Set SENDER_EMAIL and SENDER_PASSWORD in environment."
             )
 
-        # Configure email service
+        # setup email service
         EmailConfig.configure(
             smtp_server=smtp_server,
             smtp_port=smtp_port,
@@ -237,7 +198,7 @@ def send_contract_verification_email(
             frontend_url=frontend_url
         )
 
-        # Send email
+        # send email
         email_sent = send_verification_email(
             recipient_email=customer.email,
             customer_name=customer.full_name,
@@ -251,7 +212,7 @@ def send_contract_verification_email(
                 detail="Failed to send verification email"
             )
 
-        # Update contract with email sent timestamp
+        # update contract status
         contract.status = "email_sent"
         db.commit()
 
@@ -264,25 +225,20 @@ def send_contract_verification_email(
         }
 
     except Exception as e:
-        print(f"❌ Error sending email: {e}")
+        print(f"Error sending email: {e}")
         raise HTTPException(
             status_code=500,
             detail=f"Error sending email: {str(e)}"
         )
 
 
-# =====================================================
-# STEP 4 — SIGN CONTRACT
-# =====================================================
+# sign contract
 @router.post("/{contract_id}/sign")
 def sign_contract(
     contract_id: int,
     signature_image: UploadFile = File(...),
     db: Session = Depends(get_db)
 ):
-    """
-    Receive signature image, generate final PDF, store it, and email it.
-    """
     contract = db.query(models.Contract).filter(
         models.Contract.id_contract == contract_id
     ).first()
@@ -297,7 +253,7 @@ def sign_contract(
     if not customer:
         raise HTTPException(status_code=404, detail="Customer not found")
 
-    # 1. Save Signature Image
+    # save signature image
     signature_filename = f"sig_{contract_id}_{uuid.uuid4()}.png"
     signature_dir = "uploads/signatures"
     os.makedirs(signature_dir, exist_ok=True)
@@ -309,12 +265,10 @@ def sign_contract(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to save signature: {e}")
 
-    # 2. Generate Signed PDF
-    # Import locally if not at top, but better to use the imported one
+    # generate PDF with signature
     from ..utils.pdf_generator import generate_signed_contract_pdf
     from ..utils.email_service import send_signed_contract_email
     
-    # Prepare data for pdf filling
     contract_data = {
         'national_id': customer.national_id,
         'address': customer.address,
@@ -342,14 +296,14 @@ def sign_contract(
     if not signed_pdf_path or not os.path.exists(signed_pdf_path):
         raise HTTPException(status_code=500, detail="Failed to generate signed contract PDF")
 
-    # 3. Update Contract
+    # update contract in database
     contract.signature_path = signature_path
     contract.pdf_path = signed_pdf_path
     contract.signed_at = datetime.now()
     contract.status = "signed"
     db.commit()
 
-    # 4. Send Email
+    # send signed contract to customer
     email_sent = send_signed_contract_email(
         recipient_email=customer.email,
         customer_name=customer.full_name,
@@ -358,7 +312,7 @@ def sign_contract(
     )
     
     if not email_sent:
-        print("⚠️ Warning: Failed to send signed contract email")
+        print("Warning: Failed to send signed contract email")
 
     return {
         "success": True,

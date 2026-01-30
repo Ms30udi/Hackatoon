@@ -1,13 +1,3 @@
-/**
- * ServicePortal Component
- * 
- * Main portal interface for handling customer service requests.
- * Manages the complete request flow from type selection through
- * form submission to confirmation display.
- * 
- * @module components/ServicePortal
- */
-
 import React, { useState, useCallback } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { RequestTypeSelector, RequestType } from './RequestTypeSelector';
@@ -20,46 +10,28 @@ import { ContractPage } from '@/pages/ContractPage';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-/** Possible states of the portal workflow */
 type PortalState = 'selection' | 'form' | 'confirmation' | 'contract';
 
-/**
- * ServicePortal - Primary component for the service request workflow
- * 
- * Implements a four-step process:
- * 1. Selection: User chooses the type of request
- * 2. Form: User fills out the appropriate form (or contract workflow)
- * 3. Confirmation: Display success message with reference number
- * 4. Contract: Complete contract digitalization workflow
- */
 export const ServicePortal: React.FC = () => {
   const { t } = useLanguage();
 
-  // Portal state management
   const [portalState, setPortalState] = useState<PortalState>('selection');
   const [selectedType, setSelectedType] = useState<RequestType>(null);
   const [referenceNumber, setReferenceNumber] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  /**
-   * Generates a unique reference number for submitted requests
-   * Format: REF-{timestamp}-{random}
-   */
   const generateReferenceNumber = useCallback(() => {
     const timestamp = Date.now().toString(36).toUpperCase();
     const random = Math.random().toString(36).substring(2, 6).toUpperCase();
     return `REF-${timestamp}-${random}`;
   }, []);
 
-  /** Handles request type selection from the selector grid */
   const handleSelectType = useCallback((type: RequestType) => {
     setSelectedType(type);
   }, []);
 
-  /** Advances from selection to form state when a type is chosen */
   const handleContinue = useCallback(() => {
     if (selectedType) {
-      // Route to contract workflow for digitalization
       if (selectedType === 'newContract') {
         setPortalState('contract');
       } else {
@@ -68,21 +40,15 @@ export const ServicePortal: React.FC = () => {
     }
   }, [selectedType]);
 
-  /** Returns to the selection state from the form */
   const handleBack = useCallback(() => {
     setPortalState('selection');
   }, []);
 
-  /** Returns from contract page to selection */
   const handleBackFromContract = useCallback(() => {
     setPortalState('selection');
     setSelectedType(null);
   }, []);
 
-  /**
-   * Processes form submission
-   * Sends data to backend and transitions to confirmation
-   */
   const handleSubmit = useCallback(async (data: Record<string, unknown>) => {
     console.log('Submitting form:', { type: selectedType, data });
     setIsSubmitting(true);
@@ -128,16 +94,12 @@ export const ServicePortal: React.FC = () => {
     }
   }, [selectedType, generateReferenceNumber]);
 
-  /** Resets the portal to initial state for a new request */
   const handleNewRequest = useCallback(() => {
     setPortalState('selection');
     setSelectedType(null);
     setReferenceNumber('');
   }, []);
 
-  /**
-   * Renders the appropriate form component based on selected type
-   */
   const renderForm = () => {
     switch (selectedType) {
       case 'newContract':
@@ -153,7 +115,6 @@ export const ServicePortal: React.FC = () => {
     }
   };
 
-  /** Gets the localized title for the current form type */
   const getFormTitle = () => {
     if (!selectedType) return '';
     return t.requestTypes[selectedType].title;

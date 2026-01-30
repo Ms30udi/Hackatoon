@@ -1,28 +1,15 @@
-/**
- * RequestTypeSelector Component
- * 
- * Interactive grid of service request type cards.
- * Users select one type to proceed with their request.
- * 
- * @module components/RequestTypeSelector
- */
-
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
 import { FileText, Settings, HelpCircle, Plug } from 'lucide-react';
 
-/** Available request types in the system */
 export type RequestType = 'newContract' | 'modifyContract' | 'information' | 'newConnection' | null;
 
 interface RequestTypeSelectorProps {
-  /** Currently selected request type */
   selected: RequestType;
-  /** Callback when a type is selected */
   onSelect: (type: RequestType) => void;
 }
 
-/** Icon mapping for each request type */
 const REQUEST_TYPE_ICONS = {
   newContract: FileText,
   modifyContract: Settings,
@@ -30,16 +17,6 @@ const REQUEST_TYPE_ICONS = {
   newConnection: Plug,
 } as const;
 
-/**
- * RequestTypeSelector - Service request type selection grid
- * 
- * Displays a responsive grid of selectable cards, each representing
- * a different type of service request. Features include:
- * - Visual icons for each type
- * - Localized titles and descriptions
- * - Clear selection state with checkmark indicator
- * - Smooth hover and selection animations
- */
 export const RequestTypeSelector: React.FC<RequestTypeSelectorProps> = ({
   selected,
   onSelect,

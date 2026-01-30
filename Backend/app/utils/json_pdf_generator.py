@@ -1,7 +1,5 @@
-"""
-JSON-based PDF Generator
-Generates PDFs using a JSON template configuration
-"""
+# JSON-based PDF Generator
+# Generates PDFs using a JSON template configuration
 
 import json
 import os
@@ -135,7 +133,7 @@ def generate_pdf_from_template(
                     can.setFont(field_config.get('font', 'Helvetica'), field_config.get('size', 10))
                     can.drawString(field_config['x'], field_config['y'], field_config['text'])
                 
-                # Otherwise it's a dynamic field
+                # it's a dynamic field
                 else:
                     value = resolve_field_value(mapping, data)
                     if value:
@@ -168,13 +166,11 @@ def generate_pdf_from_template(
         with open(output_pdf_path, "wb") as output_file:
             output.write(output_file)
         
-        print(f"✅ PDF generated: {output_pdf_path}")
+        print(f"PDF generated: {output_pdf_path}")
         return output_pdf_path
     
     except Exception as e:
-        print(f"❌ Error generating PDF from template: {e}")
-        import traceback
-        traceback.print_exc()
+        print(f"Error generating PDF from template: {e}")
         return ""
 
 
