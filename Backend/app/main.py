@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .database import engine, Base
@@ -10,19 +9,19 @@ from .routes import customers, complaints, contracts
 
 app = FastAPI(title="Hackatoon Backend", version="1.0")
 
-# CORS middleware for frontend-backend communication
+# setup CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # For development, allow all. For prod, set to ["http://localhost:8080"]
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# AUTO CREATE / UPDATE TABLES
+# create tables
 Base.metadata.create_all(bind=engine)
 
-# REGISTER ROUTERS
+# register routes
 app.include_router(customers.router)
 app.include_router(complaints.router)
 app.include_router(contracts.router)

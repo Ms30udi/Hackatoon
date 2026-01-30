@@ -10,9 +10,7 @@ router = APIRouter(
 )
 
 
-# -------------------------
-# CREATE COMPLAINT (INTELLIGENT REQUEST ENTRY)
-# -------------------------
+# create complaint
 @router.post("/", response_model=schemas.ComplaintRead)
 def create_complaint(complaint: schemas.ComplaintCreate, db: Session = Depends(get_db)):
 
@@ -33,17 +31,13 @@ def create_complaint(complaint: schemas.ComplaintCreate, db: Session = Depends(g
     return db_complaint
 
 
-# -------------------------
-# GET ALL COMPLAINTS
-# -------------------------
+# get all complaints
 @router.get("/", response_model=list[schemas.ComplaintRead])
 def get_complaints(db: Session = Depends(get_db)):
     return db.query(models.Complaint).all()
 
 
-# -------------------------
-# GET COMPLAINT BY ID
-# -------------------------
+# get complaint by ID
 @router.get("/{complaint_id}", response_model=schemas.ComplaintRead)
 def get_complaint(complaint_id: int, db: Session = Depends(get_db)):
 

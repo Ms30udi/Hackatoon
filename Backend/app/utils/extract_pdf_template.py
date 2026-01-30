@@ -1,20 +1,12 @@
-"""
-Extract PDF structure to JSON template
-This script analyzes a PDF and creates a JSON template for field mapping
-"""
+# Extract PDF structure to JSON template
+# This script analyzes a PDF and creates a JSON template for field mapping
 
 import json
 import os
 from pypdf import PdfReader
 
 def extract_pdf_to_json(pdf_path: str, output_json_path: str):
-    """
-    Extract PDF structure and create a JSON template for field mapping.
-    
-    Args:
-        pdf_path: Path to the PDF file
-        output_json_path: Path where JSON template will be saved
-    """
+    # extract structure and save to json
     
     reader = PdfReader(pdf_path)
     
@@ -83,13 +75,12 @@ def extract_pdf_to_json(pdf_path: str, output_json_path: str):
         }
     }
     
-    # Save to JSON
     with open(output_json_path, 'w', encoding='utf-8') as f:
         json.dump(template, f, indent=2, ensure_ascii=False)
     
-    print(f"✅ Template extracted to: {output_json_path}")
-    print(f"   Total pages: {template['num_pages']}")
-    print(f"   Fields defined: {sum(len(fields) for fields in template['fields'].values())}")
+    print(f"Template extracted to: {output_json_path}")
+    print(f"Total pages: {template['num_pages']}")
+    print(f"Fields defines: {sum(len(fields) for fields in template['fields'].values())}")
 
 if __name__ == "__main__":
     pdf_path = os.path.join(os.path.dirname(__file__), 'closes', 'Contrat_Abonnement_Electricite1.pdf')

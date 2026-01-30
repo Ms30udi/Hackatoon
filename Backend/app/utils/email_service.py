@@ -1,8 +1,3 @@
-"""
-Email Service for Contract Verification
-Handles sending contract PDFs and E-signature instructions to customers
-"""
-
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -14,7 +9,6 @@ from typing import List, Optional
 
 
 class EmailConfig:
-    """Email configuration - can be loaded from environment variables"""
     
     # SMTP Server Settings
     SMTP_SERVER: str = os.getenv("SMTP_SERVER", "smtp.gmail.com")
@@ -276,11 +270,11 @@ def send_verification_email(
                         f"attachment; filename= {os.path.basename(pdf_path)}"
                     )
                     message.attach(part)
-                    print(f"✅ Attached: {os.path.basename(pdf_path)}")
+                    print(f"Attached: {os.path.basename(pdf_path)}")
                 except Exception as e:
-                    print(f"⚠️  Failed to attach {pdf_path}: {e}")
+                    print(f"Failed to attach {pdf_path}: {e}")
             else:
-                print(f"⚠️  PDF not found: {pdf_path}")
+                print(f"PDF not found: {pdf_path}")
         
         # ====== SEND EMAIL ======
         server = smtplib.SMTP(EmailConfig.SMTP_SERVER, EmailConfig.SMTP_PORT)
@@ -289,11 +283,11 @@ def send_verification_email(
         server.send_message(message)
         server.quit()
         
-        print(f"✅ Email sent successfully to {recipient_email}")
+        print(f"Email sent successfully to {recipient_email}")
         return True
         
     except Exception as e:
-        print(f"❌ Error sending email: {e}")
+        print(f"Error sending email: {e}")
         return False
 
 
@@ -304,19 +298,6 @@ def send_signed_contract_email(
     signed_pdf_path: str,
     subject: str = "Your Signed Energy Supply Contract"
 ) -> bool:
-    """
-    Send the final signed contract PDF to customer.
-    
-    Args:
-        recipient_email: Customer's email address
-        customer_name: Customer's full name
-        contract_id: ID of the contract
-        signed_pdf_path: Path to the final signed PDF
-        subject: Email subject line
-    
-    Returns:
-        True if email sent successfully, False otherwise
-    """
     
     try:
         message = MIMEMultipart()
@@ -426,22 +407,22 @@ def send_signed_contract_email(
                     f"attachment; filename=contract_{contract_id}_signed.pdf"
                 )
                 message.attach(part)
-                print(f"✅ Attached signed contract: {os.path.basename(signed_pdf_path)}")
+                print(f"Attached signed contract: {os.path.basename(signed_pdf_path)}")
             except Exception as e:
-                print(f"⚠️  Failed to attach signed contract: {e}")
+                print(f"Failed to attach signed contract: {e}")
         else:
-            print(f"⚠️  Signed PDF not found: {signed_pdf_path}")
+            print(f"Signed PDF not found: {signed_pdf_path}")
         
-        # ====== SEND EMAIL ======
+        # send email
         server = smtplib.SMTP(EmailConfig.SMTP_SERVER, EmailConfig.SMTP_PORT)
         server.starttls()
         server.login(EmailConfig.SENDER_EMAIL, EmailConfig.SENDER_PASSWORD)
         server.send_message(message)
         server.quit()
         
-        print(f"✅ Signed contract email sent to {recipient_email}")
+        print(f"Signed contract email sent to {recipient_email}")
         return True
         
     except Exception as e:
-        print(f"❌ Error sending signed contract email: {e}")
+        print(f"Error sending signed contract email: {e}")
         return False
