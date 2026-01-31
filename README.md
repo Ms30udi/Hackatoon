@@ -8,6 +8,11 @@
 
 An AI-powered web portal for managing electricity contracts, identity verification, and customer service operations in the Moroccan energy market. Features OCR-based CIN verification, automated PDF contract generation, email delivery, and bilingual support (French/English).
 
+## 🎥 Project Presentation
+
+[![Project Demo Video](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/VIDEO_ID)
+
+
 ## Table of Contents
 
 - [Overview](#overview)
