@@ -10,7 +10,7 @@ An AI-powered web portal for managing electricity contracts, identity verificati
 
 ## 🎥 Project Presentation
 
-[![Project Demo Video](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/VIDEO_ID)
+https://drive.google.com/file/d/1TpIsEZXzGcUnevoYKIjwmNPkT1gEFcW1/view?usp=sharing
 
 
 ## Table of Contents
